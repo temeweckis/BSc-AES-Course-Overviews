@@ -1,0 +1,145 @@
+\documentclass[10pt,landscape,a4paper]{article}
+\usepackage{multicol}
+\usepackage{calc}
+\usepackage{ifthen}
+\usepackage{geometry}
+
+% Custom packages.
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{mathrsfs}
+\usepackage{stix2}
+\usepackage{systeme}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{physics}
+\usepackage{siunitx}
+\usepackage{collcell} % loads array
+\newcolumntype{M}{>{$} l <{$}}
+\newcolumntype{U}{>{$[\collectcell\si} l <{\endcollectcell]$}}
+
+% Hyperref. Remember to change title!
+\usepackage{hyperref}
+\hypersetup{pdfauthor={Teemu Weckroth},pdftitle={Physical Transport Phenomena}}
+
+% Path to graphics folder.
+\graphicspath{ {./figures/} }
+
+% Change fonts for v and w.
+\DeclareSymbolFont{txletters}{OML}{ntxmi}{m}{it}
+\SetSymbolFont{txletters}{bold}{OML}{ntxmi}{b}{it}
+\DeclareFontSubstitution{OML}{ntxmi}{m}{it}
+\DeclareMathSymbol{v}{\mathalpha}{txletters}{`v}
+\DeclareMathSymbol{w}{\mathalpha}{txletters}{`w}
+
+% Must be below font changes to avoid errors.
+\usepackage{bm}
+
+% Commands for differentials. Redefines the underdot command!
+\renewcommand\d{\mathop{}\!\mathrm{d}}
+\newcommand\p{\mathop{}\!\mathrm{\partial}}
+%\newcommand\e{\mathrm{e}}
+
+% Commands for the set of real numbers and Lagrangian/Laplace.
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\La}{\mathscr{L}}
+
+% Unbreakable unit environment.
+\newenvironment{absolutelynopagebreak}
+{\par\nobreak\vfil\penalty0\vfilneg
+	\vtop\bgroup}
+{\par\xdef\tpd{\the\prevdepth}\egroup
+	\prevdepth=\tpd}
+
+% Shrink bullet points.
+\renewcommand\labelitemi{$\vcenter{\hbox{\tiny$\bullet$}}$}
+
+%
+\ifthenelse{\lengthtest { \paperwidth = 11in}}
+{ \geometry{top=.5in,left=.5in,right=.5in,bottom=.5in} }
+{\ifthenelse{ \lengthtest{ \paperwidth = 297mm}}
+	{\geometry{top=1cm,left=1cm,right=1cm,bottom=1cm} }
+	{\geometry{top=1cm,left=1cm,right=1cm,bottom=1cm} }
+}
+
+% Turn off header and footer
+\pagestyle{empty}
+
+% Redefine section commands to use less space
+\makeatletter
+\renewcommand{\section}{\@startsection{section}{1}{0mm}%
+	{-1ex plus -.5ex minus -.2ex}%
+	{0.5ex plus .2ex}%x
+	{\normalfont\large\bfseries}}
+\renewcommand{\subsection}{\@startsection{subsection}{2}{0mm}%
+	{-1explus -.5ex minus -.2ex}%
+	{0.5ex plus .2ex}%
+	{\normalfont\normalsize\bfseries}}
+\renewcommand{\subsubsection}{\@startsection{subsubsection}{3}{0mm}%
+	{-1ex plus -.5ex minus -.2ex}%
+	{1ex plus .2ex}%
+	{\normalfont\small\bfseries}}
+\makeatother
+
+% Define BibTeX command
+\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+		T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+
+% Don't print section numbers
+\setcounter{secnumdepth}{0}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt plus 0.5ex}
+
+\begin{document}
+	
+	\raggedright
+	\footnotesize
+	\begin{multicols}{3}
+		
+		
+		% multicol parameters
+		% These lengths are set only within the two main columns
+		%\setlength{\columnseprule}{0.25pt}
+		\setlength{\premulticols}{1pt}
+		\setlength{\postmulticols}{1pt}
+		\setlength{\multicolsep}{1pt}
+		\setlength{\columnsep}{2pt}
+		
+		\part*{Physical Transport Phenomena: index}
+		\begin{center}
+			Teemu Weckroth, \today
+		\end{center}
+		
+%		\section{Units.}
+%			\begin{flalign*}
+%				\text{Shear stress} \ [\tau] &= \SI{}{\pascal} = \SI{}{\kilogram\per\meter\per\square\second}&\\
+%				\text{Yield stress} \ [\tau_0] &= \SI{}{\pascal} = \SI{}{\kilogram\per\meter\per\square\second}&\\
+%				\text{Viscosity} \ [\mu] &= \SI{}{\pascal\second} = \SI{}{\kilogram\per\meter\per\second} &\\
+%				\text{Plastic viscosity} \ [\mu_0] &= \SI{}{\pascal\second} = \SI{}{\kilogram\per\meter\per\second} &\\
+%				\text{Kinematic viscosity} \ [\nu] &= \SI{}{\square\meter\per\second}&\\
+%				\text{Shear rate} \ [\dot{y}] &= \SI{}{\per\second}&
+%			\end{flalign*}
+
+%		\input{lectures}
+		\input{equations-part-1}
+%		\newpage
+		\input{equations-part-2}
+		
+		\newpage
+	\end{multicols}
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+

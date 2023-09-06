@@ -1,0 +1,604 @@
+% Template setup and packages.
+\documentclass[10pt,landscape,a4paper]{article}
+\usepackage{multicol}
+\usepackage{calc}
+\usepackage{ifthen}
+\usepackage{geometry}
+
+% Custom packages.
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{mathrsfs}
+\usepackage{stix2}
+\usepackage{systeme}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{physics}
+\usepackage{siunitx}
+\usepackage{collcell} % loads array
+\newcolumntype{M}{>{$} l <{$}}
+\newcolumntype{U}{>{$[\collectcell\si} l <{\endcollectcell]$}}
+
+% Hyperref. Remember to change title!
+\usepackage{hyperref}
+\hypersetup{pdfauthor={Teemu Weckroth},pdftitle={Mathematics 4}}
+
+% Path to graphics folder.
+\graphicspath{ {./figures/} }
+
+% Change fonts for v and w.
+\DeclareSymbolFont{txletters}{OML}{ntxmi}{m}{it}
+\SetSymbolFont{txletters}{bold}{OML}{ntxmi}{b}{it}
+\DeclareFontSubstitution{OML}{ntxmi}{m}{it}
+\DeclareMathSymbol{v}{\mathalpha}{txletters}{`v}
+\DeclareMathSymbol{w}{\mathalpha}{txletters}{`w}
+
+% Must be below font changes to avoid errors.
+\usepackage{bm}
+
+% Commands for differentials. Redefines the underdot command!
+\renewcommand\d{\mathop{}\!\mathrm{d}}
+\newcommand\p{\mathop{}\!\mathrm{\partial}}
+%\newcommand\e{\mathrm{e}}
+
+% Commands for the set of real numbers and Lagrangian/Laplace.
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\La}{\mathscr{L}}
+
+% Unbreakable unit environment.
+\newenvironment{absolutelynopagebreak}
+{\par\nobreak\vfil\penalty0\vfilneg
+	\vtop\bgroup}
+{\par\xdef\tpd{\the\prevdepth}\egroup
+	\prevdepth=\tpd}
+
+% Shrink bullet points.
+\renewcommand\labelitemi{$\vcenter{\hbox{\tiny$\bullet$}}$}
+
+%
+\ifthenelse{\lengthtest { \paperwidth = 11in}}
+{ \geometry{top=.5in,left=.5in,right=.5in,bottom=.5in} }
+{\ifthenelse{ \lengthtest{ \paperwidth = 297mm}}
+	{\geometry{top=1cm,left=1cm,right=1cm,bottom=1cm} }
+	{\geometry{top=1cm,left=1cm,right=1cm,bottom=1cm} }
+}
+
+% Turn off header and footer
+\pagestyle{empty}
+
+% Redefine section commands to use less space
+\makeatletter
+\renewcommand{\section}{\@startsection{section}{1}{0mm}%
+	{-1ex plus -.5ex minus -.2ex}%
+	{0.5ex plus .2ex}%x
+	{\normalfont\large\bfseries}}
+\renewcommand{\subsection}{\@startsection{subsection}{2}{0mm}%
+	{-1explus -.5ex minus -.2ex}%
+	{0.5ex plus .2ex}%
+	{\normalfont\normalsize\bfseries}}
+\renewcommand{\subsubsection}{\@startsection{subsubsection}{3}{0mm}%
+	{-1ex plus -.5ex minus -.2ex}%
+	{1ex plus .2ex}%
+	{\normalfont\small\bfseries}}
+\makeatother
+
+% Define BibTeX command
+\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+		T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+
+% Don't print section numbers
+\setcounter{secnumdepth}{0}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt plus 0.5ex}
+
+\begin{document}
+	
+	\raggedright
+	\footnotesize
+	\begin{multicols}{3}
+		
+		
+		% multicol parameters
+		% These lengths are set only within the two main columns
+		%\setlength{\columnseprule}{0.25pt}
+		\setlength{\premulticols}{1pt}
+		\setlength{\postmulticols}{1pt}
+		\setlength{\multicolsep}{1pt}
+		\setlength{\columnsep}{2pt}
+		
+		\part*{Mathematics 4: Differential Equations.}
+		\begin{center}
+			Teemu Weckroth, \today
+		\end{center}
+		
+		\section{Linearity.}
+		An $ n^{\text{th}} $-order ordinary differential equation for $ y(t) $ is called linear if it is of the form
+			\[
+				a_n(t) \frac{d^n y}{d t^n} + ... + a_2(t) \frac{d^2 y}{d t^2} + a_1(t) \frac{dy}{dt} + a_0(t) y(t) = b(t).
+			\]
+		And ODE with a term such as $ y^2 $ or $ y \frac{dy}{dt} $ is called non-linear.
+		
+		\section{Homogeneity.}
+		The ODE is called homogeneous if $ b(t) = 0 $ and inhomogeneous if $ b(t) \neq 0 $.
+		
+		\section{Autonomy.}
+		A differential equation is called autonomous when it does not depend explicitly on the independent variable ($ t $).\\
+		An ODE with a term such as $ \sin (t)$ or $t \frac{dy}{dt} $ is called not autonomous.
+		
+		\section{Direction field.}
+		A direction field for a single differential equation is a graph with:
+			\begin{itemize}
+				\item the independent variable on the horizontal axis;
+				\item the dependent variable on the vertical axis;
+				\item and arrows which indicate the rate of change of the dependent variable.
+			\end{itemize}
+		
+		\section{Equilibrium point stability.}
+		An equilibrium point is stable if any initial value close to the equilibrium point gives solutions that always remain close to the equilibrium point.\\
+		Any equilibrium point which is not stable is called unstable.
+		
+		\section{The harmonic addition theorem.}
+		\[
+			c_1 \cos{\omega t} + c_2 \sin{\omega t} = R \cos{(\omega t - \delta)}
+		\]
+		\[
+			R = \sqrt{c_1^2 + c_2^2}
+		\]
+		\[
+			\delta = 
+			\begin{cases}
+				\arctan{(c_2/c_1)}       &~\text{if $c_1$ > 0}\\
+				\arctan{(c_2/c_1)} + \pi &~\text{if $c_1 < 0$}
+			\end{cases}
+		\]
+		
+		\section{The Laplace Transform.}
+		For a function $ f : [0, \infty) \rightarrow \R $:
+		\[
+			\La \{f\} (s) = F(s) = \int_{0}^{\infty} {e^{-st} f(t)~dt},
+		\]
+		provided the integral exists.
+		
+		\section{Linearity.}
+		For constants $ a, b \in \R $:
+		\[
+			\La\{af(t) + bg(t)\} = a\La\{f(t)\} + b\La\{g(t)\}.
+		\]
+		
+		\section{Shift property.}
+		For constant $ a \in \R $:
+		\[
+			\La\{f(t)e^{at}\} = \La\{f(t)\}(s-a) = F(s-a)
+		\]
+		
+		\section{Differentiation rule.}
+		If $ \La\{f(t)\} = F(s) $, then $ \La\{f'(t)\} = sF(s) - f(0) $.\\
+		Consequence:
+		\begin{align*}
+			\La\{f''(t)\} &= s(sF(s) - f(0)) - f'(0)\\
+			&= s^2F(s) - sf(0) - f'(0)
+		\end{align*}
+		
+		\section{The Inverse Laplace Transform.}
+		If $ f(t) $ is piecewise continuous and $ \La\{f\}(s) = F(s) $ exists, then $ f(t) $ is uniquely determined by $ F(s) $ by means of the Inverse Laplace Transform
+		\[
+			f(t) = \La^{-1}\{F(s)\}.
+		\]
+		
+		\section{Solving linear ODE using Laplace Transforms.}
+		Three steps:
+			\begin{enumerate}
+				\item Compute Laplace transform of the initial value problem.\\
+				\item Compute solutions $ Y(s) $ in the $ s $-domain.\\
+				\item Compute inverse Laplace transform to find solutions $ y(t) $ in the $ t $-domain.
+			\end{enumerate}
+		
+		\section{Finding a partial fraction decomposition.}
+		Five steps:
+			\begin{enumerate}
+				\item Factorize the denominator into linear and quadratic factors.\\
+				\item For each factor $ (s-a)^k $ introduce $ k $ terms
+				\[
+					\frac{A_1}{s-a}, \frac{A_2}{(s-a)^2}, ..., \frac{A_k}{(s-a)^k},
+				\]
+				and for a factor $ ((s-a)^2 + b^2)^\ell$ add terms
+				\[
+					\frac{B_1 (s-a) + C_1}{(s-a)^2 + b^2}, \frac{B_2 (s-a) + C_2}{((s-a)^2 + b^2)^2}, ..., \frac{B_{\ell} (s-a) + C_{\ell}}{((s-a)^2 + b^2)^\ell}.
+				\]
+				\item Put all the terms together into one fraction and compare with the given rational function.
+				\item Comparing the numerators gives a system of $ n $ linear equations for the $ n $ unknown parameters.
+				\item Solve the system and write down the partial fraction decomposition.
+			\end{enumerate}
+		
+		\section{Step function.}
+		The function
+		\[
+			u_a(t) = 
+			\begin{cases}
+				0,&~\text{if $ 0 \leq t < a $}\\
+				1,&~\text{if $ t \geq a $}
+			\end{cases}
+		\]
+		is called the Heaviside function or the unit step function.\\
+		E.g.
+		\[
+			F(t) = 
+			\begin{cases}
+				0,&~\text{if $ t<2 $ or $ t \geq 4 $}\\
+				t-2,&~\text{if $ 2 \leq t < 4 $}
+			\end{cases}
+		\]
+		$ F(t) $ in one line: $ F(t) = (t-2) \cdot (u_2(t) - u_4(t)) $.
+		
+		\section{The impulse function.}
+		\[
+			\text{Limit for}~\tau \rightarrow 0^+: d_{\tau}(t) = 
+			\begin{cases}
+				\frac{1}{2 \tau},&-\tau < t < \tau\\
+				0,&\text{other}~t
+			\end{cases}
+		\]
+		Dirac delta "function" $ \delta(t-a) $:
+		\[
+			\delta(t-a) =
+			\begin{cases}
+				0,&\text{when}~t \neq a\\
+				\infty,&\text{when}~t=a
+			\end{cases}
+		\]
+		Properties:
+		\begin{align*}
+			\int_{-\infty}^{\infty} \delta(t-a)~dt&=1\\
+			\int_{-\infty}^{\infty} f(t)\delta(t-a)~dt&=f(a)
+		\end{align*}
+		
+		\section{Solving a system of ODE.}
+		If $ \vb{u}_1(t) $ and $ \vb{u}_2(t) $ are two linearly independent solutions, then every solution can be written as $ \vb{u}(t) = c_1 \vb{u}_1 (t) + c_2 \vb{u}_2 (t) $.\\
+		The function $ \vb{u}(t) = \vb{v} e^{rt} $ is a solution of $ \frac{d\vb{u}}{dt} = A\vb{u} $ precisely when $ \vb{v} $ is an eigenvector and $ r $ is an eigenvalue of $ A $.
+		\begin{align*}
+			&\vb{u}_1(t) = \vb{v}_1 e^{r_1t},~\vb{u}_2(t) = \vb{v}_2 e^{r_2t}\\
+			&\rightarrow \vb{u}(t) = c_1 \vb{v}_1e^{r_1 t} + c_2\vb{v}_2e^{r_2t}
+		\end{align*}
+		For inhomogeneous system, $ \vb{z}(t) = \vb{z}_c + \vb{z}_p $.\\
+		Assume $ \vb{z}_p $ is of the form $ \vb{z}_p(t) = \vb{c} $ (constant).\\
+		Solve $ \vb{c} $ from $ \frac{d\vb{c}}{dt} = A\vb{c} + \vb{b} $.
+		
+		\section{Rewrite to real form.}
+		If $ \vb{u}_0 $ is a complex (non-trivial) solution of $ \vb{u}' = A\vb{u} $, then $ \Re(\vb{u}_0) $ and $ \Im(\vb{u}_0) $ are two linearly independent solutions.\\
+		If $ \vb{u}_0(t) $ is a complex solution, then $ \vb{u}(t) = c_1 \Re(\vb{u}_0(t)) + c_2 \Im(\vb{u}_0(t)) $ is a real solution.
+		
+		\section{Classification of equilibrium points.}
+		\[
+			\frac{d}{dt} \begin{pmatrix}x\\y\end{pmatrix} = A \begin{pmatrix}x\\y\end{pmatrix}
+		\]
+		$ A $ is a constant $ 2 \times 2 $-matrix with eigenvalues $ r_1 $ and $ r_2 $ and corresponding eigenvectors $ \vb{v}_1 $ and $ \vb{v}_2 $.\\
+		If $ r_1 $ and $ r_2 $ are real-valued, the solution is given by
+		\[
+			\begin{pmatrix}x(t)\\y(t)\end{pmatrix} = c_1 \vb{v}_1 e^{r_1 t} + c_2 \vb{v}_2 e^{r_2 t}.
+		\]
+		\begin{align*}
+			r_1 \leq r_2 < 0 &\quad \text{stable node}\\
+			0 < r_1 \leq r_2  &\quad \text{unstable node}\\
+			r_1 < 0 < r_2 &\quad \text{saddle point, unstable}
+		\end{align*}
+		If $ r_1, r_2 = a \pm bi, (b \neq 0) $, the solution is given by
+		\[
+			\begin{pmatrix}x(t)\\y(t)\end{pmatrix} = \vb{c}_1 e^{at} \cos{bt} + \vb{c}_2 e^{at} \sin{bt}.
+		\]
+		\begin{align*}
+			a < 0 &\quad \text{stable spiral point}\\
+			a > 0  &\quad \text{unstable spiral point}\\
+			a = 0 &\quad \text{stable centre}
+		\end{align*}
+		
+		\section{Phase portrait procedure}
+		Four steps:
+		\begin{enumerate}
+			\item Calculate equilibrium points.\\
+			\item Linearise ODE around equilibrium points.\\
+			\item Characterise solutions near equilibrium points.\\
+			\item Sketch a phase portrait.
+		\end{enumerate}
+		
+		\section{Linearisation around equilibrium.}
+		Deviation from equilibrium point $ \left(x_0,y_0\right) $: $ x=x_0+u, y=y_0+v $.
+		\[
+			\begin{cases}
+				x' = F(x,y)\\
+				y' = G(x,y)
+			\end{cases}
+			\rightarrow \quad
+			\begin{cases}
+				u' = F(x_0+u,y_0+v)\\
+				v' = G(x_0+u,y_0+v)
+			\end{cases}
+		\]
+		Linearisation:
+		\[
+			\begin{cases}
+				u' \approx \frac{\partial F}{\partial x} \left(x_0,y_0\right)u + \frac{\partial F}{\partial y} \left(x_0,y_0\right)v\\
+				v' \approx \frac{\partial G}{\partial x} \left(x_0,y_0\right)u + \frac{\partial G}{\partial y} \left(x_0,y_0\right)v
+			\end{cases}
+		\]
+		
+		\section{Linearisation.}
+		Consider $ \frac{d}{dt} \begin{pmatrix}x\\y\end{pmatrix} = \begin{pmatrix}F(x,y)\\G(x,y)\end{pmatrix} $ and equilibrium point $ \left(x_0,y_0\right) $.\\
+		The linearisation of an autonomous system at $ \left(x_0,y_0\right) $ is given by
+		\begin{align*}
+			\frac{d}{dt} \begin{pmatrix}u\\v\end{pmatrix} &=
+			\begin{pmatrix}
+				\frac{\partial F}{\partial x} \left(x_0,y_0\right) & \frac{\partial F}{\partial y} \left(x_0,y_0\right)\\
+				\frac{\partial G}{\partial x} \left(x_0,y_0\right) & \frac{\partial G}{\partial y} \left(x_0,y_0\right)
+			\end{pmatrix}\begin{pmatrix}u\\v\end{pmatrix}\\
+			&= J\left(x_0,y_0\right)\begin{pmatrix}u\\v\end{pmatrix},
+		\end{align*}
+		where $ \begin{pmatrix}u(t)\\v(t)\end{pmatrix} = \begin{pmatrix}x(t)-x_0\\y(t)-y_0\end{pmatrix} $.
+		
+		\section{Type change after linearisation.}
+			\begin{tabular}{l l}
+				\textbf{Linearised}                    & \textbf{Non-linear}\\
+				\hline
+				Unstable spiral point                  & Unstable spiral point\\
+				Stable spiral point                    & Stable spiral point\\
+				Stable node $ (r_1 < r_2 < 0) $        & Stable node\\
+				\qquad\qquad\quad $ (r_1 = r_2 < 0) $  & Stable spiral point or stable node\\
+				Unstable node $ (0 < r_1 < r_2) $      & Unstable node\\
+				\qquad\qquad\qquad $ (0 < r_1 = r_2) $ & Unstable spiral point or unstable node\\
+				Saddle point (unstable)                & Saddle point (unstable)\\
+				Center point (stable)                  & (Un)stable spiral or center point (stable)
+			\end{tabular}
+		
+		\section{Van der Pol equation.}
+		\[
+			u'' - \mu (1-u^2)u' + u = 0
+		\]
+		
+		\section{Lorenz equations.}
+		\begin{align*}
+			\frac{dX}{dt} &= \sigma(-X+Y)\\
+			\frac{dY}{dt} &= rX-Y-XZ\\
+			\frac{dZ}{dt} &= -bZ+XY
+		\end{align*}
+		
+		\section{Separation of variables.}
+		\[
+			\text{PDE: } \frac{\partial u}{\partial t} = k\frac{\partial^2 u}{\partial x^2}
+		\]
+		Four steps:
+			\begin{enumerate}
+				\item Split $ u(x,t) $: $ u(x,t) = X(x) \cdot T(t) $.\\
+				\item Substitute $ X(x)T(t) $ in PDE: $ \frac{\partial X(x)T(t)}{\partial t} = k\frac{\partial^2 X(x)T(t)}{\partial x^2}$ $\rightarrow X(x)\frac{dT(t)}{dt} = k\frac{d^2X(x)}{dx^2}T(t) \rightarrow XT' = kX''T $.\\
+				\item Divide both side by $ kXT $: $ \frac{T'}{kT} = \frac{X''}{X} = \lambda $\\
+				\item Rewrite as a set of ODE:
+					$ \begin{cases}
+						\frac{X''}{X} = \lambda\\
+						\frac{T'}{kT} = \lambda
+						\end{cases}
+					\rightarrow \quad
+						\begin{cases}
+							X'' - \lambda X = 0\\
+							T' - k\lambda T = 0
+						\end{cases}
+					$
+			\end{enumerate}
+		
+		\section{Hyperbolic cosine/sine.}
+		\[
+			\cosh{x} = \frac{e^x+e^{-x}}{2} \qquad \sinh{x} = \frac{e^x-e^{-x}}{2}
+		\]
+		
+		\section{Non-trivial solutions of a boundary value problem.}
+		\[
+			y'' + \lambda y = 0,~y(0)=0,~y(\pi)=0,~\text{with $ \lambda $ a real number.}
+		\]
+		Find all numbers $ \lambda $ for which non-trivial solutions $ y(x) $ exist.\\
+		Consider three cases: $ \lambda<0,~\lambda=0,~\lambda>0 $.\\
+			\begin{align*}
+				\lambda < 0: &~\text{suppose}~\lambda=-\mu^2 (\mu>0),~\text{so}~y''-\mu^2y = 0.\\
+				             &~\text{Only trivial solution.}\\
+	            \lambda = 0: &~y'' = 0.\\
+	                         &~\text{Only trivial solution.}\\
+	            \lambda > 0: &~\text{suppose}~\lambda=\mu^2 (\mu>0),~\text{so}~y''+\mu^2y = 0.\\
+	                         &~y(x)=c_2\sin(kx),~\text{with}~\lambda=\mu^2=k^2=1,4,9,16, ... .
+			\end{align*}
+		
+		\section{A periodic function.}
+		$ f(x) $ is periodic if there exists a $ T $ such that $ f(x + T) = f(x) $ for all $ x $.\\
+		$ T $ is called a period of the function $ f(x) $.\\
+		Convention: it is sufficient to consider the function on the interval $ \left[-L,L\right] $, where $ T=2L $.\\
+		
+		\section{Orthogonal functions.}
+		For integers $ m $ and $ n $:
+		\[
+			\int_{-L}^{L} \cos\left(\frac{m\pi x}{L}\right) \cos\left(\frac{n\pi x}{L}\right)~dx = \begin{cases}0,~m\neq n\\L,~m=n\end{cases}
+		\]
+		\[
+			\int_{-L}^{L} \cos\left(\frac{m\pi x}{L}\right) \sin\left(\frac{n\pi x}{L}\right)~dx = 0,~\text{for each}~m,n
+		\]
+		\[
+			\int_{-L}^{L} \sin\left(\frac{m\pi x}{L}\right) \sin\left(\frac{n\pi x}{L}\right)~dx = \begin{cases}0,~m\neq n\\L,~m=n\end{cases}
+		\]
+		
+		\section{Fourier series.}
+		A periodic function $ f(x) $ with period $ T=2L $ can be expressed as a Fourier series:
+		\[
+		f(x) = c_0 \sum_{m=1}^{\infty} \left(a_m\cos\left(\frac{m\pi x}{L}\right) + b_m\sin\left(\frac{m\pi x}{L}\right)\right).
+		\]
+		
+		\section{Calculating coefficients $ c_0, a_m,~\text{and}~b_m $.}
+			\begin{align*}
+				 \text{Find $ c_0 $:}&~\int_{-L}^{L}{f(x)~dx} = \int_{-L}^{L}{c_0~dx} = 2c_0L\\
+				 \text{Find $ a_m $:}&~\int_{-L}^{L}{f(x)\cos\left(\frac{m\pi x}{L}\right)~dx} = a_m\int_{-L}^{L}{\cos^2\left(\frac{m\pi x}{L}\right)~dx} = a_mL\\
+				 \text{Find $ b_m $:}&~\int_{-L}^{L}{f(x)\sin\left(\frac{m\pi x}{L}\right)~dx} = b_m\int_{-L}^{L}{\sin^2\left(\frac{m\pi x}{L}\right)~dx} = b_mL
+			\end{align*}
+		
+		\section{Even and odd function identities.}
+		\[
+			\text{Even function:}~f(x) = f(-x) \qquad \text{Odd function:}~f(x)=-f(-x)
+		\]
+			\begin{align*}
+				\text{odd}+\text{odd}=\text{odd};&~~\text{even}+\text{even}=\text{even};&\text{even}+\text{odd}=\text{neither}\\
+				\text{odd}\cdot\text{odd}=\text{even};&~~\text{even}\cdot\text{even}=\text{even};&\text{even}\cdot\text{odd}=\text{odd}
+			\end{align*}
+		\[
+			\int_{-L}^{L}\text{odd}~dx=0 \qquad \int_{-L}^{L}\text{even}~dx=2\int_{0}^{L}\text{even}~dx
+		\]
+		
+		\section{Fourier sine and cosine series.}
+		Let $ f(x) $ be a function with $ T=2L $.\\
+			\begin{align*}
+				\text{Cosine series:}~f(x)&=\frac{a_0}{2} + \sum_{n=1}^{\infty} a_n\cos\left(\frac{n\pi x}{L}\right),~\text{where}\\
+				~a_n&=\frac{2}{L} \int_{0}^{L} f_{\text{even}}(x) \cos\left(\frac{n\pi x}{L}\right)~dx.\\
+				\text{Sine series:}~f(x)&=\sum_{n=1}^{\infty} b_n\sin\left(\frac{n\pi x}{L}\right),~\text{where}\\
+				~b_n&=\frac{2}{L} \int_{0}^{L} f_{\text{odd}}(x) \sin\left(\frac{n\pi x}{L}\right)~dx.
+			\end{align*}
+		\[
+		f_\text{even}(x) = \frac{1}{2}(f(x)+f(-x)) \qquad f_\text{odd}(x) = \frac{1}{2}(f(x)-f(-x))
+		\]
+		
+		\section{Solving a partial differential equation.}
+		Five steps:
+			\begin{enumerate}
+				\item Separation of variables.\\
+				\item Solve ODE with two homogeneous conditions.\\
+				\item Solve other ODE.\\
+				\item Formulate general solution.\\
+				\item Apply last condition.
+			\end{enumerate}
+		
+		
+		
+		
+		\newpage
+		
+		\part*{Various Differential Equations.}
+		
+		\section{Heat diffusion equation.}
+		\[
+			\alpha^2 \frac{\partial^2 u(x,t)}{\partial x^2} = \frac{\partial u(x,t)}{\partial t}
+		\]
+		
+		\section{Wave equation.}
+		\[
+			a^2 \frac{\partial^2 u(x,t)}{\partial x^2} = \frac{\partial^2 u(x,t)}{\partial t^2}
+		\]
+		
+		\section{Laplace equation.}
+		\[
+			\frac{\partial^2 u(x,y)}{\partial x^2} + \frac{\partial^2 u(x,y)}{\partial y^2} = 0
+		\]
+		
+		\section{Filling a cistern.}
+		When the floater moves up, the tap closes.\\
+		Tap is completely closed when $ h = H $.
+			\begin{tabular}{M |l U}
+				t                              & Time & \second\\
+				V(t) & Water volume in cistern & \cubic\deci\meter\\
+				A    & Area of the cistern     & \square\deci\meter
+			\end{tabular}\\~\\
+		Consider time interval $ [t, t+ \Delta t] $.\\
+		Change in $ V $:
+		\[
+			\Delta V = V (t + \Delta t) -V(t).
+		\]
+		For $ \Delta V $ the following equation holds:
+		\[
+			\Delta V = c (H - h) \Delta t.
+		\]
+		We know that
+		\[
+			\Delta V = A \Delta h,
+		\]
+		where $ \Delta h = h(t + \Delta t) - h(t) $.\\
+		Balance equation:
+		\[
+			A \Delta h = c(H - h) \Delta t.
+		\]
+		From the equation $ A \Delta h = c (H - h) \Delta t $, we can derive the ODE:
+			\begin{align*}
+				\frac{\Delta h}{\Delta t} &= \frac{c}{A} (H - h)\\
+				\lim_{\Delta t \rightarrow 0} \frac{\Delta h}{\Delta t} &= \lim_{\Delta t \rightarrow 0} \frac{c}{A} (H - h)\\
+				\frac{dh}{dt} &= \frac{c}{A} (H - h)\\
+				h(0) &= 0
+			\end{align*}\\
+		
+		\section{Periodically forced oscillator.}
+			\begin{align*}
+				m \frac{d^2u}{dt^2} &= F_{\text{ext}} + F_{\text{friction}} + F_{\text{spring}}\\
+				&= F_0 \cos{\omega t} - \gamma \frac{du}{dt} - ku
+			\end{align*}
+			\begin{tabular}{M |l}
+				u      & Displacement of the oscillator\\
+				t      & Time\\
+				m      & Mass of the oscillator\\
+				\gamma & friction coefficient $(>0)$\\
+				k      & Spring coefficient $(>0)$\\
+				F_0    & Amplitude driving force\\
+				\omega & Angular frequency of driving force
+			\end{tabular}\\~\\
+		\textbf{Solution without friction.}\\
+		\[
+			m u'' + ku = F_0 \cos{\omega t}
+		\]
+			\begin{align*}
+				u(t) &= u_c(t) + u_p(t)\\
+				&= c_1 \cos{\omega_0 t} + c_2 \sin{\omega_0 t} + \left( \frac{\frac{F_0}{k}}{1 - \frac{\omega^2}{\omega_0^2}} \right) \cos{\omega t}
+			\end{align*}\\
+		Natural frequency $ \omega_0 = \sqrt{\frac{k}{m}} $.\\
+		\textbf{Solutions with friction.}\\
+		\[
+			m u'' + \gamma u' + ku = F_0 \cos{\omega t}
+		\]
+		\begin{align*}
+			u(t) & = u_c(t) + u_p(t)\\
+			&= u_c(t) + R \cos{(\omega t - \delta)}
+		\end{align*}
+		
+		Amount of friction $ \Gamma = \frac{\gamma^2}{m k} $.\\
+		Natural frequency $ \Omega_0 = \sqrt{\frac{k}{m} - \left(\frac{\gamma}{2 m}\right)^2} \approx \sqrt{\frac{k}{m}} = \omega_0 $, where $ 0 < \gamma < 2m\Omega_0 $.\\
+		
+		
+		\section{System of ODE: mass-spring system.}
+		\[
+			my'' + ky' + cy = 0
+		\]
+		Take $ v = y' $.
+		\[
+			mv' + kv + cy = 0
+		\]
+		Define the derivatives.
+		\[
+			\begin{cases}
+				y' = v\\
+				v' = y'' = -\frac{c}{m}y - \frac{k}{m}v
+			\end{cases}
+		\]
+		\[
+			\frac{d}{dt} \begin{pmatrix} y\\ v\end{pmatrix} =
+			\begin{pmatrix}
+				0 & 1\\
+				-\frac{c}{m} & -\frac{k}{m}
+			\end{pmatrix} \begin{pmatrix}y\\v\end{pmatrix}
+		\]
+		
+		
+		\newpage
+	\end{multicols}
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

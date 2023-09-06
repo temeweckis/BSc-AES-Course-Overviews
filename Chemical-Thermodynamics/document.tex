@@ -1,0 +1,704 @@
+% Template setup and packages.
+\documentclass[10pt,landscape,a4paper]{article}
+\usepackage{multicol}
+\usepackage{calc}
+\usepackage{ifthen}
+\usepackage{geometry}
+
+% Custom packages.
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{mathrsfs}
+\usepackage{stix2}
+\usepackage{systeme}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{physics}
+\usepackage{siunitx}
+\usepackage{collcell} % loads array
+\newcolumntype{M}{>{$} l <{$}}
+\newcolumntype{U}{>{$[\collectcell\si} l <{\endcollectcell]$}}
+%
+\usepackage{chemformula}
+\usepackage{cancel}
+\usepackage{arydshln}
+
+% Hyperref. Remember to change title!
+\usepackage{hyperref}
+\hypersetup{pdfauthor={Teemu Weckroth},pdftitle={Chemical Thermodynamics}}
+
+% Path to graphics folder.
+\graphicspath{ {./figures/} }
+
+% Change fonts for v and w.
+\DeclareSymbolFont{txletters}{OML}{ntxmi}{m}{it}
+\SetSymbolFont{txletters}{bold}{OML}{ntxmi}{b}{it}
+\DeclareFontSubstitution{OML}{ntxmi}{m}{it}
+\DeclareMathSymbol{v}{\mathalpha}{txletters}{`v}
+\DeclareMathSymbol{w}{\mathalpha}{txletters}{`w}
+
+% Must be below font changes to avoid errors.
+\usepackage{bm}
+
+% Commands for differentials. Redefines the underdot command!
+\renewcommand\d{\mathop{}\!\mathrm{d}}
+\newcommand\p{\mathop{}\!\mathrm{\partial}}
+%\newcommand\e{\mathrm{e}}
+
+% Commands for the set of real numbers and Lagrangian/Laplace.
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\La}{\mathscr{L}}
+
+% Unbreakable unit environment.
+\newenvironment{absolutelynopagebreak}
+{\par\nobreak\vfil\penalty0\vfilneg
+	\vtop\bgroup}
+{\par\xdef\tpd{\the\prevdepth}\egroup
+	\prevdepth=\tpd}
+
+% Shrink bullet points.
+\renewcommand\labelitemi{$\vcenter{\hbox{\tiny$\bullet$}}$}
+
+%
+\ifthenelse{\lengthtest { \paperwidth = 11in}}
+{ \geometry{top=.5in,left=.5in,right=.5in,bottom=.5in} }
+{\ifthenelse{ \lengthtest{ \paperwidth = 297mm}}
+	{\geometry{top=1cm,left=1cm,right=1cm,bottom=1cm} }
+	{\geometry{top=1cm,left=1cm,right=1cm,bottom=1cm} }
+}
+
+% Turn off header and footer
+\pagestyle{empty}
+
+% Redefine section commands to use less space
+\makeatletter
+\renewcommand{\section}{\@startsection{section}{1}{0mm}%
+	{-1ex plus -.5ex minus -.2ex}%
+	{0.5ex plus .2ex}%x
+	{\normalfont\large\bfseries}}
+\renewcommand{\subsection}{\@startsection{subsection}{2}{0mm}%
+	{-1explus -.5ex minus -.2ex}%
+	{0.5ex plus .2ex}%
+	{\normalfont\normalsize\bfseries}}
+\renewcommand{\subsubsection}{\@startsection{subsubsection}{3}{0mm}%
+	{-1ex plus -.5ex minus -.2ex}%
+	{1ex plus .2ex}%
+	{\normalfont\small\bfseries}}
+\makeatother
+
+% Define BibTeX command
+\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+		T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+
+% Don't print section numbers
+\setcounter{secnumdepth}{0}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt plus 0.5ex}
+
+\begin{document}
+	
+	\raggedright
+	\footnotesize
+	\begin{multicols}{3}
+		
+		
+		% multicol parameters
+		% These lengths are set only within the two main columns
+		%\setlength{\columnseprule}{0.25pt}
+		\setlength{\premulticols}{1pt}
+		\setlength{\postmulticols}{1pt}
+		\setlength{\multicolsep}{1pt}
+		\setlength{\columnsep}{2pt}
+		
+		\part*{Chemical thermodynamics.}
+		\begin{center}
+			Teemu Weckroth, \today.
+		\end{center}
+		
+		\section{Thermodynamics.}
+			\begin{enumerate}
+				\item Energy is conserved.
+				\item Entropy increases.
+			\end{enumerate}
+		Thermodynamics deals with energy conversions by heat $ Q $ and work $ W $ and with how internal energy $ U $ is changed by adding heat or by applying work on a system.
+		
+		\section{Constants.}
+			\begin{flalign*}
+				\text{Boltzmann constant} \ k &= \SI{1.38e-23}{\joule\per\kelvin}&\\
+				\text{Avogadro constant} \ N_A &= \SI{6.022e23}{}&\\
+				\text{Universal gas constant} \ R^\ast &= \SI{8.3144}{\joule\per\mole\per\kelvin}&
+			\end{flalign*}
+		
+		\section{Units.}
+			\begin{flalign*}
+				\text{Force} \ [F] &= \SI{}{\kilogram\meter\per\square\second}=\SI{}{\newton}&\\
+				\text{Pressure} \ [P] &= \SI{}{\newton\per\square\meter}=\SI{}{\pascal}&\\
+				\text{Temperature} \ [T] &= \SI{}{\kelvin}&\\
+				\text{Internal energy} \ [U] &= \SI{}{\joule}&\\
+				\text{Work} \ [W] &= \SI{}{\pascal\cubic\meter}=\SI{}{\newton\meter}=\SI{}{\joule}&\\
+				\text{Heat} \ [Q] &= \SI{}{\joule}&\\
+				\text{Heat capacity} \ [C] &= \SI{}{\joule\per\kelvin}&\\
+				\text{Specific heat capacity} \ [c] &= \SI{}{\joule\per\kelvin\per\kilogram}&\\
+				\text{Molar heat capacity} \ [c_\text{m}] &= \SI{}{\joule\per\kelvin\per\mole}&\\
+				\text{Enthalpy} \ [H] &= \SI{}{\joule}&\\
+				\text{Entropy} \ [S] &= \SI{}{\joule\per\kelvin}
+			\end{flalign*}
+		
+		\section{Zeroth law of thermodynamics.}
+		{\centering \textit{Two systems that are separately in thermal equilibrium with a third system  are also in thermal equilibrium with one another.}\\}
+		
+		\section{First law of thermodynamics.}
+		{\centering \textit{The internal energy $ U $ of an isolated system is constant.}\\}
+		\[
+			E_\text{tot}=E_\text{pot, macroscopic}+E_\text{kin, macroscopic}+U
+		\]
+			\begin{align*}
+				\Delta E_\text{univ}&=\Delta U_\text{univ}=0\\
+				\Delta U_\text{sys}&=-\Delta U_\text{sur}\\
+				\Delta U&=Q+W\\
+				\Delta u&=q+w\\
+				\d U&=\delta Q+\delta W\\
+				\d U&=\delta Q-P\d V\\
+				\Delta U&=Q-\int{P\d V}
+			\end{align*}
+		
+		\section{Second law of thermodynamics.}
+		{\centering \textit{Entropy only increases in an isolated system.}\\}
+		\[
+			\Delta S\geq 0 \ \text{for any process of an isolated system}
+		\]
+		It is impossible for a system to undergo a cyclic process whose sole effects are the flow of heat into the system from a heat reservoir and the performance of an equal amount of work by the system on the surroundings.
+		
+		\section{Third law of thermodynamics.}
+		{\centering \textit{The entropy of a pure, perfectly crystalline substance (element or compound) is zero at zero kelvin.}\\}
+		\[
+			S(\SI{0}{\kelvin})=k\ln{\Omega}=0 \ \text{with} \ \Omega=1
+		\]
+		
+		\section{Macroscopic thermodynamics from a microscopic perspective.}
+			\begin{tabular}{l | l}
+				Macroscopic & Microscopic \\
+				\hline
+				Pressure $ P $ & Number of molecules $ N $\\
+				Volume $ V $ & Volume $ V $\\
+				Temperature $ T $ & Molecule velocity $ \langle v\rangle $\\
+				Mass $ m $ & Molecule mass $ m $
+			\end{tabular}
+		
+		\section{Microscopic model of an ideal gas.}
+		Assume that gas is made of molecules that
+			\begin{itemize}
+				\item do not interact and
+				\item behave as point masses.
+			\end{itemize}
+		On average the molecules move isotropically with an average speed $ \langle v\rangle $.
+		
+		\section{Pressure $ P $.}
+		Pressure is the force per unit area (exerted by the gas on the wall).\\
+		Express the pressure $ P $ in terms of $ N $, $ V $, $ m $, and $ \langle v\rangle $:
+			\begin{align*}
+				P&=\frac{N}{V}\frac{1}{3}m{\langle v\rangle}^2\\
+				P&\sim \frac{N}{V}m{\langle v\rangle}^2
+			\end{align*}
+		The average kinetic energy of a molecule is $ \varepsilon^{(k)}=\frac{1}{2}m{\langle v\rangle}^2 $.
+		\[
+			P = \frac{2}{3}\frac{N}{V}\langle \varepsilon^{(k)}\rangle=\frac{2}{3}\rho_N\langle \varepsilon^{(k)}\rangle
+		\]
+		The number density of molecules in a gas $ \rho_N=\frac{N}{V} $.
+		Pressure depends only on the number density and the kinetic energy per molecule.
+		
+		\section{Temperature $ T $.}
+		A measure of the internal energy of a gas.
+		\[
+			\frac{3}{2}kT=\langle \varepsilon^{(k)}\rangle
+		\]
+		
+		\section{Ideal Gas Law.}
+			\begin{align*}
+				PV &=NkT\\
+				PV &=nR^\ast T\\
+				   &=nM\frac{R^\ast}{M}T=mRT
+			\end{align*}
+		The specific gas constant $ R=\frac{R^\ast}{M} $ depends on the molar mass.
+			\begin{align*}
+				P=\rho_mR^\ast T=\rho RT
+			\end{align*}
+		
+		\section{Three types of systems.}
+			\begin{tabular}{l | l | l}
+				Open system & Closed system & Isolated system\\
+				\hline
+				Open boundary & Diathermal boundary & Adiabatic boundary\\
+				Exchange of mass & Exchange of heat & No exchange of heat\\
+				Exchange of heat & No exchange of mass & No exchange of mass
+			\end{tabular}
+		
+		\section{Intensive and extensive properties.}
+		An intensive property does not depend on the system size or the amount of material in the system.
+		An extensive property of a system is additive for subsystems.
+		
+		\section{A state and a process.}
+		Microstate: the physical state (of a gas) specified by all positions and velocities of all molecules.\\
+		Macrostate: the physical state in terms of macroscopic thermodynamical state variables.\\
+		Process: the transition from one state to another state.
+		
+		\section{Equilibrium.}
+		A system is in equilibrium if its state does not change with time, nor has the tendency to change spontaneously.
+		An ideal gas is in equilibrium if the macroscopic state does not change spontaneously in space and time.
+		Thermodynamics is about finding the equilibrium state.
+		
+		\section{Dalton's law.}
+		The total pressure of a mixture is the sum of the pressures of each one as if it alone occupied the volume $ V $.
+		\[
+			P=P_1+P_2+P_3+\cdots
+		\]
+		Partial pressure:
+		\[
+			P_iV=n_iR^\ast T=n_iM_iR_iT=m_iR_iT, \quad R_i\equiv\frac{R^\ast}{M_i}
+		\]
+		Ideal gas law for a mixture:
+			\begin{align*}
+				PV&=\sum_i{m_iR_iT}\\
+				  &=m\frac{\sum_i{m_iR_i}}{m}T\\
+				  &=m\overline{R}T\\
+				P &=\rho\overline{R}T
+			\end{align*}
+		$ \overline{R} $ is the averaged gas constant.
+		
+		\section{Mass of the atmosphere.}
+		Surface pressure is the gravitational weight of a column of atmosphere:
+		\[
+			P_s=\int_{0}^{\infty}{\rho g\d z}\simeq g\int_{0}^{\infty}{\rho \d z}=gm
+		\]
+		where $ m=\int_{0}^{\infty}{\rho\d z} $, so
+		\[
+			m=P_s/g
+		\]
+		
+		\section{Force balance, structure of the atmosphere.}
+		Take a column of air with unit area $ A=\SI{1}{\square\meter} $.
+		Consider a slab of thickness $ \d z $ at height $ z $.
+		The mass of that slab is $ \rho\d z $, the downward force is $ Fg=mg=m\rho\d z $, and the net force due to pressure is $ -\d P $.
+			\begin{align*}
+				-\d P&=\rho g\d z\\
+				\text{Hydrostatic equilibrium:} \ \frac{\p P}{\p z}&=-\rho g\\
+				P&=\rho R_aT\\
+				P&=P_0\exp{(-z/H)}\\
+				\text{Scale height:} \ H&=\frac{R_a T}{g}\simeq\SI{7}{\kilo\meter}
+			\end{align*}
+		
+		\section{Deriving the Ideal Gas Law from the microphysical state.}
+		If we have $ N $ molecules in a volume $ V $, $ N/3 $ molecules move in the $ x $-direction and $ N/6 $ molecules move in the $ x $-direction from left to right with a mean velocity $ \langle v\rangle $. In time $ \Delta t $ we have
+		\[
+			n_x=\frac{N}{6}\frac{A\langle v\rangle\Delta t}{V}
+		\]
+		molecules hitting the right wall.
+		From Newton's second law we have $ F=ma=m\frac{\d v}{\d t} $, so for a molecule moving from left to right with velocity $ \langle v\rangle $ that has hit the wall during $ \Delta t $:
+			\begin{align*}
+				F_\text{molecule}\Delta t&=m\Delta\langle v\rangle=2\langle v\rangle\\
+				F\Delta t&=n_xF_\text{molecule}\Delta t=A\frac{N}{V}\frac{1}{3}m{\langle v\rangle}^2\Delta t\\
+				P &=\frac{F}{A}=\frac{N}{V}\frac{1}{3}m{\langle v\rangle}^2
+			\end{align*}
+		
+		\section{Internal energy $ U $.}
+		Internal energy $ U $ involves
+			\begin{itemize}
+				\item the translational kinetic energy of the molecules,
+				\item the vibrational energy of the molecules,
+				\item the rotational energy of the molecules,
+				\item the latent energy, and
+				\item the chemical energy stored in chemical bonds.
+			\end{itemize}
+		\[
+			U=U_t+U_v+U_r+U_\text{latent}+U_\text{chemical}
+		\]
+		The internal energy of an ideal gas depends only on temperature.
+			\begin{flalign*}
+				\text{Thermal energy one particle:} \ \varepsilon_k&=\frac{3}{2}kT&\\
+				\text{Internal energy of $ N $ particles:} \ U&=\frac{3}{2}NkT=\frac{3}{2}R^\ast T&
+			\end{flalign*}
+		
+		\section{Work $ W $.}
+		External force $ F_\text{E} $ acting on the system resulting in a displacement $ \d s $ of the boundary.
+		Since work is done on the system, positive work should result in an increase of the internal energy.
+			\begin{align*}
+				W&=\int{\vec{F}_\text{E}}\cdot\d\vec{s}\\
+				 &=-\int{P_\text{E}\d V}\\
+				\Delta U&=W \ \text{in the absence of heat transfer}
+			\end{align*}
+		
+		\section{Heat $ Q $.}
+		Heat $ Q $ refers to the transfer of energy between the surroundings and the system where the driving force is provided by a temperature gradient.
+			\begin{align*}
+				Q&=\Delta U \ \text{in the absence of work}\\
+				Q&=U_f-U_i=\Delta U\\
+				Q_P&=nc_{P,\text{m}}\Delta T\\
+				Q_V&=nc_{V,\text{m}}\Delta T
+			\end{align*}
+		Forms of heat transfer:
+			\begin{itemize}
+				\item conduction is heat transfer through a body at rest;
+				\item convection is heat transfer carried by fluid;
+				\item radiation is heat carried by electromagnetic waves.
+			\end{itemize}
+		
+		\section{Heat capacity  $ C $.}
+		The heat capacity $ C $ determines how much heat is required to heat a system by $ \SI{1}{\kelvin} $.
+		\[
+			Q=C\Delta T=c_\text{m}n\Delta T=cm\Delta T
+		\]
+		Molar heat capacity $ c_\text{m} $ is the amount of heat required to heat $ \SI{1}{\mole} $ of substance by $ \SI{1}{\kelvin} $.
+		Specific heat capacity $ c $ is the amount of heat required to heat $ \SI{1}{\kilogram} $ of substance by $ \SI{1}{\kelvin} $. For an ideal gas:
+			\begin{align*}
+				\text{Constant volume:} \ c_{V,\text{m}}&=\frac{3}{2}R^\ast\simeq\SI{12.5}{\joule\per\mole\per\kelvin}\\
+				\text{Constant pressure:} \ c_{P,\text{m}}&=\frac{5}{2}R^\ast\simeq\SI{20.8}{\joule\per\mole\per\kelvin}\\
+				c_{P,\text{m}}-c_{V,\text{m}}&=R^\ast
+			\end{align*}
+		Heat capacity with constant pressure is always larger than heat capacity with constant volume.
+		Solids and liquids have larger heat capacities than gases.
+		Gases with more complex molecular structures have a larger heat capacity than gases with simpler molecules.
+		
+		\section{Quasi-static process.}
+		A process during which the system is in equilibrium with its surroundings during the process.
+			\begin{align*}
+				P_\text{E}&=P_\text{sys}\\
+				PV&=nR^\ast T\\
+				P&=f(V,T)\\
+				\Delta U&=Q-\int{P\d V}
+			\end{align*}
+		
+		\section{Isochoric process.}
+		A process during which the volume of the system undergoing such a process remains constant.
+			\begin{align*}
+				W&=-\int_{V_i}^{V_f}{P\d V}=0\\
+				Q_V&=nc_{V,\text{m}}\Delta T\\
+				\Delta U&=Q_V=nc_{V,\text{m}}\Delta T
+			\end{align*}
+		
+		\section{Isobaric process.}
+		A process during which the pressure of the system undergoing such a process remains constant.
+			\begin{align*}
+				W&=-\int_{V_i}^{V_f}{P\d V}=-P\Delta V\\
+				Q_P&=nc_{P,\text{m}}\Delta T\\
+				\Delta U&=Q_P-P\Delta V\\
+				&=nc_{V,\text{m}}\Delta T
+			\end{align*}
+		
+		\section{Isothermal process.}
+		A process during which the temperature of the system undergoing such a process remains constant.
+			\begin{align*}
+				W&=-\int_{V_i}^{V_f}{P\d V}=-nR^\ast T\ln{\frac{V_f}{V_i}}\\
+				\Delta U&=0\\
+				Q&=-\Delta W\\
+				\Delta S&\geq \frac{Q}{T}%\\
+				%\d S&=nR^\ast\ln{\frac{V_f}{V_i}}
+			\end{align*}
+		
+		\section{Adiabatic process.}
+		A process during which there is no heat exchange between the system and the surroundings.
+			\begin{align*}
+				\Delta U&=\cancel{Q}+W\\
+				\left(\frac{T_2}{T_1}\right)&=\left(\frac{V_1}{V_2}\right)^{\gamma-1}\\
+				\left(\frac{P_2}{P_1}\right)&=\left(\frac{V_1}{V_2}\right)^\gamma\\
+				\left(\frac{P_2}{P_1}\right)&=\left(\frac{T_1}{T_2}\right)^{\frac{\gamma}{1-\gamma}}\\
+				TV^{\gamma-1}&= \ \text{constant}\\
+				PV^\gamma&= \ \text{constant}\\
+				PT^{\frac{\gamma}{1-\gamma}}&= \ \text{constant}\\
+				\gamma&=\frac{c_{P,\text{m}}}{c_{V,\text{m}}}>1\\
+				\text{For ideal gas} \ \gamma&=\frac{c_{P,\text{m}}}{c_{V,\text{m}}}=\frac{5}{3}\\
+				\Delta S&\geq 0
+			\end{align*}
+		$ Q=0 $ does not mean that temperature is constant.
+				
+		\section{Paths, irreversible processes.}
+		Always for all paths
+			\begin{align*}
+				\Delta U&=U_B-U_A\\
+				\Delta U&=nc_{V,\text{m}}\Delta T\\
+				\Delta U_\text{path 1}&=\Delta U_\text{path 2}=\cdots\\
+				W_\text{path 1}+Q_\text{path 1}&=W_\text{path 2}+Q_\text{path 2}+\cdots\\
+				\text{But} \ W_\text{path 1} \neq W_\text{path 2} \neq\cdots \ &\text{and} \ Q_\text{path 1} \neq Q_\text{path 2} \neq\cdots
+			\end{align*}
+		To find $ W $ and $ Q $ the path must be followed.\\
+		A quasi-static process is a necessary (but not sufficient) condition for a reversible process.
+		A reversible process is a quasi-static process with no friction.\\
+		The work done by a system in quasi-static case is always larger than in the non-quasi-static case.
+		Quasi-static work done on a system to get it back into the original state is always less than in the non-quasi-static case.
+			\begin{align*}
+				W_{E,\text{irrev}}&<W_\text{E,\text{rev}}\\
+				\text{but} \ \oint{\d U_{E,\text{irrev}}}&=\oint{\d U_\text{E,\text{rev}}}=0\\
+				Q_\text{irrev}&<Q_\text{rev}
+			\end{align*}
+		
+		\section{Enthalpy $ H $.}
+		Change in enthalpy is equal to the heat added under constant pressure.
+			\begin{align*}
+				Q_P&=\Delta(U+PV)\\
+				\Delta H&=Q_P=nc_{P,\text{m}}\Delta T\\
+				H&=U+PV
+			\end{align*}
+		All terms are state functions, so enthalpy is also a state function.
+		\[
+			\d H=\delta Q_P=nc_{P,\text{m}}\d T
+		\]
+		The heat absorbed by a fluid as it changes phase is equal to the enthalpy of the vapour minus the enthalpy of the liquid.
+		\[
+			\Delta H_\text{vap}=H_v-H_l
+		\]
+		This is often called latent heat.\\
+		The heat $ Q_P $ released during a reaction is equal to the difference in enthalpy of the constituents after and before the reaction.
+		
+		\section{Equipartition theorem.}
+		The equipartition of energy theorem states that the thermal energy distributes equally over each degree of freedom of each $ \SI{}{\mole} $ of molecules with amount $ \frac{1}{2}R^\ast T $.
+		The number of degrees of freedom is $ d $.
+		\[
+			\text{Maxwell:} \ c_{V,\text{m}}=\frac{d}{2}R^\ast
+		\]
+		Mono-atomic gases have only translational motions $ v_x $, $ v_y $, $ v_z $: $ d=3 $.\\
+		Diatomic gases have three degrees of translation and two rotational axes (no vibrational modes at room temperature): $ d=5 $.\\
+		Polyatomic gases have increasingly more degrees of freedom that are excited at higher temperatures.
+		
+		\section{Adiabatic processes in the atmosphere.}
+		Assume that a rising parcel behaves adiabatically.
+			\begin{align*}
+				\delta Q&=mc_P\d T-V\d P\\
+				mc_P\d T&=V\d P\\
+				c_P\d T&=\frac{1}{\rho}\d P\\
+				c_P\left(\frac{\d T}{\d z}\right)_\text{parcel}&=\frac{1}{\rho}\left(\frac{\d P}{\d z}\right)_\text{parcel}\\
+				\left(\frac{\d T}{\d z}\right)_\text{parcel}&=\frac{g}{c_P}\simeq\SI{-9.8}{\kelvin\per\kilo\meter}
+			\end{align*}
+		If the temperature of the parcel is higher than the environment it keeps rising.
+		With the parcel method we can determine the height of the convective boundary layer.
+		
+		\section{Van der Waals equation of state.}
+		\[
+			P=\frac{nR^\ast T}{V-nb}-\frac{an^2}{V^2}
+		\]
+		Parameters $ a $ and $ b $ derived from molecular concepts.\\
+		Assume hard sphere molecules.
+		We have $ n $ spheres of volume $ b $ occupying a volume $ nb $.
+		That volume is not freely available for the gas, so it should be excluded from the gas law.
+		\[
+			PV=nR^\ast T \ \text{becomes} \ P(V-nb)=nR^\ast T
+		\]
+		Attractive force $ a $ of the other molecules results in less pressure.
+		\[
+			P(V-nb)=nR^\ast T \ \text{becomes} \ P=\frac{nR^\ast T}{V-nb}-\frac{an^2}{V^2}
+		\]
+		
+		\section{Van der Waals gas.}
+		\[
+			U=\frac{3}{2}nR^\ast T-\frac{an^2}{V}
+		\]
+		\[
+			\left(P+\frac{an^2}{V^2}\right)\left(V-nb\right)=nR^\ast T
+		\]
+		
+		\section{Carnot engine.}
+			\begin{align*}
+				\Delta U&=Q+W\\
+				W_\text{eng}&=-W\\
+				Q&=Q_h-Q_c=W_\text{eng}\\
+				\Delta U&=Q_h-Q_c-W_\text{eng}=0
+			\end{align*}
+		Carnot cycle:
+			\begin{enumerate}
+				\item Isothermal expansion.
+				\item Adiabatic expansion.
+				\item Isothermal compression.
+				\item Adiabatic compression.
+			\end{enumerate}
+			\begin{align*}
+				\text{Efficiency} \equiv \eta &= \frac{\text{Work done by the engine}}{\text{Heat in at} \ T_\text{hot}}\\
+				&=\frac{Q_h-Q_c}{Q_h}=1-\frac{Q_c}{Q_h}<1\\
+				\text{Coefficient of performance} &=\frac{Q_h}{W}=\frac{Q_h}{Q_h-Q_c}\\
+				&=\frac{T_h}{T_h-T_c}>1
+			\end{align*}
+		
+		\section{Directionality of processes.}
+		Irreversible processes show directionality.
+		Reversible processes do not show directionality and represent the best we can do, i.e. the maximum amount of work we get out of the system, and the minimum amount of work we have to put in to restore it.
+		
+		\section{Entropy $ S $.}
+			\begin{align*}
+				\oint{\frac{\delta Q_\text{rev}}{T}}&=0 \ \text{always holds}\\
+				\d S&\equiv\frac{\delta Q_\text{rev}}{T}\\
+				S&\equiv k\ln{\Omega},
+			\end{align*}
+		where $ \Omega $ is the number of micro-states.\\
+		Entropy is a state function.
+			\begin{align*}
+				\Delta S&=\int{\frac{\delta Q_\text{rev}}{T}}\\
+				\oint{\d S}&=0
+			\end{align*}
+		
+		\section{Entropy of a process.}
+		Clausius inequality
+		\[
+			\d S>\frac{\delta Q_\text{irrev}}{T} \ \text{or} \ \d S\geq\frac{\delta Q}{T}
+		\]
+			\begin{flalign*}
+				\Delta S>0 & \ \text{for any irreversible process of an isolated system}&\\
+				\Delta S=0 & \ \text{for any reversible process of an isolated system}&\\
+				\Delta S<0 & \ \text{never for any process of an isolated system}&\\
+				\rightarrow\Delta S\geq 0 & \ \text{for any process of an isolated system}
+			\end{flalign*}
+		\[
+			\Delta S_\text{sur}=-\Delta S_\text{sys}
+		\]
+		For a non-isolated system we can have a decrease in entropy as long as the entropy increases (more) in the surroundings.
+		
+		\section{Entropy of an ideal gas.}
+		$ S(T,V) $ for an ideal gas:
+			\begin{align*}
+				\d S(T,V)&=nc_{V,\text{m}}\frac{\d T}{T}+nR^\ast\frac{\d V}{V}\\
+				S(T,V)&=nc_{V,\text{m}}\ln{T}+nR^\ast\ln{V}-S(T_0,V_0)
+			\end{align*}
+		$ S(T,P) $ for an ideal gas:
+			\begin{align*}
+				\d S(T,P)&=nc_{P,\text{m}}\frac{\d T}{T}-nR^\ast\frac{\d P}{P}\\
+				S(T,P)&=nc_{P,\text{m}}\ln{T}-nR^\ast\ln{P}-S(T_0,P_0)
+			\end{align*}
+		
+		\section{Entropy of solids and liquids.}
+			\begin{align*}
+				\text{at constant volume} \ \d S&=\frac{\delta Q_V}{T}=nc_{V,\text{m}}\frac{\d T}{T}\\
+				\text{at constant pressure} \ \d S&=\frac{\delta Q_P}{T}=nc_{P,\text{m}}\frac{\d T}{T}\\
+				\Delta S&=S-S_0=\int{n\frac{c_\text{m}}{T}\d T}\simeq nc_\text{m}\ln{\frac{T}{T_0}}\\
+				S&=\int_{T_0}^{T}{n\frac{c_\text{m}}{T'}\d T'}+S(T_0)
+			\end{align*}
+		
+		\section{Mixing of ideal gases at constant $ P $ and $ T $.}
+			{\centering\begin{tabular}{| c : c |}\hline$ n_A $ & $ n_B $\\$ V_A $ & $ V_N $\\\hline\end{tabular} $ \ \xrightarrow[\text{mixing}]{\text{spontaneous}} \ $ \begin{tabular}{| c |}\hline $ n=n_A+n_B $\\$ V=V_A+V_B $\\ \hline\end{tabular}\\}
+		\[
+			\text{Symbolically} \ n_AA(g,V_A,T)+n_BB(g,V_B,T)=n(A+B)(g,V,T)
+		\]
+			\begin{align*}
+				\Delta S_\text{mix}&=\int{\frac{\delta Q_\text{rev}}{T}}=\int_{V_A}^{V}{\frac{P_A\d V_A}{T}}+\int_{V_B}^{V}{\frac{P_B\d V_B}{T}}\\
+				&=n_AR^\ast\ln{\frac{V}{V_A}}+n_BR^\ast\ln{\frac{V}{V_B}}>0\\
+				&=-nR^\ast(x_A\ln{x_A}+x_B\ln{x_B})>0
+			\end{align*}
+		
+		\section{Criteria for spontaneous change.}
+		From the first law $ \d U=\delta Q-P\d V $ and the second law $ \d S>\frac{\delta Q}{T} $ we have the general criterion for spontaneous change
+		\[
+			\d U+P\d V-T\d S<0
+		\] 
+		In an isolated system
+			\begin{align*}
+				T\d S&>0\\
+				(\d S)_{U,V}&>0
+			\end{align*}
+		Under constant entropy and volume
+		\[
+			(\d U)_{S,V}<0
+		\]
+		Under constant entropy and pressure
+		\[
+			(\d H)_{S,P}<0
+		\]
+		Under constant temperature and volume
+			\begin{align*}
+				(\d(U-TS)&<0)_{V,T}\\
+				(\d A<0)_{V,T}&<0,
+			\end{align*}
+		where $ A=U-TS $ is the Helmholtz free energy.\\
+		Under constant temperature and pressure
+			\begin{align*}
+				(\d U-\d TS+\d PV)_{P,T}&<0\\
+				(\d G)_{P,T}&<0,
+			\end{align*}
+		where $ G=U-TS+PV $ is the Gibbs free energy.
+		
+		\section{Gibbs free energy.}
+			\begin{align*}
+				G&=U+PV-TS\\
+				&=H-TS\\
+				G(T,P)\rightarrow\d G&=-S\d T+V\d P
+			\end{align*}
+		Spontaneous change when
+		\[
+			\Delta G=\Delta H-T\Delta S<0
+		\]
+		In general
+		\[
+			\d G(T,P)=\left(\frac{\p G}{\p T}\right)_P\d T + \left(\frac{\p G}{\p P}\right)_T \d P
+		\]
+		We can identify
+		\[
+			\left(\frac{\p G}{\p T}\right)_P=-S \ \text{and} \ \left(\frac{\d G}{\d P}\right)_T=V
+		\]
+		If you know $ G(P,T) $ you can derive all other thermodynamic potentials
+			\begin{flalign*}
+				\text{enthalpy}&\ H=G+TS&\rightarrow& \ H=G-T\left(\frac{\p G}{\p T}\right)_P&\\
+				\text{internal energy}&\ U=H-PV&\rightarrow& \ U=G-T\left(\frac{\p G}{\p T}\right)_P-P\left(\frac{\p G}{\p P}\right)_T&\\
+				\text{Helmholtz energy}&\ A=U-TS&\rightarrow& \ A=G-P\left(\frac{\p G}{\p P}\right)_T&
+			\end{flalign*}
+		There is no absolute Gibbs energy, so define $ G_{\text{m},\text{A}}^\circ $ as the Gibbs energy of $ \SI{1}{\mole} $ of substance $ \text{A} $ at standard conditions. This also happens to be the standard chemical potential
+		\[
+			G_{\text{m},\text{A}}^\circ\equiv\Delta G_{\text{f},\text{A}}^\circ\equiv\mu_\text{A}^\circ
+		\]
+		
+		\section{Dependency of Gibbs free energy on pressure.}
+		Gibbs free energy (of a gas) increases logarithmically with pressure.
+			\begin{align*}
+				G(P,T)&=G^\circ(P^\circ,T)+nR^\ast T\ln\frac{P}{P^\circ}\\
+				\mu(P,T)&=\mu^\circ(P^\circ,T)+R^\ast T\ln\frac{P}{P^\circ}
+			\end{align*}
+		
+		\section{Chemical equilibrium.}
+		\[
+			\ch{$\alpha$A(g) + $\beta$B(g) <=> $\gamma$C(g) + $\delta$D(g)}
+		\]
+		Reaction Gibbs energy is given with
+		\[
+			\Delta G_R=\Delta_R^\circ+R^\ast T\ln{\frac{\left(\frac{P_C}{P^\circ}\right)^\gamma \left(\frac{P_D}{P^\circ}\right)^\delta}{\left(\frac{P_A}{P^\circ}\right)^\alpha\left(\frac{P_B}{P^\circ}\right)^\beta}}=\Delta G_R^\circ+R^\ast T\ln{Q_P}
+		\]
+		At equilibrium $ \Delta G_R=0 $, so
+		\[
+			\ln{Q_P^{\text{eq}}}\equiv\ln{K_P}=-\frac{\Delta G_R^\circ}{R^\ast T},
+		\]
+		where $ K $ is the thermodynamic equilibrium constant.
+		
+		\section{Critical point.}
+		The critical temperature is the temperature beyond which no liquid can be produced.
+		The critical point is defined as the point for which
+			\begin{align*}
+				\frac{\p P}{\p V}&=0\\
+				\frac{\p^2 P}{\p V^2}&=0
+			\end{align*}
+		The Van der Waals equation $ P=\frac{R^\ast T}{V_\text{m}-b}-\frac{a}{V_\text{m}^2} $ is used to find the critical temperature, pressure, and volume
+		\[
+			T_\text{c}=\frac{8a}{27R^\ast b} \quad P_\text{c}=\frac{a}{27b^2} \quad V_{\text{m},\text{c}}=3b
+		\]
+		
+		\section{Clapeyron equation.}
+		The Clapeyron equation holds along all points of the coexistence line
+			\begin{align*}
+				\left(\frac{\p P}{\p T}\right)_\text{coexistence}&=\left(\frac{\Delta S}{\Delta V}\right)_{\alpha\rightarrow\beta}\\
+				&=\left(\frac{\Delta H}{T\Delta V}\right)_{\alpha\rightarrow\beta}\\
+				&=\left(\frac{\Delta H_{\text{m},\alpha\rightarrow\beta}}{T\Delta V_{\text{m},\alpha\rightarrow\beta}}\right)\\
+				&=\frac{\Delta h_{\alpha\rightarrow\beta}}{T\Delta v_{\alpha\rightarrow\beta}}=\frac{L_{\alpha\beta}}{T\Delta v_{\alpha\beta}}
+			\end{align*}
+		
+		
+		
+		
+		\newpage
+	\end{multicols}
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+

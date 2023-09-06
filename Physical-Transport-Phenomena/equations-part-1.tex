@@ -1,0 +1,264 @@
+\section{Lecture notes}
+Definition of $\Delta\mathscr{P}$
+\[
+\Delta\mathscr{P}\equiv(p_0-p_L)+\rho g[(\text{vertical position}_0-(\text{vertical position}_L))]\tag{Lecture notes 3.17}
+\]
+Assumptions behind derivations in Chapter 2 (Re!)
+\[
+\textit{see lecture notes}\tag{Lecture notes 3.22}
+\]
+\section{Chapter 1: Viscosity and the Mechanisms of Momentum Transport}
+Newton's law of viscosity
+\[
+	\tau_{yz}=-\mu\frac{\d v_x}{\d y}\tag{1.2-2}
+\]
+Bingham plastic
+\[
+\begin{cases}
+	\begin{aligned}
+		\tau_{yx}&=-\mu_0\frac{\d v_x}{\d y}+\tau_0& \tau_{yx}\geq\tau_0\\
+		\frac{\d v_x}{\d y}&=0& -\tau_0\leq\tau_{yx}\leq\tau_0\\
+		\tau_{yx}&=-\mu_0\frac{\d v_x}{\d y}-\tau_0& \tau_{yx}\geq\-\tau_0
+	\end{aligned}
+\end{cases}\tag{Lecture notes 2.6}
+\]
+Power-law fluid
+\begin{align*}
+	\tau_{yx}=-m\abs{\frac{\d v_x}{\d y}}^{n-1}\frac{\d v_x}{\d y}\tag{Lecture notes 2.8}
+\end{align*}
+Kinematic viscosity
+\[
+	\nu = \mu/\rho\tag{1.2-3}
+\]
+\section{Chapter 2: Shell Momentum Balances and Velocity Distributions in Laminar Flow}
+\subsection{\S2.2 Flow of a Falling Film (BSL1)}
+Momentum balance
+\[
+	LW\tau_{xz|x}-LW\tau_{xz|x+\Delta x}+LW\Delta x\rho g\cos\beta=0\tag{2.2-6}
+\]
+%\[
+%	\lim_{\Delta x\to0}\left(\frac{\tau_{xz|x+\Delta x}-\tau_{xz|x}}{\Delta x}\right) = \rho g\cos\beta\tag{2.2-7}
+%\]
+%\[
+%	\tau_{xz}=\rho gx\cos\beta+C_1\tag{2.2-9}
+%\]
+Momentum flux distribution% with $\tau_{xz}=0$ at $x=0$
+\[
+	\tau_{xz}=\rho gx\cos\beta+C_1\tag{2.2-9}
+\]
+Velocity distribution% with $v_z=0$ at $x=\delta$
+\[
+	v_z=\frac{\rho g\delta^2\cos\beta}{2\mu}\left[1-\left(\frac{x}{\delta}\right)^2\right]\tag{2.2-16}
+\]
+Maximum velocity
+\[
+	v_{z,\text{max}}=\frac{\rho g\delta^2\cos\beta}{2\mu}\tag{2.2-17}
+\]
+Average velocity
+\[
+	\langle v_z\rangle=\frac{\rho g\delta^2\cos\beta}{3\mu}\tag{2.2-18}
+\]
+Volume flow rate
+\[
+	Q=\frac{\rho gW\delta^3\cos\beta}{3\mu}\tag{2.2-19}
+\]
+Film thickness
+\[
+	\delta=\sqrt[3]{\frac{3\mu\Gamma}{\rho^2 g\cos\beta}}\tag{2.2-20}
+\]
+Force of the fluid on the surface
+\[
+	F_z=\rho g\delta LW\cos\beta\tag{2.2-21}
+\]
+Momentum flux distribution with variable viscosity
+\[
+	\tau_{xz}=-\mu_0e^{-\alpha(x/\delta)}\frac{\d v_z}{\d x}=\rho gx\cos\beta\tag{2.2-23}
+\]
+Velocity distribution with variable viscosity
+\[
+	v_z=\frac{\rho g\delta^2\cos\beta}{\mu_0}\left[e^\alpha\left(\frac{1}{\alpha}-\frac{1}{\alpha^2}\right)-e^{\alpha x/\delta}\left(\frac{x}{\alpha\delta}-\frac{1}{\alpha^2}\right)\right]\tag{2.2-24}
+\]
+Average velocity with variable viscosity
+\[
+	\langle v_z\rangle=\frac{\rho g\delta^2\cos\beta}{\mu_0}\left[e^\alpha\left(\frac{1}{\alpha}-\frac{2}{\alpha^2}+\frac{2}{\alpha^3}\right)-\frac{2}{\alpha^3}\right]\tag{2.2-26}
+\]
+\subsection{\S2.3 Flow Through a Circular Tube (BSL1)}
+Momentum balance
+\[
+	\textit{see text}\tag{2.3-8}
+\]
+Momentum flux distribution
+\[
+	\tau_{rz}=\left(\frac{\mathscr{P}_0-\mathscr{P}_L}{2L}\right)r+\frac{C_1}{r}\tag{2.3-11}
+\]
+Velocity distribution
+\[
+	v_z=\frac{(\mathscr{P}_0-\mathscr{P}_L)R^2}{4\mu L}\left[1-\left(\frac{r}{R}\right)^2\right]\tag{2.3-16}
+\]
+Maximum velocity
+\[
+	v_{z,\text{max}}=\frac{(\mathscr{P}_0-\mathscr{P}_L)R^2}{4\mu L}\tag{2.3-17}
+\]
+Average velocity
+\[
+	\langle v_z\rangle=\frac{(\mathscr{P}_0-\mathscr{P}_L)R^2}{8\mu L}\tag{2.3-18}
+\]
+Volume flow rate
+\[
+	Q=W/\rho=\frac{\pi(\mathscr{P}_0-\mathscr{P}_L)R^4}{8\mu L}\tag{2.3-19}
+\]
+Force of the fluid on the surface
+\[
+	F_z=\pi R^2(p_0-p_L)+\pi R^2L\rho g\tag{2.3-20}
+\]
+Velocity distribution for Bingham flow
+\[
+	v_z^>=\frac{(\mathscr{P}_0-\mathscr{P}_L)R^2}{4\mu_0 L}\left[1-\left(\frac{r}{R}\right)^2\right]-\frac{\tau_0 R}{\mu_0}\left[1-\left(\frac{r}{R}\right)\right] \quad r\geq r_0\tag{2.3-25}
+\]
+\[
+	v_z^<=\frac{(\mathscr{P}_0-\mathscr{P}_L)R^2}{4\mu_0 L}\left(1-\frac{r_0}{R}\right)^2\quad r\leq r_0\tag{2.3-26}
+\]
+Volume flow rate for Bingham flow
+\[
+	\textit{see text}\tag{2.3-30}
+\]
+Equations for power-law fluids in Lecture notes 3.6.\\
+Effective viscosity for tube flow
+\[
+\mu_{\text{eff}}=\frac{\pi R^4\Delta\mathscr{P}}{8LQ}\tag{Lecture notes 3.8}
+\]
+\subsection{\S2.4 Flow Through an Annulus (BSL1)}
+\textit{Same momentum balance as Circular Tube}\\
+Momentum flux distribution
+\[
+	\tau_{rz}=\frac{(\mathscr{P}_0-\mathscr{P}_L)R}{2L}\left[\left(\frac{r}{R}\right)-\left(\frac{1-\kappa^2}{2\ln(1/\kappa)}\right)\left(\frac{R}{r}\right)\right]\tag{2.4-12}
+\]
+Velocity distribution
+\[
+	v_z=\frac{(\mathscr{P}_0-\mathscr{P}_L)R^2}{4\mu L}\left[1-\left(\frac{r}{R}\right)^2+\left(\frac{1-\kappa^2}{\ln(1/\kappa)}\right)\ln\left(\frac{r}{R}\right)\right]\tag{2.4-13}
+\]
+\textit{See text for more quantities}\\
+Equations for Bingham plastics and Power-law liquids in Lecture notes 3.13.
+\subsection{\S2.7 Flow Around a Sphere}
+Viscosity of fluid from terminal velocity of falling sphere
+\[
+	\mu=\frac{2}{9}\frac{R^2(\rho_s-\rho)g}{v_t}\tag{2.7-17}
+\]
+Suspension of particles in Bingham plastic
+\[
+	\tau_0\geq\frac{4}{3\pi}R\left|\rho_s-\rho\right|g\tag{Lecture notes 3.21}
+\]
+\subsection{2B.4 Laminar Flow in a Narrow Slit}
+Momentum-flux distribution
+\[
+	\tau_{xz}(x)=\left(\frac{\mathscr{P}_0-\mathscr{P}_L}{L}\right)x\tag{2B.4-1}
+\]
+Velocity distribution
+\[
+	v_z(x)=\frac{(\mathscr{P}_0-\mathscr{P}_L)B^2}{2\mu L}\left[1-\left(\frac{x}{B}\right)^2\right]\tag{2B.4-2}
+\]
+Volume flow rate
+\[
+	Q=\frac{2}{3}\frac{(\mathscr{P}_0-\mathscr{P}_L)B^3W}{\mu L}
+\]
+Equations for Bingham plastics in Lecture notes 3.10.\\
+Equations for Power-law liquids in Lecture notes 3.12.
+\section{Chapter 6: Interphase Transport in Isothermal Systems}
+\subsection{\S6.1 Definition of Friction Factors}
+General definition of friction factor
+\[
+	F_k=AKf\tag{6.1-1}
+\]
+\subsection{\S6.2 Friction Factors for Flow in Tubes}
+$F_k$ for flow in conduits
+\[
+	F_k=(2\pi RL)\left(\frac{1}{2}\rho\langle\overline{v}_z\rangle^2\right)f\tag{6.1-2}
+\]
+$f$ for flow in conduits
+\[
+	f=\frac{1}{4}\left(\frac{D}{L}\right)\left(\frac{\mathscr{P}_0-\mathscr{P}_L}{\frac{1}{2}\rho\langle\overline{v}_z\rangle^2}\right)\tag{6.1-4}
+\]
+Correlations for $f$
+\[
+	f(\text{Re})=\frac{16}{\text{Re}}\left\{\begin{aligned}&\text{Re}<2100 \ \text{stable}\\&\text{Re}>2100 \ \text{usually unstable}\end{aligned}\right\}\tag{6.2-11}
+\]
+Friction factor for tube flow
+\[
+	\textit{see figure}\tag*{\textbf{Fig. 6.2-2}}
+\]
+Friction factor for turbulent flow in non-circular tubes
+\[
+	f=\left(\frac{R_h}{L}\right)\left(\frac{\mathscr{P}_0-\mathscr{P}_L}{\frac{1}{2}\rho\langle\overline{v}_z\rangle^2}\right)\tag{6.2-16}
+\]
+Mean hydraulic radius for rectangular slit
+\[
+	R_h=B\tag{Lecture notes 9.6}
+\]
+\subsection{\S6.3 Friction Factors for Flow Around Spheres}
+$F_k$ for flow around submerged objects
+\[
+	F_k=(\pi R^2)\left(\frac{1}{2}\rho v_\infty^2\right)f\tag{6.1-5}
+\]
+$f$ for flow around submerged objects
+\[
+	f=\frac{4}{3}\frac{gD}{v_\infty^2}\left(\frac{\rho_\text{sph}-\rho}{\rho}\right)\tag{6.1-7}
+\]
+Re for flow around spheres
+\[
+	\text{Re}\equiv\frac{Dv_\infty\rho}{\mu}=\frac{2Rv_\infty\rho}{\mu}\tag{6.3-8}
+\]
+$F_k$ for flow around spheres
+\[
+	F_k=(\pi R^2)\left(\frac{1}{2}\rho v_\infty^2\right)\left(\frac{24}{Dv_\infty\rho/\mu}\right)\tag{6.3-14}
+\]
+Correlation for $f$
+\begin{align}
+	f&\approx\frac{24}{\text{Re}} \ &\text{for Re}\leq0.1\tag{6.3-15}\\
+	f&\approx\left(\sqrt{\frac{24}{\text{Re}}}+0.5407\right)^2 \ &\text{for Re}\leq6000\tag{6.3-16}\\
+	f&\approx0.44 \ &\text{for} \ 500<\text{Re}<100000\tag{6.3-17}
+\end{align}
+Friction factor for spheres moving relative to fluid
+\[
+	\textit{see figure}\tag*{\textbf{Fig. 6.3-1}}
+\]
+\subsection{\S6.4 Friction Factors for Packed Columns}
+Re for packed columns
+\[
+	\text{Re}=\frac{D_pv_0\rho}{\mu}\left(\frac{1}{1-\varepsilon}\right)\tag{Lecture notes 9.20}
+\]
+Blake-Kozeny equation
+\[
+	\frac{\mathscr{P}_0-\mathscr{P}_L}{L}=150\left(\frac{\mu v_0}{D_p^2}\right)\frac{(1-\varepsilon)^2}{\varepsilon^3}\tag{6.4-9}
+\]
+Correlation for $f$
+\[
+	\textit{see figure}\tag*{\textbf{Fig. 6.4-2}}
+\]
+\textit{More in lecture notes and \S6.4}
+\section{Chapter 7: Macroscopic Balances for Isothermal Flow Systems}
+\subsection{\S7.5 Estimation of the Viscous Loss}
+Macroscopic mechanical energy balance
+\[
+	\frac{1}{2}(v_2^2-v_1^2)+g(h_2-h_1)+\int_{p_1}^{p_2}{\frac{1}{\rho}\d p}=\hat{W}_m-\hat{E}_v\tag{7.5-11}
+\]
+For turbulent flow in tubes of circular cross section
+\[
+	\textit{see text}\tag{7.5-12}
+\]
+Brief summary of friction-loss factors
+\[
+	\textit{see table}\tag*{\textbf{Table 7.5-1}}
+\]
+\section{Examples in Lecture Notes}
+\[
+	\text{Determination of Viscosity from Capillary Flow Data}\tag{BSL1 2.3-1}
+\]
+\[
+	\text{Given $\Delta\mathscr{P}/L$, compute $Q$}\tag{Lecture notes 9.9}
+\]
+\[
+	\text{Examples of trial-and-error method}\tag{Lecture notes 9.11}
+\]
+\[
+	\text{Solving for unknown Re}\tag{Lecture notes 9.15}
+\]

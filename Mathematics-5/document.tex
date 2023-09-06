@@ -1,0 +1,977 @@
+% Template setup and packages.
+\documentclass[10pt,landscape,a4paper]{article}
+\usepackage{multicol}
+\usepackage{calc}
+\usepackage{ifthen}
+\usepackage{geometry}
+
+% Custom packages.
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{mathrsfs}
+\usepackage{stix2}
+\usepackage{systeme}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{physics}
+\usepackage{siunitx}
+\usepackage{collcell} % loads array
+\newcolumntype{M}{>{$} l <{$}}
+\newcolumntype{U}{>{$[\collectcell\si} l <{\endcollectcell]$}}
+
+% Hyperref. Remember to change title!
+\usepackage{hyperref}
+\hypersetup{pdfauthor={Teemu Weckroth},pdftitle={Mathematics 5}}
+
+% Path to graphics folder.
+\graphicspath{ {./figures/} }
+
+% Change fonts for v and w.
+\DeclareSymbolFont{txletters}{OML}{ntxmi}{m}{it}
+\SetSymbolFont{txletters}{bold}{OML}{ntxmi}{b}{it}
+\DeclareFontSubstitution{OML}{ntxmi}{m}{it}
+\DeclareMathSymbol{v}{\mathalpha}{txletters}{`v}
+\DeclareMathSymbol{w}{\mathalpha}{txletters}{`w}
+
+% Must be below font changes to avoid errors.
+\usepackage{bm}
+
+% Commands for differentials. Redefines the underdot command!
+\renewcommand\d{\mathop{}\!\mathrm{d}}
+\newcommand\p{\mathop{}\!\mathrm{\partial}}
+%\newcommand\e{\mathrm{e}}
+
+% Commands for the set of real numbers and Lagrangian/Laplace.
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\La}{\mathscr{L}}
+
+% Unbreakable unit environment.
+\newenvironment{absolutelynopagebreak}
+{\par\nobreak\vfil\penalty0\vfilneg
+	\vtop\bgroup}
+{\par\xdef\tpd{\the\prevdepth}\egroup
+	\prevdepth=\tpd}
+
+% Shrink bullet points.
+\renewcommand\labelitemi{$\vcenter{\hbox{\tiny$\bullet$}}$}
+
+%
+\ifthenelse{\lengthtest { \paperwidth = 11in}}
+{ \geometry{top=.5in,left=.5in,right=.5in,bottom=.5in} }
+{\ifthenelse{ \lengthtest{ \paperwidth = 297mm}}
+	{\geometry{top=1cm,left=1cm,right=1cm,bottom=1cm} }
+	{\geometry{top=1cm,left=1cm,right=1cm,bottom=1cm} }
+}
+
+% Turn off header and footer
+\pagestyle{empty}
+
+% Redefine section commands to use less space
+\makeatletter
+\renewcommand{\section}{\@startsection{section}{1}{0mm}%
+	{-1ex plus -.5ex minus -.2ex}%
+	{0.5ex plus .2ex}%x
+	{\normalfont\large\bfseries}}
+\renewcommand{\subsection}{\@startsection{subsection}{2}{0mm}%
+	{-1explus -.5ex minus -.2ex}%
+	{0.5ex plus .2ex}%
+	{\normalfont\normalsize\bfseries}}
+\renewcommand{\subsubsection}{\@startsection{subsubsection}{3}{0mm}%
+	{-1ex plus -.5ex minus -.2ex}%
+	{1ex plus .2ex}%
+	{\normalfont\small\bfseries}}
+\makeatother
+
+% Define BibTeX command
+\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+		T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+
+% Don't print section numbers
+\setcounter{secnumdepth}{0}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt plus 0.5ex}
+
+\begin{document}
+	
+	\raggedright
+	\footnotesize
+	\begin{multicols}{3}
+		
+		% multicol parameters
+		% These lengths are set only within the two main columns
+		%\setlength{\columnseprule}{0.25pt}
+		\setlength{\premulticols}{1pt}
+		\setlength{\postmulticols}{1pt}
+		\setlength{\multicolsep}{1pt}
+		\setlength{\columnsep}{2pt}
+		
+		\part*{Mathematics 5.}
+		\begin{center}
+			Teemu Weckroth, \today.
+		\end{center}
+		
+		\section{Landau's $\mathcal{O}$-symbol.}
+		Let $ f $ and $ g $ be given functions. If there exists a positive $ r $ and a positive, finite $ M $ such that
+		\[
+			|f(x)| \leq M|g(x)|\ \text{for all} \ x\in [-r,r],
+		\]
+		we say that $ f(x) $ is of order $ g(x) $ for $ x $ going to zero.
+		Symbolically we write this as
+		\[
+			f(x)=\mathcal{O}(g(x)) \ \text{for} \ x\rightarrow0.
+		\]
+		If $ f(x)=\mathcal{O}(x^p) $ and $ g(x)=\mathcal{O}(x^q) $ for $ x\rightarrow0 $ with $ p\geq0,q\geq0 $, then
+			\begin{itemize}
+				\item $ f(x)=\mathcal{O}(x^s) $ for $ x\rightarrow0 $ with $ 0\leq s\leq p $
+				\item $ \alpha f(x)+\beta g(x)=\mathcal{O}(x^r) $ for $ x\rightarrow 0 $ with $ r=\min\{p,q\} $ for all $ \alpha,\beta\in\mathbb{R} $
+				\item $ f(x)g(x)=\mathcal{O}(x^{p+q}) $ for $ x\rightarrow0 $
+				\item $ \frac{f(x)}{x^t}=\mathcal{O}(x^{p-t}) $ for $ x\rightarrow0 $ if $ 0\leq t\leq p $
+			\end{itemize}
+		
+		\section{Taylor expansions.}
+		Assume $ f(x) \in C^{n+1}\,[a,b] $ is given. Then for all $ c,x\in(a,b) $ there exists a number $ \xi $ between $ c $ and $ x $ such that
+		\[
+			f(x)=T_n(x)+R_n(x),
+		\]
+		in which
+		\[
+			T_n(x)=\sum_{k=0}^{n}\frac{f^{(k)}(c)}{k!}(x-c)^k,
+		\]
+		and
+		\[
+			R_n(x)=\frac{f^{(n+1)}(\xi)}{(n+1)!}(x-c)^{n+1} = \mathcal{O}((x-c)^{n+1}).
+		\]
+		
+		\section{Lagrange interpolation - linear.}
+		Assume two data points $ (x_0,f(x_0)) $ and $ (x_1,f(x_1)) $ of a function $ f $ are given. The linear Lagrange basis polynomials $ L_{i1}, \ i\in\{0,1\} $ are defined by
+		\[
+			L_{01}=\frac{x-x_1}{x_0-x_1}\ \text{and}\ L_{11}=\frac{x-x_0}{x_1-x_0},
+		\]
+		and the linear Lagrange interpolation polynomial $ L_1 $ by
+		\[
+			L_1(x) = f(x_0)L_{01}(x)+f(x_1)L_{11}(x).
+		\]
+		Assume $ f\in C^2\,[a,b] $ with $ x_0,x_1\in[a,b] $. Then for each $ x\in[a,b] $ there exists a $ \xi\in(a,b) $ such that
+		\[
+			f(x)-L_1(x)=\frac{1}{2}(x-x_0)(x-x_1)f''(\xi).
+		\]
+		Furthermore it holds that
+		\[
+			|f(x)-L_1(x)|\leq\frac{1}{8}(x_1-x_0)^2\underset{\gamma\in(a,b)}{\max}|f''(\gamma)|.
+		\]
+		Assume two distinct measured data points $ (x_0,\hat{f}(x_0)) $ and $ (x_1,\hat{f}(x_1)) $ of a function $ f\in C^2\,[a,b] $ are given with $ x_0,x_1\in[a,b] $.
+		Also assume $ |f(x_0)-\hat{f}(x_0)|\leq\varepsilon $ and $ |f(x_1)-\hat{f}(x_1)|\leq\epsilon $ and $ \hat{L}_1 $ is the linear Lagrange interpolation polynomial using the measured values.
+		Then for all $ x\in[a,b] $ it holds that
+		\[
+			|L_1(x)-\hat{L}_1(x)|\leq\frac{|x_1-x|+|x-x_0|}{|x_1-x_0|}\varepsilon.
+		\]
+		
+		\section{Lagrange interpolation - general.}
+		Assume $ n+1 $ data points $ (x_0,f(x_0)) $, $ (x_1,f(x_1)) $, $ \ldots $, $ (x_n,f(x_n)) $ of a function $ f $ are given. The Lagrange basis polynomials $ L_{kn} $, $ k\in \{0,1,\ldots,n\} $ are defined by
+		\[
+			L_{kn} = \prod_{\substack{j=0\\j\neq k}}^{n} \frac{x-x_j}{x_k-x_j},
+		\]
+		and the $ n^\text{th} $ degree Lagrange interpolation polynomial $ L_n $ by
+		\[
+			L_n(x) = \sum_{k=0}^{n}f(x_k)L_{kn}(x).
+		\]
+		Assume $ f\in C^{n+1}\,[a,b] $ with $ x_0,\hdots,x_n\in[a,b] $.
+		Then for each $ x\in[a,b] $ there exists a $ \xi\in(a,b) $ such that
+		\[
+			f(x)-L_n(x)=\frac{1}{(n+1)!}\prod_{k=0}^{n}(x-x_k)f^{(n+1)}(\xi).
+		\]
+		Furthermore it holds that
+		\[
+			|L_n(x)-\hat{L}_n(x)|\leq\sum_{k=0}^{n}|L_{kn}(x)|\varepsilon,
+		\]
+		with $ \varepsilon $ an upper bound for measurement errors.
+		
+		\section{Spline interpolation.}
+		Consider nodes $ a=x_0<x_1<\cdots<x_n=b $ and a function $ f\in C\,[a,b] $. A spline of degree $ p $ is a piecewise polynomial $ s\in C^{p-1}\,[a,b] $ that assumes the values of $ f $ in the nodes, and is defined by
+		\[
+			s(x) =
+			\begin{cases}
+				s_0(x), & x\in[x_0,x_1),\\
+				s_1(x), & x\in[x_1,x_2),\\
+				\vdots & \vdots\\
+				s_{n-1}(x), & x\in[x_{n-1},x_n],
+			\end{cases}
+		\]
+		where $ s_k $, $ k\in\{0,1,\ldots,n-1\} $ are polynomials of degree $ p $.
+		
+		\section{Numerical integration.}
+		Assume $ f\in C\,[x_L,x_R] $ and $ x_M = \frac{1}{2}(x_L+x_R) $. We can define the following integration rules:
+			\begin{align*}
+				\text{left rectangle rule} &\quad\int_{x_L}^{x_R}f(x)\d x \approx (x_R-x_L)f(x_L)\\
+				\text{right rectangle rule} &\quad\int_{x_L}^{x_R}f(x)\d x \approx (x_R-x_L)f(x_R)\\
+				\text{midpoint rule} &\quad\int_{x_L}^{x_R}f(x)\d x \approx (x_R-x_L)f(x_M)\\
+				\text{trapezoidal rule} &\quad\int_{x_L}^{x_R}f(x)\d x \approx \frac{1}{2}(x_R-x_L)(f(x_L)+f(x_R))\\
+				\text{Simpson's rule} &\quad\int_{x_L}^{x_R}f(x)\d x \\ &\quad \approx \frac{1}{6}(x_R-x_L)(f(x_L)+4f(x_M)+f(x_R))
+			\end{align*}
+		
+		\section{Numerical integration - accuracy.}
+		Assume $ f\in C^q \, [x_L,x_R] $, $ x_M=\frac{1}{2}(x_L+x_R) $ and $ m_q = \underset{x\in[x_L,x_R]}{\text{max}} \left|f^{(q)}(x)\right| $. Then it holds that:
+			\begin{align*}
+				&\left| \int_{x_L}^{x_R}f(x)\d x - (x_R-x_L)f(x_L) \right|&\\
+				&\quad\leq\frac{1}{2} m_1 (x_R-x_L)^2\\
+				&\left| \int_{x_L}^{x_R}f(x)\d x - (x_R-x_L)f(x_R) \right|&\\
+				&\quad\leq\frac{1}{2} m_1 (x_R-x_L)^2\\
+				&\left| \int_{x_L}^{x_R}f(x)\d x - (x_R-x_L)f(x_M) \right|&\\
+				&\quad\leq\frac{1}{24} m_2 (x_R-x_L)^3\\
+				&\left| \int_{x_L}^{x_R}f(x)\d x - \frac{1}{2}(x_R-x_L)(f(x_L)+f(x_R)) \right|&\\
+				&\quad\leq\frac{1}{12} m_2 (x_R-x_L)^3\\
+				&\left| \int_{x_L}^{x_R}f(x)\d x - \frac{1}{6}(x_R-x_L)(f(x_L)+4f(x_M)+f(x_R)) \right|&\\
+				&\quad\leq\frac{1}{2880} m_4 (x_R-x_L)^5
+			\end{align*}
+		
+		\section{Composite numerical integration.}
+		Assume $ f\in C\,[a,b] $ and $ a=x_0<x_1<\cdots<x_n=b $ are given nodes.\\
+		If $ I_k $ is an integration rule that approximates $ \int_{x_{k-1}}^{x_k}f(x)\d x $, we can approximate $ \int_{a}^{b}f(x)\d x $ with the composite integration rule
+		\[
+			I = \sum_{k=1}^{n}I_k.
+		\]
+		
+		\section{Composite numerical integration - accuracy.}
+		Assume $ f $ is defined on $ [a,b] $ and $ a=x_0<x_1<\cdots<x_n=b $ with $ x_k=a+kh $ and $ h=\frac{b-a}{n} $.
+		Also assume $ I $ is a composite integration rule based on the integration rule $ I_k $ for which we know $ |\int_{x_{k-1}}^{x_k}f(x)\d x-I_k|\leq c_kh^{p+1} $. Then
+		\[
+			\left|\int_{a}^{b}{f(x)\d x-I}\right|\leq c(b-a)h^p,
+		\]
+		where $ c=\text{max}\{c_1,c_2,\hdots,c_n\} $.
+		
+		\section{Composite numerical integration - errors.}
+		Assume $ I $ is a composite integration rule based on the function $ f $ and $ \hat{I} $ is the same composite integration rule based on the function $ \hat{f} $ containing measurement and/or rounding error for which we know $ |f(x)-\hat{f}(x)|=\varepsilon(x)\leq\varepsilon_\text{max} $. Then
+		\[
+			\left|\int_{a}^{b}{f(x)\d x-\hat{I}}\right|\leq\left|\int_{a}^{b}{f(x)\d x}-I\right|+\left|I-\hat{I}\right|.
+		\]
+		
+		\section{Initial-value problems.}
+		A first-order initial-value problem for a scalar function $ y $ of the independent variable $ t $ is a system of the form
+		\[
+			\begin{cases}
+				\begin{aligned}
+					y'&=f(t,y),&\text{for}\ t\geq t_0,\\
+					y(t_0)&=y_0,&
+				\end{aligned}
+			\end{cases}
+		\]
+		where $ f $ is a known function and $ y_0 $ is a known value.
+		
+		\section{Initial-value problems - stability.}
+		Consider the two first-order initial-value problems
+		\[
+			\begin{cases}
+				\begin{aligned}
+					y'&=f(t,y), &t\geq t_0, \\ y(t_0)&=y_0,&
+				\end{aligned}
+			\end{cases}
+			\ \mkern-18mu\text{and} \
+			\begin{cases}
+				\begin{aligned}
+					\tilde{y}'&=f(t,\tilde{y}), &t\geq t_0, \\ \tilde{y}(t_0)&=y_0+\varepsilon_0,&
+				\end{aligned}
+			\end{cases}
+		\]
+		where $ f $ is a known function and $ y_0 $ and $ \varepsilon_0 $ are known values. Define $ \varepsilon(t)=\tilde{y}(t)-y(t) $. The left initial-value problem is stable if
+		\[
+			|\varepsilon(t)| < \infty \ \text{for all} \ t\geq t_0,
+		\]
+		and absolutely stable if it is stable and
+		\[
+			\lim_{t\rightarrow\infty} |\varepsilon(t)|=0.
+		\]
+		Define $ \lambda=\pdv{f}{y}\/ (\hat{t},\hat{y}) $.
+		The left initial-value problem is stable for typical value of $ \hat{t} $ and $ \hat{y} $ if $ \lambda\leq0 $ and absolutely stable if $ \lambda<0 $.
+		
+		\section{Test equation.}
+		The differential equation
+		\[
+			y'=\lambda y
+		\]
+		is called the test equation.
+		
+		\section{Forward Euler method.}
+		Consider the initial-value problem
+		\[
+			\begin{cases}
+				\begin{aligned}
+					y'&=f(t,y), &\text{for} \ t\geq t_0, \\ y(t_0)&=y_0.&
+				\end{aligned}
+			\end{cases}
+		\]
+		Define $ w_n $ as the numerical approximation of $ y(t_n) $. Then the Forward Euler method is defined by the discrete dynamical system
+		\[
+			\begin{cases}
+				\begin{aligned}
+					w_{n+1} &= w_n + \Delta tf(t_n,w_n), &\text{for} \ n\geq0, \\ w_0 &= y_0,&
+				\end{aligned}
+			\end{cases}
+		\]
+		where $ t_n = t_0 + n\Delta t $.
+			\begin{flalign*}
+				&\text{Local truncation error} \ \tau_{n+1}=\mathcal{O}(\Delta t).&\\
+				%\text{Global truncation error} \ |e_n|&\leq\Delta t.&\\
+				&\text{Stability attained if} \ \Delta t\leq-\frac{2}{\lambda}.&
+			\end{flalign*}
+		
+		\section{Backward Euler method.}
+		Consider the initial-value problem
+		\[
+			\begin{cases}
+				\begin{aligned}
+					y'&=f(t,y), &\text{for} \ t\geq t_0, \\ y(t_0)&=y_0.&
+				\end{aligned}
+			\end{cases}
+		\]
+		Define $ w_n $ as the numerical approximation of $ y(t_n) $. Then the Backward Euler method is defined by the discrete dynamical system
+		\[
+			\begin{cases}
+				\begin{aligned}
+					w_{n+1} &= w_n + \Delta tf(t_{n+1},w_{n+1}), &\text{for} \ n\geq0, \\ w_0 &= y_0,&
+				\end{aligned}
+			\end{cases}
+		\]
+		where $ t_n = t_0 + n\Delta t $.
+			\begin{flalign*}
+				&\text{Local truncation error} \ \tau_{n+1}=\mathcal{O}(\Delta t).&\\
+				%\text{Global truncation error} \ |e_n|&\leq\Delta t.&\\
+				&\text{Stability attained for} \ \text{all} \ \Delta t.&
+			\end{flalign*}
+		
+		\section{Trapezoidal method.}
+		Consider the initial-value problem
+		\[
+			\begin{cases}
+				\begin{aligned}
+					y'&=f(t,y), &\text{for} \ t\geq t_0, \\ y(t_0)&=y_0.&
+				\end{aligned}
+			\end{cases}
+		\]
+		Define $ w_n $ as the numerical approximation of $ y(t_n) $. Then the Trapezoidal method is defined by the discrete dynamical system
+		\[
+			\begin{cases}
+				\begin{aligned}
+					w_{n+1} &= w_n + \frac{1}{2}\Delta t(f(t_n,w_n)+f(t_{n+1},w_{n+1})), &\text{for} \ n\geq0, \\ w_0 &= y_0,& 
+				\end{aligned}
+			\end{cases}
+		\]
+		where $ t_n = t_0 + n\Delta t $.
+			\begin{flalign*}
+				&\text{Local truncation error} \ \tau_{n+1}=\mathcal{O}(\Delta t^2).&\\
+				%\text{Global truncation error} \ |e_n|&\leq\Delta t^2.&\\
+				&\text{Stability attained for} \ \text{all} \ \Delta t.&
+			\end{flalign*}
+		
+		\section{Modified Euler method.}
+		Consider the initial-value problem
+		\[
+			\begin{cases}
+				\begin{aligned}
+					y'&=f(t,y), &\ \text{for} \ t\geq t_0, \\ y(t_0)&=y_0.&
+				\end{aligned}
+			\end{cases}
+		\]
+		Define $ w_n $ as the numerical approximation of $ y(t_n) $. Then the Modified Euler method is defined by the discrete dynamical system
+		\[
+			\begin{cases}
+				\begin{aligned}
+					\overline{w}_{n+1} &= w_n + \Delta tf(t_n,w_n), &\text{for} \ n\geq0,\\
+					w_{n+1} &= w_n + \frac{1}{2}\Delta t(f(t_n,w_n)+f(t_{n+1},\overline{w}_{n+1})), &\text{for} \ n\geq 0,\\
+					w_0 &= y_0,&
+				\end{aligned}
+			\end{cases}
+		\]
+		where $ t_n=t_0+n\Delta t $.
+			\begin{flalign*}
+				&\text{Local truncation error} \ \tau_{n+1}=\mathcal{O}(\Delta t^2).&\\
+				%\text{Global truncation error} \ |e_n|&\leq\Delta t^2.&\\
+				&\text{Stability attained if} \ \Delta t\leq-\frac{2}{\lambda}.&
+			\end{flalign*}
+		
+		\section{RK4 method.}
+		Consider the initial-value problem
+		\[
+			\begin{cases}
+				\begin{aligned}
+					y'&=f(t,y), &\text{for} \ t\geq t_0, \\ y(t_0)&=y_0.&
+				\end{aligned}
+			\end{cases}
+		\]
+		Define $ w_n $ as the numerical approximation of $ y(t_n) $. Then the Fourth-order method of Runge-Kutta (RK4 method) is defined by the discrete dynamical system
+		\[
+			\begin{cases}
+				\begin{aligned}
+					k_1 &= \Delta tf(t_n,w_n), &\text{for} \ n\geq0,\\
+					k_2 &= \Delta tf(t_n + \frac{1}{2}\Delta t, w_n+\frac{1}{2}k_1), &\text{for} \ n\geq0,\\
+					k_3 &= \Delta tf(t_n + \frac{1}{2}\Delta t, w_n + \frac{1}{2}k_2), &\text{for} \ n\geq0,\\
+					k_4 &= \Delta tf(t_n+\Delta t, w_n+k_3), &\text{for} \ n\geq0,\\
+					w_{n+1} &= w_n + \frac{1}{6}(k_1 + 2k_2 + 2k_3 + k_4), &\text{for} \ n\geq0,
+				\end{aligned}
+			\end{cases}
+		\]
+		where $ t_n=t_0+n\Delta t $ and $ w_0=y_0 $.
+			\begin{flalign*}
+				&\text{Local truncation error} \ \tau_{n+1}=\mathcal{O}(\Delta t^4).&\\
+				%\text{Global truncation error} \ |e_n|&\leq\Delta t^4.&\\
+				&\text{Stability attained if} \ \Delta t\leq\frac{2.8}{|\lambda|}.&
+			\end{flalign*}
+		
+		\section{Numerical stability.}
+		Consider the two first-order initial-value problems
+		\[
+			\begin{cases}
+				\begin{aligned}
+					y'&=f(t,y), &t\geq t_0, \\ y(t_0)&=y_0,&
+				\end{aligned}
+			\end{cases}
+			\ \mkern-18mu\text{and} \quad
+			\begin{cases}
+				\begin{aligned}
+					\tilde{y}'&=f(t,\tilde{y}), &t\geq t_0, \\ \tilde{y}(t_0)&=y_0+\varepsilon_0,&
+				\end{aligned}
+			\end{cases}
+		\]
+		where $ f $ is a known function and $ y_0 $ and $ \varepsilon_0 $ are known values. Assume a time-integration method has been applied to both initial-value problems, leading to the numerical solutions $ w_n, n=0,1,\hdots $ and $ \tilde{w}_n, n=0,1,\hdots $.\\
+		Define $ \overline{\varepsilon}_n = \tilde{w}_n-w_n $. The used time-integration method applied to the left initial-value problem is (numerically) stable if
+		\[
+			|\overline{\varepsilon}_n| < \infty \ \text{for all} \ n\geq0.
+		\]
+		
+		\section{Amplification factor $ Q $.}
+		The amplification factor $ Q $ of a time-integration method is defined by applying the time-integration method to the test equation. It satisfies the equation
+		\[
+			w_{n+1} = Q(\lambda\Delta t)w_n.
+		\]
+			\begin{align*}
+				\text{forward Euler} \quad &Q(\lambda\Delta t) = 1 + \lambda\Delta t\\
+				\text{backward Euler} \quad &Q(\lambda\Delta t) = \frac{1}{1-\lambda\Delta t}\\
+				\text{trapezoidal} \quad &Q(\lambda\Delta t) = \frac{1+\frac{1}{2}\lambda\Delta t}{1-\frac{1}{2}\lambda\Delta t}\\
+				\text{modified Euler} \quad &Q(\lambda\Delta t) = 1 + \lambda\Delta t + \frac{1}{2}(\lambda\Delta t)^2\\
+				\text{RK4} \quad &Q(\lambda\Delta t) = 1 + \lambda\Delta t + \frac{1}{2}(\lambda\Delta t)^2 + \frac{1}{6}(\lambda\Delta t)^3 + \frac{1}{24}(\lambda\Delta t)^4
+			\end{align*}
+		
+		\section{Numerical stability - amplification factor.}
+		Consider a time-integration method with amplification factor $ Q $ applied to the initial-value problem
+		\[
+			\begin{cases}
+				\begin{aligned}
+					y'&=f(t,y), &t\geq t_0, \\ y(t_0)&=y_0,&
+				\end{aligned}
+			\end{cases}
+		\]
+		and define $ \lambda = \frac{\partial f}{\partial y}(\hat{t},\hat{y}) $. The chosen time-integration method applied to the initial-value problem is stable if
+		\[
+			|Q(\lambda\Delta t)| \leq 1
+		\]
+		for typical values of $ \hat{t} $ and $ \hat{y} $.
+		
+		\section{Local truncation error $ \tau $.}
+		Given is that $ y_{n+1}=y(t_{n+1}) $ is the exact solution and that $ z_{n+1} $ is the numerical approximation of $ y_{n+1} $ with a chosen numerical time-integration method with starting point $ y_n=y(t_n) $ and time step $ \Delta t $. The local truncation error at time step $ n+1 $, $ \tau_{n+1} $, is then defined as
+		\[
+			\tau_{n+1}=\frac{y_{n+1}-z_{n+1}}{\Delta t}.
+		\]
+		To obtain a formula for the local truncation error the following steps can be performed:
+			\begin{enumerate}
+				\item Formulate a Taylor expansion of $ y_{n+1} $ around $ \Delta t=0 $;
+				\item Formulate a Taylor expansion of $ z_{n+1} $ around $ \Delta t=0 $;
+				\item Substitute 1. and 2. into the definition;
+				\item Simplify.
+			\end{enumerate}
+		Given is a time-integration method with amplification factor $ Q $. Then the local truncation error for this method applied to the test equation $ y'=\lambda y $ is given by
+		\[
+			\tau_{n+1}=\frac{e^{\lambda\Delta t}-Q(\lambda\Delta t)}{\Delta t}y(t_n).
+		\]
+		To obtain a formula for the local truncation error for the test equation the following steps can be performed:
+			\begin{enumerate}
+				\item Formulate a Taylor expansion of $ e^{\lambda\Delta t} $ around $ \Delta t=0 $;
+				\item Formulate a Taylor expansion of $ Q(\lambda\Delta t) $ around $ \Delta t=0 $;
+				\item Substitute 1. and 2. into the equation above;
+				\item Simplify.
+			\end{enumerate}
+		
+		\section{Global truncation error $ e $.}
+		Given is that $ y_{n+1}=y(t_{n+1}) $ is the exact solution and that $ w_{n+1} $ is the numerical approximation of $ y_{n+1} $ with a chosen solution time-integration method with time step $ \Delta t $ after $ n+1 $ time steps. The global truncation error at time $ t_{n+1} $, $ e_{n+1} $, is then defined as
+		\[
+			e_{n+1}=y_{n+1}-w_{n+1}.
+		\]
+		
+		\section{Consistency and convergence.}
+		A numerical time-integration method is called consistent if
+		\[
+			\lim_{\Delta t\rightarrow0}\tau_{n+1}=0,
+		\]
+		where $ T=(n+1)\Delta t $ is a fixed time. If it is consistent and $ \tau_{n+1}=\mathcal{O}(\Delta t^p) $, we call the method consistent of order $ p $.\\
+		A numerical time-integration method is called convergent if
+		\[
+			\lim_{\Delta t\rightarrow0}e_{n+1}=0,
+		\]
+		where $ T=(n+1)\Delta t $ is a fixed time. If it is convergent and $ e_{n+1}=\mathcal{O}(\Delta t^p) $, we call the method convergent of order $ p $.\\
+		If a numerical method is both stable and consistent, it is convergent. In that case the global and local truncation errors are of the same order.
+		
+		\section{Error estimation.}
+		Define $ w_N^{\Delta t} $ as the numerical approximation of $ y(t) $ using $ N $ time steps of size $ \Delta t $ and $ e(t,\Delta t)=y(t)-w_N^{\Delta t} $ as the global truncation error at time $ t $ using time steps of size $ \Delta t $.\\
+		Consider a time-integration method that is convergent of order $ p $ and assume $ \Delta t $ is small enough.
+		Then the global truncation error can be estimated by
+		\[
+		e(t,\Delta t)=c_p(t)\Delta t^p=\frac{w_N^{\Delta t}-w_{N/2}^{2\Delta t}}{2^p-1}.
+		\]
+		Consider a time-integration method that is convergent, but the order $ p $ is unknown and assume $ \Delta t $ is small enough.
+		Then the order of the global truncation error can be estimated from
+		\[
+		2^p=\frac{w_{N/2}^{2\Delta t}-w_{N/4}^{4\Delta t}}{w_n^{\Delta t}-w_{N/2}^{2\Delta t}}.
+		\]
+		Assume $ Q(h) $ is an approximation of an unknown value $ M $.
+		For sufficiently small $ h $ the truncation error $ M-Q(h) $ can be estimated by
+		\[
+			M-Q(h)=c_ph^p=\frac{Q(h)-Q(2h)}{2^p-1}
+		\]
+		if $ p $ is known. If $ p $ is not known, it can be estimated from
+		\[
+			2^p=\frac{Q(2h)-Q(4h)}{Q(h)-Q(2h)}.
+		\]
+		
+		\section{Stability of systems of differential equations.}
+		Consider a vector-valued initial-value problem
+		\[
+			\begin{cases}
+				\begin{aligned}
+					\textbf{y}'&=A\textbf{y}+\textbf{g}(t),&t\geq t_0,\\
+					\textbf{y}(t_0)&=\textbf{y}_0,&
+				\end{aligned}
+			\end{cases}
+		\]
+		with $ A $ an $ n\times n $-matrix. Define $ \lambda_j,j=1,2,\hdots,n $ as the eigenvalues of $ A $, repeated according to their algebraic multiplicity.
+		The system is stable if
+		\[
+			\Re(\lambda_j)\leq0
+		\]
+		for $ j=1,2,\hdots,n $.\\
+		Consider the vector-valued initial-value problem
+		\[
+			\begin{cases}
+				\begin{aligned}
+					\textbf{y}'&=\textbf{f}(t,\textbf{y}),&t\geq t_0,\\
+					\textbf{y}(t_0)&=\textbf{y}_0,&
+				\end{aligned}
+			\end{cases}
+		\]
+		with $ \textbf{y}\in\R^n $. Define $ \lambda_j,j=1,2,\hdots,n $ as the eigenvalues of the Jacobian matrix $ J(\hat{t},\hat{\textbf{y}}) $ of $ \textbf{f} $, repeated according to their algebraic multiplicity, and typical values of $ \hat{t} $ and $ \hat{\textbf{y}} $. The system is stable if
+		\[
+			\Re(\lambda_j)<0,
+		\]
+		for $ j=1,2,\hdots,n $.\\
+		A numerical time-integration method with amplification factor $ Q $ is stable if
+		\[
+			|Q(\lambda_j\Delta t)|\leq 1,
+		\]
+		for $ j=1,2,\hdots,n $.
+		
+		\section{Stability regions.}
+		Consider a numerical time-integration method with amplification factor $ Q $. The stability region $ S $ of this method is defined as
+		\[
+			S=\{\lambda\Delta t\in \mathbb{C}:|Q(\lambda\Delta t)|\leq 1\}.
+		\]
+		
+		\section{Stiff systems.}
+		Consider a solution $ \textbf{y}(t) $ of some initial-value problem, and assume it contains a rapidly-decaying part and a slowly-varying part. Then we call the rapidly-decaying part the transient of the solution, and the initial-value problem is called a stiff system.
+		
+		\section{Superstability.}
+		Consider a numerical time-integration method with amplification factor $ Q $ applied to an $ n $-dimensional initial-value problem with eigenvalues $ \lambda_j, \ j=1,\hdots,n $. This method is superstable if it is stable and
+		\[
+			\lim_{\operatorname{Re}(\lambda_j\Delta t)\rightarrow-\infty}|Q(\lambda_j\Delta t)|<1
+		\]
+		for $ j=1,\hdots,n $.
+			\begin{flalign*}
+				&\text{All explicit methods are never superstable.}&\\
+				&\text{The Backward Euler method is always superstable.}&\\
+				&\text{The Trapezoidal method is never superstable.}&
+			\end{flalign*}
+		
+		\section{First-order derivative.}
+		Consider a function $ f\in C\,[a,b] $. Then the first-order derivative $ f' $ is defined by
+		\[
+			f'=\lim_{h\rightarrow0}\frac{f(x+h)-f(x)}{h},
+		\]
+		if this limit exists.
+		
+		\section{Finite differences.}
+		Consider a function $ f\in C^1[a,b] $. The value $ f'(x) $ can be approximated by the following finite differences:
+			\begin{align*}
+				\text{forward difference} \quad Q_f(h) &= \frac{f(x+h)-f(x)}{h},\\
+				\text{backward difference} \quad Q_b(h) &= \frac{f(x)-f(x-h)}{h},\\
+				\text{central difference} \quad Q_c(h) &= \frac{f(x+h)-f(x-h)}{2h}.\\
+			\end{align*}
+		
+		\section{Truncation error $ R $.}
+		Consider a function $ f\in C^1[a,b] $ and a finite difference $ Q(h) $ as an approximation of $ f'(x) $. Then the truncation error $ R(h) $ is defined as
+		\[
+			R(h) = f'(x)-Q(h).
+		\]
+		Consider a function $ f\in C^3[a,b] $. Then:
+			\begin{align*}
+				R_f(h)=f'(x)-Q_f(h)&=-\frac{h}{2}f''(\xi)=\mathcal{O}(h) &\ \text{with} \ \xi\in(x,x+h),\\
+				R_b(h)=f'(x)-Q_b(h)&=\frac{h}{2}f''(\eta)=\mathcal{O}(h) &\ \text{with} \ \eta\in(x-h,x),\\
+				R_c(h)=f'(x)-Q_c(h)&=-\frac{h^2}{6}f'''(\zeta)=\mathcal{O}(h^2) &\ \text{with} \ \zeta\in(x-h,x+h).
+			\end{align*}
+		
+		\section{Rounding error $ S $, total error $ E $.}
+		Consider a function $ f\in C^1[a,b] $ and a finite difference $ Q(h) $ as an approximation of $ f'(x) $. Also assume $ \hat{f} $ is the function $ f $ including rounding errors and $ \hat{Q}(h) $ is the finite difference based on $ \hat{f} $. Then the rounding error $ S(h) $ is defined as
+		\[
+			S(h)=|Q(h)-\hat{Q}(h)|,
+		\]
+		and the total error $ E(h) $ is defined as
+		\[
+			E(h)=|f'(x)-\hat{Q}(h)|.
+		\]
+		
+		\section{Boundary value problems.}
+		A second-order boundary value problem is the (unknown) variable $ y(x) $ on $ [K,L] $ is a system of the form
+		\[
+			\begin{cases}
+				\begin{aligned}
+					-(p(x)y'(x))'+r(x)y'(x)+q(x)y(x)&=f(x), &K\leq x\leq L,\\
+					a_Ky(K)+b_Ky'(K)&=c_K,&\\
+					a_Ly(L)+b_Ly'(L)&=c_L,&
+				\end{aligned}
+			\end{cases}
+		\]
+		where the last two equations are called boundary conditions and all constants and functions are known. Assume $ p(x)>0 $ and $ q(x)\geq0 $.
+		
+		\section{Boundary conditions.}
+		Assume a boundary condition of the form
+		\[
+			a_Ky(K)+b_Ky'(K)=c_K
+		\]
+		is given.
+			\begin{flalign*}
+				\text{If} \ a_K\neq0, \ b_K=0, &\ \text{we call the BC a Dirichlet boundary condition.}&\\
+				\text{If} \ a_K=0, \ b_K\neq0, &\ \text{we call the BC a Neumann boundary condition.}&\\
+				\text{If} \ a_K\neq0, \ b_K\neq0, &\ \text{we call the BC a Robin or mixed boundary condition.}&
+			\end{flalign*}
+		
+		\section{Finite difference method.}
+		Assume a boundary-value problem in $ y(x) $ on $ [K,L] $ is given. The finite difference method constructs a system of the form
+		\[
+			A\textbf{w}=\textbf{f},
+		\]
+		where $ w_j $ is an approximation of $ y(x_j) $ and $ x_j=K+j\Delta x $ and $ (n+1)\Delta x=L-K $.\\
+		Algorithm:
+			\begin{enumerate}
+				\item Define the grid size $ \Delta x=\frac{L-K}{n+1} $ and $ x_j=K+j\Delta x $.
+				\item Evaluate the differential equation in $ x_j $ and replace all derivatives with finite differences.
+				\item Approximate $ y(x_j) $ by $ w_j $ and ignore all remainder terms.
+				\item Incorporate the boundary condition at $ x=K $.
+				\item Incorporate the boundary condition at $ x=L $.
+				\item Formulate $ A $, $ \textbf{w} $, and $ \textbf{f} $ such that $ \textbf{w} $ contains all unknown values and $ A\textbf{w}=\textbf{f} $.
+				\item Solve $ A\textbf{w}=\textbf{f} $ for $ \textbf{w} $.
+			\end{enumerate}
+		
+		\section{Discretisation - $ (p(x)y'(x))' $.}
+		The term
+		\[
+			\left.(p(x)y'(x))'\right|_{x=x_j}
+		\]
+		is discretised with the $ \mathcal{O}(\Delta x^2) $ finite difference
+		\[
+			\frac{p(x_{j+1/2})(w_{j+1}-w_j)-p(x_{j-1/2})(w_j-w_{j-1})}{\Delta x^2}.
+		\]
+		
+		\section{Discretisation - $ p(K)y'(K) $.}
+		The term
+		\[
+			p(K)y'(K)
+		\]
+		is discretised with the $ \mathcal{O}(\Delta x^2) $ finite difference
+		\[
+			\frac{1}{2}\left(p(x_{-1/2})\frac{w_0-w_{-1}}{\Delta x}+p(x_{1/2})\frac{w_1-w_0}{\Delta x}\right),
+		\]
+		for the term coming from $ (p(x)y'(x))' $ and with the $ \mathcal{O}(\Delta x^2) $ finite difference
+		\[
+			p(x_0)\frac{w_1-w_{-1}}{2\Delta x}
+		\]
+		for the term coming from $ r(x)y'(x) $.
+		
+		\section{Discretisation - $ p(L)y'(L) $.}
+		The term
+		\[
+			p(L)y'(L)
+		\]
+		is discretised with the $ \mathcal{O}(\Delta x^2) $ finite difference
+		\[
+			\frac{1}{2}\left(p(x_{n+1/2})\frac{w_{n+1}-w_n}{\Delta x}+p(x_{n+3/2})\frac{w_{n+2}-w_{n+1}}{\Delta x}\right),
+		\]
+		for the term coming from $ (p(x)y'(x))' $ and with the $ \mathcal{O}(\Delta x^2) $ finite difference
+		\[
+			p(x_{n+1})\frac{w_{n+2}-w_n}{2\Delta x}
+		\]
+		for the term coming from $ r(x)y'(x) $.
+		
+		\section{Upwind discretisations.}
+		An upwind discretisation of the term $ vy'(x_j) $ in the differential equation $ -y''+vy'+q(x)y=f(x) $ is given by
+		\[
+			vy'(x_j)\approx
+				\begin{cases}
+					\begin{aligned}
+						v\frac{w_j-w_{j-1}}{\Delta x}, & \ \text{if} \ v\geq0,&\\
+						v\frac{w_{j+1}-w_j}{\Delta x}, & \ \text{if} \ v<0.&
+					\end{aligned}
+				\end{cases}
+		\]
+		
+		\section{Norms.}
+		The Euclidean norm $ ||\textbf{x}|| $ of a vector $ \textbf{x}\in \R^n $ is defined as
+		\[
+			||\textbf{x}||=\sqrt{\sum_{i=1}^{n}x_i^2},
+		\]
+		where $ \textbf{x}=[x_1,x_2,\hdots,x_n]^T $.\\
+		The natural matrix norm $ ||A|| $ of an $ n\times n $-matrix $ A $ related to the Euclidean norm is defined as
+		\[
+			||A||=\underset{||x||=1}{\text{max}}||A\textbf{x}||,
+		\]
+		where $ \textbf{x}\in\mathbb{R}^n $.
+		
+		\section{Gershgorin circle theorem.}
+		The eigenvalues of an $ n\times n $-matrix $ A $ are located in the complex plane in the union of circles
+		\[
+			|z-a_{ii}|\leq\sum_{\substack{j=1\\j\neq i}}^{n}|a_{ij}|,
+		\]
+		where $ z\in\mathbb{C} $.
+		
+		\section{Condition number.}
+		The condition number $ \kappa(A) $ of an $ n\times n $-matrix $ A $ is defined as
+		\[
+			\kappa(A)=||A||\cdot||A^{-1}||.
+		\]
+		If $ A $ is a symmetric $ n\times n $-matrix with eigenvalues $ \lambda_1,\lambda_2,\hdots,\lambda_n$, then
+		\[
+			\kappa(A)=\frac{|\lambda|_\text{max}}{|\lambda|_\text{min}}.
+		\]
+		
+		\section{Local errors.}
+		The local truncation error $ \boldsymbol{\varepsilon} $ of the finite difference method scheme $ A\textbf{w}=\textbf{f} $ is defined as
+		\[
+			\bm{\varepsilon}=A\textbf{y}-\textbf{f}
+		\]
+		where $ \textbf{y} $ contains the exact solutions at the same grid nodes as the approximations in $ \textbf{w} $.\\
+		A finite difference method scheme $ A\textbf{w}=\textbf{f} $ is consistent if
+		\[
+			\lim_{\Delta x\rightarrow0}||\bm{\varepsilon}||=0.
+		\]
+		
+		\section{Stability.}
+		The finite difference method scheme $ A\textbf{w}=\textbf{f} $ is stable if there exists a constant $ C $ independent of $ \Delta x $ such that
+		\[
+			||A^{-1}||\leq C \ \text{for} \ x\rightarrow0.
+		\]
+		
+		\section{Global errors.}
+		The global truncation error $ \textbf{e} $ of the finite difference method scheme $ A\textbf{w}=\textbf{f} $ is defined as
+		\[
+			\textbf{e}=\textbf{y}-\textbf{w},
+		\]
+		where $ \textbf{y} $ contains the exact solutions at the same grid nodes as the approximations in $ \textbf{w} $.\\
+		A finite difference method scheme $ A\textbf{w}=\textbf{f} $ is convergent if
+		\[
+			\lim_{\Delta x\rightarrow0}||\textbf{e}||=0.
+		\]
+		
+		\section{Equations and solutions.}
+		A solution $ p $ of an equation is of the form
+		\[
+			f(x)=0
+		\]
+		is called a root of the equation and a zero of the function $ f $.\\
+		Assume $ f\in C\,[a,b] $ and $ f(x)f(y)<0 $ for some $ x\in[a,b] $ and some $ y\in[a,b] $. Then $ f $ has a zero in $ [a,b] $.\\
+		A solution $ p $ of an equation of the form
+		\[
+			g(x)=x
+		\]
+		is called a fixed point of the function $ g $.\\
+		Assume $ g\in C\,[a,b] $ and $ g(x)\in[a,b] $ for all $ x\in[a,b] $. Then $ g $ has a fixed point in $ [a,b] $.\\
+		Assume $ g\in C^1\,[a,b] $ and that $ g $ has a fixed point in $ [a,b] $. If there is a positive value $ k<1 $ such that
+		\[
+			|g'(x)|\leq k \ \text{for all} \ x\in[a,b],
+		\]
+		then $ p $ is unique on $ [a,b] $.
+		
+		\section{Convergence.}
+		Assume some numerical method generates a sequence $ \{p_n\}=p_0,p_1,p_2,\hdots $.
+		If $ \lim_{n\rightarrow\infty}{p_n}=p $, we call the sequence convergent (to $ p $).
+		If there exists $ \lambda>0 $ and $ \alpha>0 $ such that
+		\[
+			\lim_{n\rightarrow\infty}\frac{|p-p_{n+1}|}{|p-p_n|^\alpha}=\lambda,
+		\]
+		then $ \{p_n\} $ converges to $ p $ with order $ \alpha $ and asymptotic constant $ \lambda $.
+			\begin{flalign*}
+				\text{If} \ \alpha=1 &\ \text{the sequence is linearly convergent.}&\\
+				\text{If} \ \alpha=2 &\ \text{the sequence is quadratically convergent.}&
+			\end{flalign*}
+		Assume $ \{p_n\} $ satisfies
+		\[
+			|p-p_n|\leq k|p-p_{n-1}|, \ \text{for} \ n=1,2,\hdots
+		\]
+		with $ 0\leq k\leq1 $. Then $ \{p_n\} $ converges to $ p $.\\
+		Stopping criteria (examples):
+			\begin{itemize}
+				\item $ |p-p_n|<\varepsilon $
+				\item $ |p_n-p_{n-1}|<\varepsilon $
+				\item $ \frac{|p_n-p_{n-1}|}{|p_n|}<\varepsilon $
+				\item $ |f(p_n)|<\varepsilon $
+			\end{itemize}
+		
+		\section{Bisection method.}
+		Assume $ f $ is continuous on the interval $ [a,b] $ and $ f(a)f(b)<0 $.
+		Then the Bisection method produce a sequence $ \{p_n\} $ that converges to a zero $ p\in[a,b] $ of $ f $ with order $ \alpha=1 $, asymptotic constant $ \lambda=\frac{1}{2} $, and
+		\[
+			|p-p_n|\leq\frac{b-a}{2^{n+1}}, \ \text{for} \ n=0,1,2,\hdots.
+		\]
+		Algorithm:
+			\begin{enumerate}
+				\item Set $ n=0, \ a_0=a, \ b_0=b $.
+				\item For $ n=0,1,2,3,\hdots $:
+					\begin{enumerate}
+						\item $ p_n=\frac{1}{2}(a_n+b_n) $
+						\item If $ f(a_n)f(p_n)<0 $, set $ a_{n+1}=a_n, \ b_{n+1}=p_n $.
+						\item Otherwise set $ a_{n+1}=p_n, \ b_{n+1}=b_n $.
+						\item If converged, stop.
+					\end{enumerate}
+			\end{enumerate}
+		
+		\section{Fixed-point iteration.}
+		Assume $ g\in C\,[a,b] $.
+		Then the fixed-point iteration produces a sequence $ \{p_n\} $ that could converge to a fixed point $ p $ of $ g $.\\
+		Algorithm:
+			\begin{enumerate}
+				\item Set $ n=0 $ and pick $ p_0\in[a,b] $.
+				\item For $ n=0,1,2,3,\hdots $:
+					\begin{enumerate}
+						\item $ p_{n+1}=g(p_n) $
+						\item If converged, stop.
+					\end{enumerate}
+			\end{enumerate}
+		Assume $ g\in C^1[a,b] $, $ g(x)\in[a,b] $ for all $ x\in[a,b] $ and that there is a positive value $ k<1 $ such that
+		\[
+			|g'(x)\leq k| \ \text{for all} \ x\in[a,b].
+		\]
+		Then the fixed-point iteration $ p_{n+1}=g(p_n) $ converges to a unique fixed point $ p\in[a,b] $ for each $ p_0\in[a,b] $.
+		If $ |g'(p)|\neq0 $, then the fixed-point iteration converges to $ p $ with order $ \alpha=1 $ and asymptotic constant $ \lambda=|g'(p)| $. If $ |g'(p)|=0 $, then $ \alpha>1 $.
+		
+		\section{Newton-Raphson method.}
+		Assume $ f\in C^1[a,b] $, a root $ \in[a,b] $ of $ f $ exists and $ f'(x)\neq0 $ on $ [a,b] $.
+		Then the Newton-Raphson method produces a sequence $ \{p_n\} $ that could converge to a zero $ p $ of $ f $.\\
+		Algorithm:
+			\begin{enumerate}
+				\item Set $ n=0 $ and choose $ p_0 $.
+				\item For $ n=0,1,2,3,\hdots $:
+					\begin{enumerate}
+						\item $ p_{n+1}=p_n-\frac{f(p_n)}{f'(p_n)} $
+						\item If converged, stop.
+					\end{enumerate}
+			\end{enumerate}
+		Assume $ f\in C^2[a,b] $ and that $ f $ has a zero $ p\in[a,b] $ with $ f'(p)\neq0 $.
+		Then there is a $ \delta>0 $ such that the Newton-Raphson method produces a sequence $ \{p_n\} $ that converges to $ p $ for any $ p_0\in[p-\delta,p+\delta] $ with order $ \alpha=2 $ and asymptotic constant $ \lambda=\left|\frac{f''(p)}{2f'(p)}\right| $.
+		
+		\section{Newton-Raphson method variants.}
+		If $ f'(p_n) $ is unknown or unavailable in $ p_{n+1}=p_n-\frac{f(p_n)}{f'(p_n)} $ the following variants can be used:
+			\begin{align*}
+				\text{quasi-Newton method} \quad &f'(p_n)=\frac{f(p_n+h)-f(p_n)}{h} \ \text{with} \ h>0 \ \text{small}&\\
+				\text{secant method} \quad &f'(p_n)=\frac{f(p_n)-f(p_{n-1})}{p_n-p_{n-1}}&\\
+				\text{Regula-Falsi method} \quad &\text{Use the Bisection method with the change}&\\
+				&p_n=a_n-f(a_n)\frac{b_n-a_n}{f(b_n)-f(a_n)}&
+			\end{align*}
+		
+		\section{Systems of non-linear equations.}
+		A system of non-linear equations is a system of the form
+			\[\text{fixed-point form}\quad\begin{cases}
+				g_1(x_1,\hdots,x_m)&=x_1,\\
+				g_2(x_1,\hdots,x_m)&=x_2,\\
+				&\vdots\\
+				g_m(x_1,\hdots,x_m)&=x_m,
+			\end{cases}\]
+		or of the form
+			\[\text{general form}\quad\begin{cases}
+				f_1(x_1,\hdots,x_m)&=0,\\
+				f_2(x_1,\hdots,x_m)&=0,\\
+				&\vdots\\
+				f_m(x_1,\hdots,x_m)&=0.
+			\end{cases}\]
+		In vector notation:
+		\[
+			\textbf{g}(\textbf{x})=\textbf{x} \ \text{or} \ \textbf{f}(\textbf{x})=\textbf{0}.
+		\]
+		
+		\section{Fixed-point iteration for systems.}
+		Assume $ \textbf{g}\in C(\mathbb{R}^m) $.
+		Then the fixed-point iteration produces a sequence $ \{\textbf{p}^{(n)}\} $ that could converge to a fixed point $ \textbf{p} $ of $ \textbf{g} $.\\
+		Algorithm:
+			\begin{enumerate}
+				\item Set $ n=0 $ and pick $ \textbf{p}^{(0)}\in\mathbb{R}^m $.
+				\item For $ n=0,1,2,3,\hdots $:
+					\begin{enumerate}
+						\item $ \textbf{p}^{(n+1)}=\textbf{g}(\textbf{p}^{(n)}) $
+						\item If converged, stop.
+					\end{enumerate}
+			\end{enumerate}
+		
+		\section{Newton-Raphson method for systems.}
+		Assume $ \textbf{f}\in C(\mathbb{R}^m) $ and a root $ \textbf{p} $ of $ \textbf{f} $ exists.
+		Then the Newton-Raphson method produces a sequence $ \{\textbf{p}^{(n)}\} $ that could converge to a zero $ \textbf{p} $ of $ \textbf{f} $.\\
+		Algorithm:
+			\begin{enumerate}
+				\item Set $ n=0 $ and choose $ \textbf{p}^{(0)} $.
+				\item For $ n=0,1,2,3,\hdots $:
+					\begin{enumerate}
+						\item Solve for $ \textbf{s}^{(n)} $: $ J(\textbf{p}^{(n)})\textbf{s}^{(n)}=-\textbf{f}(\textbf{p}^{(n)}) $.
+						\item $ \textbf{p}^{(n+1)}=\textbf{p}^{(n)}+\textbf{s}^{(n)} $
+						\item If converged, stop.
+					\end{enumerate}
+			\end{enumerate}
+		
+		\section{Initial-and-boundary-value problems.}
+		An initial-and-boundary-value problem in the function $ y=y(x,t) $ is a problem of the form
+		%\[
+		%	\begin{cases}
+		%		\pdv{y}{t}=k(x,t)\pdv{x}(p(x,t)\pdv{y}{x})-r(x,t)\pdv{y}{x}-q(x,t)y+f(x,t),&\substack{L\leq x\leq K,\\t\geq t_0,}\\
+		%		y(L,t)+p(L,t)\pdv{y}{x}(L,t)=c_L(t),&t\geq t_0,\\
+		%		y(K,t)+p(K,t)\pdv{y}{x}(K,t)=c_K(t),&t\geq t_0,\\
+		%		y(x,0)=y_0(x),&L\leq x\leq K.
+		%	\end{cases}
+		%\]
+		\[
+			\begin{cases}
+				\begin{aligned}
+					\pdv{y}{t}=k(x,t)\pdv{x}(p(x,t)\pdv{y}{x})-r(x,t)\pdv{y}{x}-q(x,t)y+f(x,t),&\ \scriptsize\begin{aligned}&L\leq x\leq K, \\ &t\geq t_0,\end{aligned}\\
+					y(L,t)+p(L,t)\pdv{y}{x}(L,t)=c_L(t),&\ t\geq t_0,\\
+					y(K,t)+p(K,t)\pdv{y}{x}(K,t)=c_K(t),&\ t\geq t_0,\\
+					y(x,0)=y_0(x),&\ L\leq x\leq K.
+				\end{aligned}
+			\end{cases}
+		\]
+		
+		\section{Semi-discretisation.}
+		A semi-discretisation of an initial-and-boundary-value problem is a system of the form
+		\[
+			\begin{cases}
+				\begin{aligned}
+					\dv{u}{t}=K\textbf{u}+\textbf{r}(t),&\ t\geq t_0.\\
+					\textbf{u}(t_0)=\textbf{y}_0,&
+				\end{aligned}
+			\end{cases}
+		\]
+		where $ \textbf{u}=\textbf{u}(t) $ is a vector containing the approximations $ u_i(t) $ of $ y(x_i,t) $.\\
+		The semi-discretisation is obtained by applying the finite-difference method to the problem in the spatial coordinate.\\
+		Any time-integration method above can be applied to the semi-discretisation. We use $ \textbf{w}^j $ as the approximation of $ \textbf{u}(t_j) $.
+		The $ i $-th component of $ \textbf{w}^j $, $ w_i^j $, is an approximation of $ u_i(t_j) $ and therefore an approximation of $ y(x_i,t_j) $.\\
+		The local truncation error is defined as
+		\[
+			\bm{\tau}^{j+1}=\frac{\textbf{y}^{j+1}-\textbf{z}^{j+1}}{\Delta t},
+		\]
+		where $ y_i^{j+1}=y(x_i,t_j) $ and $ \textbf{z}^{j+1} $ is the result of applying one time step with $ \textbf{w}^j=\textbf{y}^j $.
+		
+		
+		
+		\newpage
+	\end{multicols}
+\end{document}

@@ -1,0 +1,530 @@
+% Template setup and packages.
+\documentclass[10pt,landscape,a4paper]{article}
+\usepackage{multicol}
+\usepackage{calc}
+\usepackage{ifthen}
+\usepackage{geometry}
+
+% Custom packages.
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{mathrsfs}
+\usepackage{stix2}
+\usepackage{systeme}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{physics}
+\usepackage{siunitx}
+\usepackage{collcell} % loads array
+\newcolumntype{M}{>{$} l <{$}}
+\newcolumntype{U}{>{$[\collectcell\si} l <{\endcollectcell]$}}
+
+% Hyperref. Remember to change title!
+\usepackage{hyperref}
+\hypersetup{pdfauthor={Teemu Weckroth},pdftitle={Electricity \& Magnetism}}
+
+% Path to graphics folder.
+\graphicspath{ {./figures/} }
+
+% Change fonts for v and w.
+\DeclareSymbolFont{txletters}{OML}{ntxmi}{m}{it}
+\SetSymbolFont{txletters}{bold}{OML}{ntxmi}{b}{it}
+\DeclareFontSubstitution{OML}{ntxmi}{m}{it}
+\DeclareMathSymbol{v}{\mathalpha}{txletters}{`v}
+\DeclareMathSymbol{w}{\mathalpha}{txletters}{`w}
+
+% Must be below font changes to avoid errors.
+\usepackage{bm}
+
+% Commands for differentials. Redefines the underdot command!
+\renewcommand\d{\mathop{}\!\mathrm{d}}
+\newcommand\p{\mathop{}\!\mathrm{\partial}}
+%\newcommand\e{\mathrm{e}}
+
+% Commands for the set of real numbers and Lagrangian/Laplace.
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\La}{\mathscr{L}}
+
+% Unbreakable unit environment.
+\newenvironment{absolutelynopagebreak}
+{\par\nobreak\vfil\penalty0\vfilneg
+	\vtop\bgroup}
+{\par\xdef\tpd{\the\prevdepth}\egroup
+	\prevdepth=\tpd}
+
+% Shrink bullet points.
+\renewcommand\labelitemi{$\vcenter{\hbox{\tiny$\bullet$}}$}
+
+%
+\ifthenelse{\lengthtest { \paperwidth = 11in}}
+{ \geometry{top=.5in,left=.5in,right=.5in,bottom=.5in} }
+{\ifthenelse{ \lengthtest{ \paperwidth = 297mm}}
+	{\geometry{top=1cm,left=1cm,right=1cm,bottom=1cm} }
+	{\geometry{top=1cm,left=1cm,right=1cm,bottom=1cm} }
+}
+
+% Turn off header and footer
+\pagestyle{empty}
+
+% Redefine section commands to use less space
+\makeatletter
+\renewcommand{\section}{\@startsection{section}{1}{0mm}%
+	{-1ex plus -.5ex minus -.2ex}%
+	{0.5ex plus .2ex}%x
+	{\normalfont\large\bfseries}}
+\renewcommand{\subsection}{\@startsection{subsection}{2}{0mm}%
+	{-1explus -.5ex minus -.2ex}%
+	{0.5ex plus .2ex}%
+	{\normalfont\normalsize\bfseries}}
+\renewcommand{\subsubsection}{\@startsection{subsubsection}{3}{0mm}%
+	{-1ex plus -.5ex minus -.2ex}%
+	{1ex plus .2ex}%
+	{\normalfont\small\bfseries}}
+\makeatother
+
+% Define BibTeX command
+\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+		T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+
+% Don't print section numbers
+\setcounter{secnumdepth}{0}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt plus 0.5ex}
+
+\begin{document}
+	
+	\raggedright
+	\footnotesize
+	\begin{multicols}{3}
+		
+		
+		% multicol parameters
+		% These lengths are set only within the two main columns
+		%\setlength{\columnseprule}{0.25pt}
+		\setlength{\premulticols}{1pt}
+		\setlength{\postmulticols}{1pt}
+		\setlength{\multicolsep}{1pt}
+		\setlength{\columnsep}{2pt}
+		
+		\part*{Electricity \& Magnetism.}
+		\begin{center}
+			Teemu Weckroth, \today
+		\end{center}
+		
+		\section{Constants.}
+		Elementary charge $e = 1.6 \cdot 10^{-19}~\mathrm{C}$ \\
+		Coulomb constant $k = 9.0 \times 10^9~\mathrm{N~m^2~C^{-2}}$\\
+		Vacuum permittivity $\epsilon_0 = 8.85 \times 10^{-12}~\mathrm{C^2~N^{-1}~m^{-2}}$\\
+		Vacuum permeability $\mu_0 = 4 \pi \times 10^{-7}~\mathrm{N~A^{-2}}$\\
+		Speed of light $c = 3.0 \times 10^8~\mathrm{m~s^{-1}}$\\
+		Electronvolt $1~\mathrm{eV} = 1.6 \times 10^{-19}~\mathrm{J}$\\
+		\begin{equation*}
+			\epsilon_0 = \frac{1}{4 \pi k} = \frac{1}{\mu_0 c^2}
+		\end{equation*}
+		
+		\section{Units.}
+		$[ Q ] = \mathrm{ C = A~s }$\\
+		$[ \vec{F} ] = \mathrm{ N = kg~m~s^{-2} }$\\
+		$[ \vec{E} ] = \mathrm{ N~C^{-1} = V~m^{-1} = kg~m~s^{-3}~A^{-1} }$\\
+		$[ p ] = \mathrm{ C~m = m~A~s }$\\
+		$[ \vec{\tau} ] = \mathrm{ N~m = kg~m^2~s^{-2} }$\\
+		$[ \Phi_E ] = \mathrm{ V~m = N~m^2~C^{-1} = kg~m^3~s^{-3}~A^{-1}}$\\
+		$[ V ] = \mathrm{ V = J~C^{-1} = A~ \Omega = kg~m^2~s^{-3}~A^{-1}}$\\
+		$[ I ] = \mathrm{ A = C~s^{-1} = V~\Omega^{-1} = W~V^{-1} = A }$\\
+		$[ R ] = \mathrm{ \Omega = V~A^{-1} = W~A^{-2} = V^2~W^{-1} = kg~m^2~s^{-3}~A^{-2}}$\\
+		$[ P ] = \mathrm{ W = V~A = V^2~\Omega^{-1} = A^2~\Omega = J~s^{-1} = H~A^2~s^{-1} = kg~m^2~s^{-3}}$\\
+		$[ C ] = \mathrm{ F = C~V^{-1} = A^2~s^4~kg^{-1}~m^{-2} }$\\
+		$[ U_E ] = \mathrm{ J = F~V^2 = kg~m^2~s^{-2}}$\\
+		$[ \vec{J} ] = \mathrm{ A~m^{-2} }$\\
+		$[ \rho ] = \mathrm{ \Omega~m = kg~m^3~s^{-3}~A^{-2} }$\\
+		$[ \vec{B} ] = \mathrm{ T = Wb~m^{-2} = kg~s^{-2}~A^{-1} }$\\
+		$[ \Phi_B ] = \mathrm{ Wb = V~s = kg~m^2~s^{-2}~A^{-1} }$\\
+		$[ \mathcal{E} ] = \mathrm{ V = J~C^{-1} = A~ \Omega = kg~m^2~s^{-3}~A^{-1}}$\\
+		$[ L ] = \mathrm{ H = T~m^2~A^{-1} = kg~m^2~s^{-2}~A^{-2} }$\\
+		$[ S ] = \mathrm{ W~m^{-2} = kg~s^{-3} }$\\
+		$[ P_{\mathrm{rad}} ] = \mathrm{ Pa = kg~m^{-1}~s^{-2} }$\\
+		
+		\section{Coulomb's law.}
+		The electric force is described by
+		\begin{equation*}
+			\vec{F}_{12} = k \frac{q_1 q_2}{r^2} \hat{r},
+		\end{equation*}
+		where $\vec{F}_{12}$ is the force $q_1$ exerts on $q_2$ and $\hat{r}$ is a unit vector pointing from $q_1$ towards $q_2$.
+		
+		\section{Electric field.}
+		The electric field at a point in space is the force per unit charge that a charge $q$ placed at that point would experience:
+		\begin{equation*}
+			\vec{E} = \frac{\vec{F}}{q}
+		\end{equation*}
+		The force on a charge $q$ in an electric field is
+		\begin{equation*}
+			\vec{F} = q \vec{E}
+		\end{equation*}
+		
+		\section{Field of a point charge.}
+		The field of a point charge is radial:
+		\begin{equation*}
+			\vec{E}_{\mathrm{point charge}} = \frac{\vec{F}}{Q} = \frac{kqQ}{Q r^2} \hat{r} = \frac{kq}{r^2} \hat{r}
+		\end{equation*}
+		
+		\section{Field of a charge distribution.}
+		From the superposition principle:
+		\begin{equation*}
+			\vec{E} = \sum{\vec{E}_i} = \sum{\frac{k q_i}{r_i^2} \hat{r}_i}
+		\end{equation*}
+		
+		\section{Dipole moment.}
+		Product of charge and separation:
+		\begin{equation*}
+			p = q d
+		\end{equation*}
+		
+		\section{Dipoles in electric fields.}
+		For $q$ in $\vec{E}$,
+		\begin{equation*}
+			\vec{a} = \frac{q \vec{E}}{m}
+		\end{equation*}
+		A dipole in an electric field experiences a torque that tends to along the dipole moment with the field:
+		\begin{equation*}
+			\vec{\tau} = \vec{r} \times \vec{F} = \vec{p} \times \vec{E}
+		\end{equation*}
+		
+		\section{Electric flux.}
+		\begin{equation*}
+			\Phi_E = E A \cos{\theta} = \vec{E} \cdot \vec{A},
+		\end{equation*}
+		where $\vec{A}$ is a vector whose magnitude is the surface area $A$ and whose orientation is normal to the surface.
+		\begin{equation*}
+			d \Phi_E = \vec{E} \cdot d \vec{A}
+		\end{equation*}
+		\begin{equation*}
+			\Phi_E = \int{ \vec{E} \cdot d \vec{A}}
+		\end{equation*}
+		
+		\section{Gauss's law.}
+		\begin{equation*}
+			\oint \vec{E} \cdot d \vec{A} = \frac{q_{\mathrm{enclosed}}}{\epsilon_0}
+		\end{equation*}
+		
+		\section{Electric potential difference.}
+		Describes the energy per unit charge involved in moving charge between two points:
+		\begin{equation*}
+			\increment V_{AB} = \frac{\increment U_{AB}}{q} = - \int_{A}^{B}{\vec{E} \cdot d \vec{r}}
+		\end{equation*}
+		In a uniform field:
+		\begin{equation*}
+			\increment V_{AB} = - \vec{E} \cdot \increment \vec{r}
+		\end{equation*}
+		
+		\section{Electric potential of a point charge.}
+		\begin{equation*}
+			\increment V_{AB} = kq \left( \frac{1}{r_A} - \frac{1}{r_B} \right)
+		\end{equation*}
+		Taking the zero of potential at infinity gives
+		\begin{equation*}
+			V_{\inf r} = V(r) = \frac{kq}{r}
+		\end{equation*}
+		
+		\section{Potential difference of a charge distribution.}
+		For discrete point charges:
+		\begin{equation*}
+			V(P) = \sum_i \frac{k q_i}{r_i}
+		\end{equation*}
+		For a continuous charge distribution:
+		\begin{equation*}
+			V(P) = \int \frac{k dq}{r}
+		\end{equation*}
+		
+		\section{Potential difference and the electric field.}
+		The potential difference involves an integral over the electric field, so the field involves derivatives of the potential:
+		\begin{equation*}
+			\vec{E} = - \left( \frac{\partial V}{\partial x} \hat{i} + \frac{\partial V}{\partial y} \hat{j} + \frac{\partial V}{\partial z} \hat{k} \right)
+		\end{equation*}
+		
+		\section{Electrostatic energy.}
+		Each charge pair $q_i$, $q_j$ contributes energy
+		\begin{equation*}
+			U_{ij} = k \frac{q_i q_j}{r_{ij}},
+		\end{equation*}
+		where $r_{ij}$ is the distance between the charges in the final contribution.
+		
+		\section{Capacitance.}
+		Charge stored per unit potential difference:
+		\begin{equation*}
+			C = \frac{Q}{V}
+		\end{equation*}
+		The capacitance of a parallel-plate capacitor is
+		\begin{equation*}
+			C = \epsilon_0 \frac{A}{d}
+		\end{equation*}	
+		
+		\section{Energy stored in a capacitor.}
+		Work involved in moving charge is
+		\begin{equation*}
+			d W = V dQ = CV dV
+		\end{equation*}
+		Work involved in building up a potential difference $V$ is
+		\begin{equation*}
+			W = \int dW = \int_{0}^{V} CVdV = \frac{1}{2} C V^2 = U
+		\end{equation*}
+		
+		\section{Dielectric constant $\kappa$.}
+		A property of the dielectric material. For a parallel-plate capacitor:
+		\begin{equation*}
+			C = \kappa \frac{\epsilon_0 A}{d} = \kappa C_0,~~~~~C_0 = \frac{\epsilon_0 A}{d}
+		\end{equation*}
+		
+		\section{Energy in the electric field.}
+		The electric energy density is
+		\begin{equation*}
+			u_E = \frac{1}{2} \epsilon_0 E^2
+		\end{equation*}
+		
+		\section{Electric current.}
+		\begin{equation*}
+			I = \frac{dQ}{dt}
+		\end{equation*}
+		
+		\section{Drift velocity.}
+		The current through a cross-sectional area $A$ is
+		\begin{equation*}
+			I = n q A v_d
+		\end{equation*}
+		The drift velocity is
+		\begin{equation*}
+			v_d = \frac{I}{n q A} = \frac{J A}{n q A} = \frac{J}{nq}
+		\end{equation*}
+		
+		\section{Current density.}
+		Current density is the current per unit area
+		\begin{equation*}
+			\vec{J} = n q \vec{v}_d = \sigma \vec{E} = \frac{\vec{E}}{\rho}
+		\end{equation*}
+		Current through an area is the flux of $\vec{J}$ over that area:
+		\begin{equation*}
+			I = \int_{\mathrm{area}} { \vec{J} \cdot d \vec{A} }
+		\end{equation*}
+		
+		\section{Ohm's law.}
+		Microscopic version:
+		\begin{equation*}
+			\vec{J} = \frac{\vec{E}}{\rho}
+		\end{equation*}
+		Macroscopic version:
+		\begin{equation*}
+			I = \frac{V}{R}
+		\end{equation*}
+		
+		\section{Electric power.}
+		\begin{equation*}
+			P = \frac{dW}{dt} = \frac{dQV}{dt} = \frac{VdQ}{dt} = VI
+		\end{equation*}
+		For materials that obey Ohm's law:
+		\begin{equation*}
+			P = I^2 R = \frac{V^2}{R}
+		\end{equation*}
+		
+		\section{Magnetic force.}
+		The magnetic field $\vec{B}$ exerts a force on moving electric charges:
+		\begin{equation*}
+			\vec{F} = q \vec{v} \times \vec{B}
+		\end{equation*}
+		\begin{equation*}
+			\left| F \right| = qvB \sin{\theta}
+		\end{equation*}
+		
+		\section{Charged particles in magnetic fields.}
+		For a particle moving perpendicular to $\vec{B}$:
+		\begin{equation*}
+			F = q v B = \frac{m v^2}{r}~~~~~r=\frac{m v}{q B}
+		\end{equation*}
+		Cyclotron frequency is
+		\begin{equation*}
+			f = \frac{1}{T} = \frac{v}{2 \pi r} = \frac{v}{2 \pi (m v / q B)} = \frac{q B}{2 \pi m}
+		\end{equation*}
+		
+		\section{Magnetic force on a current.}
+		A current-carrying conductor experiences a magnetic force.
+		\begin{equation*}
+			\vec{F} = q_{\mathrm{tot}} \vec{v} \times \vec{B}
+		\end{equation*}
+		\begin{equation*}
+			q_{\mathrm{tot}} = n q A l
+		\end{equation*}
+		\begin{equation*}
+			\vec{F} = n q A l \vec{v} \times \vec{B} = I \vec{l} \times \vec{B}
+		\end{equation*}
+		
+		\section{Origin of the magnetic field.}
+		The Biot-Savart law gives the magnetic field arising from an infinitesimal current element:
+		\begin{equation*}
+			d \vec{B} = \frac{\mu_0}{4 \pi} \frac{I d \vec{L} \times \hat{r}}{r^2}
+		\end{equation*}
+		\begin{equation*}
+			\vec{B} = \int {d \vec{B}} = \int{ \frac{\mu_0}{4 \pi} \frac{I d \vec{L} \times \hat{r}}{r^2} }
+		\end{equation*}
+		
+		\section{Magnetic dipoles.}
+		A current loop constitutes a magnetic dipole. Its dipole moment is $\mu = I A$. For a $N$-turn loop, $\mu = NIA$.
+		\begin{equation*}
+			B = \frac{\mu_0}{2 \pi} \frac{\mu}{x^3}
+		\end{equation*}
+		
+		\section{Gauss's law for magnetism.}
+		\begin{equation*}
+			\oint \vec{B} \cdot d \vec{A} = 0
+		\end{equation*}
+		
+		\section{Torque on a current loop.}
+		\begin{equation*}
+			F_{\mathrm{side}} = I a B
+		\end{equation*}
+		\begin{equation*}
+			\tau_{\mathrm{side}} = \frac{1}{2} b F_{\mathrm{side}} \sin\theta = \frac{1}{2} I a b B \sin\theta = \frac{1}{2} I A B \sin\theta
+		\end{equation*}
+		\begin{equation*}
+			\tau = 2 \tau_{\mathrm{side}} = I A B \sin\theta = \mu B \sin\theta
+		\end{equation*}
+		\begin{equation*}
+			\vec{\tau} = \vec{\mu} \times \vec{B}
+		\end{equation*}
+		
+		\section{Ampere's law.}
+		For steady currents,
+		\begin{equation*}
+			\oint \vec{B} \cdot d \vec{r} = \mu_0 I_{\mathrm{encircled}}
+		\end{equation*}
+		
+		\section{Faraday's law.}
+		Describes induction by relating the emf induced in a circuit to the rate of change of magnetic flux through the circuit:
+		\begin{equation*}
+			\mathcal{E} = \oint \vec{E} \cdot d \vec{r} = - \frac{d \Phi_B}{dt},
+		\end{equation*}
+		where the magnetic flux is given by
+		\begin{equation*}
+			\Phi_B = \int{ \vec{B} \cdot d \vec{A} }
+		\end{equation*}
+		
+		\section{Self-inductance.}
+		Ratio of the magnetic flux through the circuit to the current in the circuit:
+		\begin{equation*}
+			L = \frac{\Phi_B}{I}
+		\end{equation*}
+		\begin{equation*}
+			\frac{d \Phi_B}{dt} = L \frac{dI}{dt}
+		\end{equation*}
+		The emf across an inductor is
+		\begin{equation*}
+			\mathcal{E} = - L \frac{dI}{dt}
+		\end{equation*}
+		
+		\section{Self-inductance of a solenoid.}
+		\begin{equation*}
+			B = \mu_0 n I
+		\end{equation*}
+		\begin{equation*}
+			\Phi_B = n l B A = n l (\mu n I) A = \mu_0 n^2 I A l
+		\end{equation*}
+		\begin{equation*}
+			L = \frac{\Phi_B}{I} = \mu_0 n^2 A l
+		\end{equation*}
+		
+		\section{Inductive time constant.}
+		The inductor current starts at zero and builds up with time constant $L/R$.
+		\begin{equation*}
+			\mathcal{E}_0 - IR + \mathcal{E}_L = 0
+		\end{equation*}
+		\begin{equation*}
+			I = \frac{\mathcal{E}_0}{R} (1 - e^{-Rt/L})
+		\end{equation*}
+		
+		\section{Magnetic energy.}
+		The inductor absorbs energy from the circuit, which is stored in the inductor's magnetic field.
+		\begin{equation*}
+			P = L I \frac{dI}{dt}
+		\end{equation*}
+		\begin{equation*}
+			U_B = \int Pdt = \int_{0}^{I} LI dI = \frac{1}{2} L I^2
+		\end{equation*}
+		\begin{equation*}
+			u_B = \frac{B^2}{2 \mu_0}
+		\end{equation*}
+		
+		\section{Maxwell's equations.}
+		\begin{center}
+		\begin{tabular}{ c c }
+			\textbf{Law} & \textbf{Mathematical statement}\\
+			Gauss for $\vec{E}$ & $\oint\vec{E} \cdot d \vec{A} = \frac{q}{\epsilon_0}$\\
+			Gauss for $\vec{B}$ & $\oint \vec{B} \cdot d \vec{A} = 0$\\
+			Faraday & $\oint \vec{E} \cdot d \vec{r} = - \frac{d \Phi_B}{dt}$\\
+			Ampère & $\oint \vec{B} \cdot d \vec{r} = \mu_0 I + \mu_0 \epsilon_0 \frac{d \Phi_E}{dt}$
+		\end{tabular}
+		\end{center}
+		
+		\section{Maxwell's equations in vacuum.}
+		\begin{center}
+			\begin{tabular}{ c c }
+				\textbf{Law} & \textbf{Mathematical statement}\\
+				Gauss for $\vec{E}$ & $\oint\vec{E} \cdot d \vec{A} = 0$\\
+				Gauss for $\vec{B}$ & $\oint \vec{B} \cdot d \vec{A} = 0$\\
+				Faraday & $\oint \vec{E} \cdot d \vec{r} = - \frac{d \Phi_B}{dt}$\\
+				Ampère & $\oint \vec{B} \cdot d \vec{r} = \mu_0 \epsilon_0 \frac{d \Phi_E}{dt}$
+			\end{tabular}
+		\end{center}
+		
+		\section{Plane electromagnetic waves.}
+		The direction of the electric field defines the direction of the wave's polarisation.
+		\begin{equation*}
+			\vec{E} (x,t) = E_p \sin(kx - \omega t) \hat{j}
+		\end{equation*}
+		\begin{equation*}
+			\vec{B} (x,t) = B_p \sin(kx - \omega t) \hat{k}
+		\end{equation*}
+		\begin{equation*}
+			E = cB~~~~~B = \frac{E}{c}
+		\end{equation*}
+		
+		\section{Law of malus.}
+		A wave of intensity $S_0$ emerges from a polariser with intensity given by:
+		\begin{equation*}
+			S = S_0 \cos^2 \theta
+		\end{equation*}
+		
+		\section{Energy in EM waves.}
+		\begin{equation*}
+			dU = (u_E + u_B) A dx = \frac{1}{2} \left( \epsilon_0 E^2 + \frac{B^2}{\mu_0} \right) A dx
+		\end{equation*}
+		\begin{equation*}
+			S = \frac{1}{A} \frac{dU}{dt} = \frac{1}{2} \left( \epsilon_0 E^2 + \frac{B^2}{\epsilon_0} \right) c
+		\end{equation*}
+		\begin{equation*}
+			S = \frac{1}{2} \left( \epsilon_0 c E B + \frac{E B}{c \epsilon_0} \right) = \frac{EB}{2 \mu_0} \left( \epsilon_0 \mu_0 c^2 + 1 \right) = \frac{E B}{\mu_0}
+		\end{equation*}
+		Poynting vector describes rate of energy flow per unit area:
+		\begin{equation*}
+			\vec{S} = \frac{\vec{E} \times \vec{B}}{\mu_0}
+		\end{equation*}
+		\begin{equation*}
+			\overline{S} = \frac{E_p B_p}{2 \mu_0} = \frac{c {B_p}^2}{2 \mu_0} = \frac{{E_p}^2}{2 c \mu_0}
+		\end{equation*}
+		
+		\section{Momentum in EM waves.}
+		\begin{equation*}
+			W = dU = F dr = \frac{dp}{dt} dr = c dp ~~~~~ p = \frac{U}{c}
+		\end{equation*}
+		\begin{equation*}
+			P_{\mathrm{rad}} = \frac{F}{A} = \frac{1}{A} \frac{dp}{dt} = \frac{1}{cA} \frac{dU}{dt} = \frac{S}{c}
+		\end{equation*}
+		
+		
+	\end{multicols}
+\end{document}
+
+
+
+
+
+
+

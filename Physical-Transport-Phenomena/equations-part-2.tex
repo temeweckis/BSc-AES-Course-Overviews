@@ -1,0 +1,286 @@
+\section{Chapter 9: Thermal Conductivity and the Mechanisms of Energy Transport}
+\subsection{\S9.2 Conductive Heat-Flux Vector --- Fourier's Law}
+Fourier's law of heat conduction (in one dimension)
+\[
+	\left(\frac{Q}{A}=\right)q_y=-k\frac{\d T}{\d y}\tag{9.2-2}
+\]
+Conductive heat-flow vector
+\[
+	\vec{q}=-k\grad{T}\tag{9.2-6}
+\]
+Thermal diffusivity
+\[
+	\alpha=\frac{k}{\rho\hat{C}_p}\tag{9.2-7}
+\]
+Prandtl number
+\[
+	\text{Pr} = \frac{\nu}{\alpha}=\frac{\hat{C}_p\mu}{k}\tag{9.2-8}
+\]
+Development of steady-state temperature profile between plates
+\[
+	\textit{see figure}\tag*{\textbf{Fig. 9.2-1}}
+\]
+Summary of units
+\[
+	\textit{see table}\tag*{\textbf{Table 9.2-1}}
+\]
+\subsection{\S9.5 Thermal Conductivity Data from Experiments}
+References for values of $k$, $\hat{C}_p$, and $\text{Pr}$
+\[
+	\textit{see table}\tag*{\textbf{Tables 9.5-1 to 9.5-3}}
+\]
+\section{Chapter 10: Shell Energy Balances and Temperature Distributions in Solids and Laminar Flow}
+\subsection{BSL1 \S9.1 Shell Energy Balances: Boundary Conditions}
+Steady-state shell energy balance
+\[
+	\textit{see text}\tag{9.1-1}
+\]
+Outline of shell energy balance approach
+\[
+	\textit{see lecture notes}\tag*{Lecture notes 11.3}
+\]
+Newton's law of cooling
+\[
+	q=h(T-T_\text{fluid})\tag{9.1-2}
+\]
+Preview of BSL1 chapter 9
+\[
+	\textit{see table}\tag*{Lecture notes 11.4}
+\]
+\subsection{BSL1 \S9.2 Heat Conduction with an Electrical Heat Source}
+Rate of heat production per unit volume
+\[
+	S_e=\frac{I^2}{k_e}\tag{9.2-1}
+\]
+Heat-flux distribution
+\[
+	q_r=\frac{S_er}{2}\tag{9.2-9}
+\]
+Temperature rise as a parabolic function of $r$
+\[
+	T(r)-T_0=\frac{S_eR^2}{4k}\left[1-\left(\frac{r}{R}\right)^2\right]\tag{9.2-13}
+\]
+Maximum temperature rise (at $r=0$)
+\[
+	T_\text{max}-T_0=\frac{S_eR^2}{4k}\tag{9.2-14}
+\]
+Average temperature rise
+\[
+	\langle T\rangle-T_0=\frac{S_eR^2}{8k}\tag{9.2-15}
+\]
+Heat flow at the surface
+\[
+	Q|_{r=R}=\pi R^2L\cdot S_e\tag{9.2-16}
+\]
+\subsection{BSL1 \S9.3 Heat Conduction with a Nuclear Heat Source}
+Volume source of thermal energy
+\[
+	S_n=S_{n0}\left[1+b\left(\frac{r}{R^{(F)}}\right)^2\right]\tag{9.3-1}
+\]
+Heat-flux distribution in the fissionable sphere
+\[
+	q_r^{(F)}=S_{n0}\left(\frac{r}{3}+\frac{b}{R^{(F)2}}\frac{r^3}{5}\right)\tag{9.3-12}
+\]
+Heat-flux distribution in the spherical shell cladding
+\[
+	q_r^{(C)}=S_{n0}R^{(F)3}\left(\frac{1}{3}+\frac{b}{5}\right)\frac{1}{r^2}\tag{9.3-13}
+\]
+Temperature profiles
+\[
+	T^{(F)}-T_0=\textit{see text}\tag{9.3-20}
+\]
+\[
+	T^{(C)}-T_0=\frac{S_{n0}R^{(F)2}}{3k^{(C)}}\left(1+\frac{3}{5}b\right)\left(\frac{R^{(F)}}{r}-\frac{R^{(F)}}{R^{(C)}}\right)\tag{9.3-21}
+\]
+\subsection{BSL1 \S9.4 Heat Conduction with a Viscous Heat Source}
+Volume source of thermal energy
+\[
+	S_v=-\tau_{xz}\left(\frac{\d v_z}{\d x}\right)=\mu\left(\frac{\d v_z}{\d x}\right)^2\tag{9.4-1}
+\]
+\subsection{BSL1 \S9.5 Heat Conduction with Chemical Heat Source}
+Volume rate of thermal energy production by chemical reactions
+\[
+	S_c=S_{c1}\left(\frac{T-T^\circ}{T_1-T^\circ}\right)\tag{9.5-1}
+\]
+\subsection{BSL1 \S9.6 Heat Conduction Through Composite Walls: Addition of Resistances}
+Heat-flux distribution
+\[
+	q_0=\frac{T_a-T_b}{\left(\frac{1}{h_0}+\sum_{i=1}^{3}\frac{x_i-x_{i-1}}{k^{i-1,i}}+\frac{1}{h_3}\right)}\tag{9.6-15}
+\]
+Heat-flux distribution, rewritten
+\[
+	q_0 = U(T_a-T_0) \quad \text{or} \quad Q_0=U(WH)(T_a-T_b)\tag{9.6-16}
+\]
+Over-all heat transfer coefficient
+\[
+	U=\left(\frac{1}{h_0}+\sum_{i=1}^{3}\frac{x_i-x_{i-1}}{k^{i-1,i}}+\frac{1}{h_3}\right)^{-1}\tag{9.6-17}
+\]
+Composite cylindrical walls (Lecture notes 15.6)
+\[
+	Q_0 = 2\pi Lr_0q_0 =...\tag{9.6-29}
+\]
+\[
+	Q_0=U_0(2\pi r_0L)(T_a-T_b)\tag{9.6-30}
+\]
+\[
+	U_0=r_0^{-1}\left(\frac{1}{r_0h_0}+\sum_{i=1}^{3}\frac{\ln r_r/r_{i-1}}{k^{i-1,i}}+\frac{1}{r_3h_3}\right)^{-1}\tag{9.6-31}
+\]
+\subsection{BSL1 \S9.7 Heat Conduction in a Cooling Fin}
+%Dimensionless temperature
+%\[
+%	\Theta=\frac{T-T_a}{T_w-T_a}\tag{9.7-6}
+%\]
+%Dimensionless distance
+%\[
+%	\zeta=\frac{z}{L}\tag{9.7-7}
+%\]
+%Dimensionless heat transfer coefficient
+%\[
+%	N=\sqrt{\frac{hL^2}{kB}}\tag{9.7-8}
+%\]
+Dimensionless temperature, rewritten
+\[
+	\Theta=\frac{\cosh N(1-\zeta)}{\cosh N}\tag{9.7-13}
+\]
+\subsection{BSL1 \S9.8 Forced Convection}
+Velocity profile
+\[
+	v_z=v_{z,\text{max}}\left[1-\left(\frac{r}{R}\right)^2\right]\tag{9.8-1}
+\]
+%Conduction
+%\[
+%	q_r=-k\frac{\p T}{\p r} \qquad q_z=-k\frac{\p T}{\p z}\tag{9.8-10}
+%\]
+Partial differential equation
+\[
+	\rho\hat{C}_pv_\text{max}\left[1-\left(\frac{r}{R}\right)^2\right]\frac{\p T}{\p z} = k\frac{1}{r}\frac{\p}{\p r}\left(r\frac{\p T}{\p r}\right)\tag{9.8-12}
+\]
+\section{Chapter 11: The Equations of Change for Nonisothermal Systems}
+\subsection{\S11.5 The Equations of Change and Solving Problems with Two Independent Variables}
+Velocity distribution in dimensionless form for flow in the neighbourhood of a wall suddenly set in motion
+\[
+	\textit{see figure}\tag*{\textbf{Fig. 3.8-2} (b)}
+\]
+Temperature difference
+\[
+	\frac{T(y,t)-T_0}{T_1-T_0}=1-\erf\frac{y}{\sqrt{4\alpha t}}\tag{11.5-10}
+\]
+Wall heat flux
+\[
+	q_y|_{y=0}=-k\frac{\p T}{\p y}\bigg|_{y=0}=\frac{k}{\sqrt{\pi\alpha t}}(T_1-T_0)\tag{11.5-12}
+\]
+Initial condition
+\[
+	\text{at} \ t\leq0, \ T=T_0 \ \text{for all} \ y\tag{11.5-2}
+\]
+Temperature profiles for unsteady-state heat conduction in a slab of finite thickness $2b$
+\[
+	\textit{see figure}\tag*{\textbf{Fig. 11.5-1}}
+\]
+Temperature profiles for unsteady-state heat conduction in a cylinder of radius $R$
+\[
+	\textit{see figure}\tag*{\textbf{Fig. 11.5-2}}
+\]
+Temperature profiles for unsteady-state heat conduction in a sphere of radius $R$.
+\[
+	\textit{see figure}\tag*{\textbf{Fig. 11.5-3}}
+\]
+\section{Chapter 14: Interphase Transport in Nonisothermal Systems}
+\subsection{\S14.1 Definitions of Heat-Transfer Coefficients}
+Heat-transfer coefficient
+\[
+	Q=hA\Delta T\tag{14.1-1}
+\]
+Heat-transfer coefficients for the fluid in the heated section (Eq. I)
+%\[
+%	Q=h_1(\pi DL)(T_{01}-T_{b1})\equiv h_1(\pi DL)\Delta T_1\tag{14.1-2}
+%\]
+\begin{align*}
+	Q&=h_{\ln}(\pi DL)\left(\frac{(T_{01}-T_{b1})-(T_{02}-T_{b2})}{\ln(T_{01}-T_{b1})-\ln(T_{02}-T_{b2})}\right)\\
+	&\equiv h_{\ln}(\pi DL)\Delta T_{\ln}\tag{14.1-4}
+\end{align*}
+Energy balance in tube (Eq. II)
+\[
+	w\hat{C}_pT_{b1} - w\hat{C}_pT_{b2} + Q=0 \quad \text{or} \quad Q=w\hat{C}_p(T_{b2}-T_{b1})\tag{14.1-10} 
+\]
+Definition of $h_{\ln}$
+\[
+	h_{\ln}=\frac{w\hat{C}{p}}{\pi D^2}\frac{(T_{b2}-T_{b1})}{(T_0-T_b)_{\ln}}\left(\frac{D}{L}\right)\tag{14.1-14}
+\]
+Heat balance with definition of $h_{\ln}$ (Eq. III)
+\[
+	\frac{h_{\ln}D}{k} \equiv \text{Nu}_{\ln}=\frac{(T_{b2}-T_{b1})}{(T_0-T_b)_{\ln}}\left(\text{Re}\text{Pr}\frac{D}{4L}\right)\tag*{Lecture notes 15.2}
+\]
+For uniform $T_0$ along tube ($T_{01}=T_{02}\equiv T_0$) (ALWAYS assumed!)
+\[
+	\frac{(T_{b2}-T_{b1})}{(T_0-T_b)_{\ln}}=\ln\left(\frac{T_0-T_{b1}}{T_0-T_{b2}}\right)=\ln\frac{\Delta T \ \text{at inlet}}{\Delta T \ \text{at outlet}}\tag*{Lecture notes 15.2}
+\]
+Heat transfer in a circular tube
+\[
+\textit{see figure}\tag*{\textbf{Fig. 14.1-1}}
+\]
+\subsection{\S14.2 Heat-Transfer Coefficients For Forced Convection Through Tubes and Slits Obtained From Solutions of the Equations of Change}
+Nusselt number for fully developed, laminar flow of Newtonian fluids with constant physical properties
+\[
+	\textit{see figure}\tag*{\textbf{Fig. 14.2-1}}
+\]
+\subsection{\S14.3 Empirical Correlations for Heat-Transfer Coefficients for Forced Convection in Tubes}
+Nusselt number
+\[
+	\text{Nu}_{\ln}\equiv\frac{h_{\ln}D}{k}\tag*{Lecture notes 15.4}
+\]
+Reynolds number
+\[
+	\text{Re}\equiv\frac{Dv\rho}{\mu}=\frac{DG}{\mu}\tag*{Lecture notes 15.4}
+\]
+Prandtl number
+\[
+	\text{Pr}\equiv\frac{\hat{C}_p\mu}{k}\tag*{Lecture notes 15.4}
+\]
+Nusselt number for highly turbulent flow
+\[
+	\text{Nu}_{\ln}=0.026\ \text{Re}^{0.8}\text{Pr}^{1/3}\left(\frac{\mu_b}{\mu_0}\right)^{0.14}\tag{14.3-16}
+\]
+Nusselt number for laminar flow
+\[
+	\text{Nu}_{\ln}=1.86\left(\text{Re}\text{Pr}\frac{D}{L}\right)^{1/3}\left(\frac{\mu_b}{\mu_0}\right)^{0.14}\tag{14.3-17}
+\]
+Mean hydraulic radius for non-circular tubes
+\[
+	4R_h=4(S/Z)=D\tag*{Lecture notes 15.5}
+\]
+Conservation equation (modified form of Eq. III)
+\[
+	\left[\frac{U_0D_0}{k}\right]=\ln\left(\frac{T_f-T_{b1}}{T_f-T_{b2}}\right)\text{Re}\text{Pr}\frac{D_0}{4L}\tag*{Lecture notes 15.6}
+\]
+Heat-transfer coefficients for fully developed flow in smooth tubes
+\[
+	\textit{see figure}\tag*{\textbf{Fig. 14.3-2}}
+\]
+%\section{Chapter 17: Diffusivity and the Mechanisms of Mass Transport}
+\section{Mass Transfer}
+Diffusivity
+\[
+	\mathscr{D}_{AB}\tag*{Lecture notes 19.1}
+\]
+Molar flux
+\[
+	N_A=\frac{\mathscr{D}}{\sqrt{\pi \mathscr{D}t}}(c_{s1}-c_{s0})\tag*{Lecture notes 19.3}
+\]
+\subsection{Mass transfer in tubes}
+Definition of mass-transfer coefficient (Eq. Im)
+\[
+	\mathscr{W}_A^{(m)}=k_{x,\ln}(\pi DL)(x_{A0}-x_{Ab})_{\ln}\tag*{Lecture notes 20.1}
+\]
+Mass-conservation equation (Eq. IIm)
+\[
+	\mathscr{W}_A^{(m)}=(c_{AB2}-c_{AB1})\pi R^2\langle v\rangle\tag*{Lecture notes 20.1}
+\]
+(Eq IIIm)
+\[
+	\frac{k_{x,\ln}D}{c\mathscr{D}_{AB}}=\text{Sh}=\ln\left[\frac{c_{A0}-c_{AB1}}{c_{A0}-c_{AB2}}\right]\text{Re}\text{Sc}\frac{D}{4L}\tag*{Lecture notes 20.1}
+\]
+Correlations
+\[
+	\textit{see notes}\tag*{Lecture notes 20.3}
+\]
