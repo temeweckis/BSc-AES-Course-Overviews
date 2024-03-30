@@ -8,8 +8,8 @@ Consider body of fluid with small rectangular element of fluid within it.\\
 Newton's second law: $ \text{force} \ = \ \text{change of momentum} $.\\
 Consider shear stress either as force over area or flux of momentum.
 \begin{align*}
-	\tau_{yx}, &\ \text{where force in $ x $-direction acts on a surface of constant $ y $.}\\
-	\tau_{yx}, &\ \text{where flux of $ x $-momentum is in $ y $-direction.}
+	\tau_{yx}, & \ \text{where force in $ x $-direction acts on a surface of constant $ y $.} \\
+	\tau_{yx}, & \ \text{where flux of $ x $-momentum is in $ y $-direction.}
 \end{align*}
 \begin{figure}[H]
 	\centering
@@ -18,10 +18,10 @@ Consider shear stress either as force over area or flux of momentum.
 
 \subsection{Newton's "law" of viscosity.}
 \begin{align*}
-	F/A &= -\mu(\Delta v_x / \Delta y) = -\mu((0-v)/(y-0)) = \mu(v/y)\\
-	\tau_{yx} &= -\mu(\d v_x/\d y)\\
-	\mu &\equiv \ \text{viscosity of "Newtonian fluids"}\\
-	\nu &= \ \text{Kinematic viscosity} \ \mu/\rho
+	F/A       & = -\mu(\Delta v_x / \Delta y) = -\mu((0-v)/(y-0)) = \mu(v/y) \\
+	\tau_{yx} & = -\mu(\d v_x/\d y)                                          \\
+	\mu       & \equiv \ \text{viscosity of "Newtonian fluids"}              \\
+	\nu       & = \ \text{Kinematic viscosity} \ \mu/\rho
 \end{align*}
 \begin{figure}[H]
 	\centering
@@ -92,13 +92,13 @@ Recall for Newtonian fluids $\tau_{yx}=-\mu(\d v_x/\d y)$.
 \subsection{Bingham plastics.}
 Bingham plastics are described by the following equations.
 \[
-\begin{cases}
-	\begin{aligned}
-		\tau_{yx}&=-\mu_0\frac{\d v_x}{\d y}+\tau_0&\ \text{for} \ \tau_{yx}\geq\tau_0\\
-		\frac{\d v_x}{\d y}&=0&\ \text{for} \ -\tau_0\leq\tau_{yx}\leq\tau_0\\
-		\tau_{yx}&=-\mu_0\frac{\d v_x}{\d y}-\tau_0&\ \text{for} \ \tau_{yx}\geq\-\tau_0
-	\end{aligned}
-\end{cases}
+	\begin{cases}
+		\begin{aligned}
+			\tau_{yx}           & =-\mu_0\frac{\d v_x}{\d y}+\tau_0 & \ \text{for} \ \tau_{yx}\geq\tau_0            \\
+			\frac{\d v_x}{\d y} & =0                                & \ \text{for} \ -\tau_0\leq\tau_{yx}\leq\tau_0 \\
+			\tau_{yx}           & =-\mu_0\frac{\d v_x}{\d y}-\tau_0 & \ \text{for} \ \tau_{yx}\geq\-\tau_0
+		\end{aligned}
+	\end{cases}
 \]
 $\mu_0$ (the slope) is sometimes called "plastic viscosity", which is not the same as (Newtonian) viscosity.\\
 $\tau_0$ is the (critical) yield stress or "yield point". When $\tau_0\to0$, a Bingham plastic approaches a Newtonian fluid.
@@ -128,11 +128,11 @@ The "effective viscosity" of a non-Newtonian fluid in shear flow between paralle
 \subsection{Shell momentum balances.}
 \begin{align*}
 	\begin{pmatrix}\text{rate of momentum} \\ \text{in by convection}\end{pmatrix}
-	&-\begin{pmatrix}\text{rate of momentum} \\ \text{out by convection}\end{pmatrix}\\
+	 & -\begin{pmatrix}\text{rate of momentum} \\ \text{out by convection}\end{pmatrix}                \\
 	+\begin{pmatrix}\text{rate of momentum} \\ \text{in by shear force}\end{pmatrix}
-	&-\begin{pmatrix}\text{rate of momentum} \\ \text{out by shear force}\end{pmatrix}\\
+	 & -\begin{pmatrix}\text{rate of momentum} \\ \text{out by shear force}\end{pmatrix}               \\
 	+\begin{pmatrix}\text{body forces (gravity)} \\ \text{acting on fluid}\end{pmatrix}
-	&=\begin{pmatrix}\text{accumulation of} \\ \text{momentum} \\ \text{(acceleration)}\end{pmatrix}
+	 & =\begin{pmatrix}\text{accumulation of} \\ \text{momentum} \\ \text{(acceleration)}\end{pmatrix}
 \end{align*}
 First four terms: momentum crossing boundaries.\\
 Last two terms: within system volume (boundaries).\\
@@ -145,23 +145,23 @@ Accumulation of momentum is zero at steady state.
 	\item State boundary conditions.*
 	\item Perform momentum balance.**
 	\item Thickness $\to0$ (gives differential equation for $\tau$).
-	\begin{enumerate}
-		\item (optional) solve differential equation for $\tau$, apply boundary condition if boundary condition applies to $\tau$ alone.
-	\end{enumerate}
+	      \begin{enumerate}
+		      \item (optional) solve differential equation for $\tau$, apply boundary condition if boundary condition applies to $\tau$ alone.
+	      \end{enumerate}
 	\item Relate $\tau$ to $\d v/\d x$ (apply constitutive equation).
 	\item Solve differential equation for $v$, apply boundary conditions.
 \end{enumerate}
 *\textbf{Boundary conditions}:
 \begin{enumerate}
 	\item Specify $v$ at solid surface.
-	\begin{enumerate}
-		\item fluid $v$ is equal to solid velocity at solid wall.
-	\end{enumerate}
+	      \begin{enumerate}
+		      \item fluid $v$ is equal to solid velocity at solid wall.
+	      \end{enumerate}
 	\item Specify $\tau$ at fluid surface.
-	\begin{enumerate}
-		\item in liquid, $\tau=0$ at gas interface.
-		\item $\tau$, $v$ continuous across liquid-liquid interface.
-	\end{enumerate}
+	      \begin{enumerate}
+		      \item in liquid, $\tau=0$ at gas interface.
+		      \item $\tau$, $v$ continuous across liquid-liquid interface.
+	      \end{enumerate}
 	\item $\tau$, $v$ not infinite anywhere in region of interest.
 \end{enumerate}
 **\textbf{Elements of momentum balance}:\\

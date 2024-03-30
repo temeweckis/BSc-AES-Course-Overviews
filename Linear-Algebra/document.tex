@@ -94,12 +94,12 @@
 \setlength{\parskip}{0pt plus 0.5ex}
 
 \begin{document}
+
+\raggedright
+\footnotesize
+\begin{multicols}{3}
 	
-	\raggedright
-	\footnotesize
-	\begin{multicols}{3}
-		
-		
+	
 	% multicol parameters
 	% These lengths are set only within the two main columns
 	%\setlength{\columnseprule}{0.25pt}
@@ -184,10 +184,10 @@
 	\begin{equation*}
 		Ax =
 		\begin{bmatrix}
-		a_1 & a_2 & ... & a_n\\
+			a_1 & a_2 & ... & a_n \\
 		\end{bmatrix}
 		\begin{bmatrix}
-		x_1 \\ x_2 \\ ... \\ x_n \\
+			x_1 \\ x_2 \\ ... \\ x_n \\
 		\end{bmatrix}
 		= x_1 a_2 + x_2 a_2 + ... + x_n a_n
 	\end{equation*}
@@ -239,7 +239,7 @@
 	\begin{equation*}
 		C A = I_n \textrm{ and } A C = I_n
 	\end{equation*}
-		
+	
 	\section*{System with inverse matrix}
 	\begin{equation*}
 		Ax = b
@@ -280,13 +280,13 @@
 	\section*{Coordinate vector}
 	Let $\mathcal{B} = \{b_1, ..., b_p\}$ be a basis for a subspace $W$ of $\mathbb{R}^n$ and $x \in W$. Then there are unique weights $c_1, ... c_p$ such that
 	\begin{equation*}
-	x = c_1 b_1 + c_2 b_2 + ... + c_p b_p
+		x = c_1 b_1 + c_2 b_2 + ... + c_p b_p
 	\end{equation*}
 	Weights $c_1, ... c_p$ form the $\mathcal{B}$-coordinate vector of $x$:
 	\begin{equation*}
-	[x]_{\mathcal{B}} = \begin{bmatrix}
-	c_1 \\ ... \\ c_p
-	\end{bmatrix}
+		[x]_{\mathcal{B}} = \begin{bmatrix}
+			c_1 \\ ... \\ c_p
+		\end{bmatrix}
 	\end{equation*}
 	
 	\section*{Rank theorem}
@@ -351,8 +351,8 @@
 	Let $z = a + bi = r e^{i \theta}$. Then
 	\begin{equation*}
 		A = r \begin{bmatrix}
-		\cos \theta & -\sin \theta \\
-		\sin \theta & \cos \theta
+			\cos \theta & -\sin \theta \\
+			\sin \theta & \cos \theta
 		\end{bmatrix},
 	\end{equation*}
 	and the eigenvalues of $A$ are
@@ -365,7 +365,7 @@
 	\begin{equation*}
 		A = P
 		\begin{bmatrix}
-		a & -b \\ b & a \\
+			a & -b \\ b & a \\
 		\end{bmatrix}
 		P^{-1}.
 	\end{equation*}
@@ -373,7 +373,7 @@
 	\begin{equation*}
 		P =
 		\begin{bmatrix}
-		\textrm{Re} v & \textrm{Im} v \\
+			\textrm{Re} v & \textrm{Im} v \\
 		\end{bmatrix},
 	\end{equation*}
 	where $v$ is an eigenvector associated to eigenvalue $a - bi$
@@ -417,7 +417,7 @@
 	\end{enumerate}
 	
 	\section*{Fundamental matrix spaces}
-	(Col$A$)$^{\perp}$ $=$ Nul$A^T$ and (Col$A^T$)$^{\perp}$ $=$ Nul$A$
+	 (Col$A$)$^{\perp}$ $=$ Nul$A^T$ and (Col$A^T$)$^{\perp}$ $=$ Nul$A$
 	\\
 	The subspace Col$A^T$ is the Row Space of $A$
 	
@@ -426,10 +426,10 @@
 	\begin{enumerate}
 		\item orthogonal set if $u_i \cdot u_j = 0$ for each pair $i \not= j$
 		\item orthonormal set if $u_i \cdot u_j =$
-		$\begin{cases}
-			0, & \mbox{if } i \not= j\\
-			1, & \mbox{if } i = j\\
-		\end{cases}$
+		      $\begin{cases}
+				      0, & \mbox{if } i \not= j \\
+				      1, & \mbox{if } i = j     \\
+			      \end{cases}$
 	\end{enumerate}
 	Any orthogonal set which doesn't contain the zero vector is linearly independent
 	
@@ -470,12 +470,12 @@
 	
 	\section*{Best approximation}
 	\begin{equation*}
-	||y - \hat{y}|| \leq ||y - v|| \textrm{ for all } v \in W
+		||y - \hat{y}|| \leq ||y - v|| \textrm{ for all } v \in W
 	\end{equation*}
 	
 	\section*{Least-squares solution}
 	\begin{equation*}
-	||b - A\hat{x}|| \leq ||b - Ax|| \textrm{ for all } x \in R^n
+		||b - A\hat{x}|| \leq ||b - Ax|| \textrm{ for all } x \in R^n
 	\end{equation*}
 	Distance $|| b - A \hat{x}||$ is the least-squares error
 	
@@ -488,17 +488,5 @@
 		\item $A$ is orthogonally diagonalizable
 	\end{enumerate}
 	
-	
-	
 \end{multicols}
 \end{document}
-
-
-
-
-
-
-
-
-
-
