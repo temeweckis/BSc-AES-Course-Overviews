@@ -1,0 +1,1171 @@
+\section{2. Constitution of rocks, rock-fluid behaviour}
+\subsection{2.4 Geo-temperatures, geo-pressures, time-effects}
+\subsubsection{2.4.1 In-situ temperatures and related salinities}
+\textbf{Geothermal gradient}
+\begin{equation*}
+    G_t = \frac{T_f - T_s}{D}\tag{2.1}
+\end{equation*}
+% where:
+% \begin{conditions}
+%     G_t & geothermal gradient\\
+%     T_f & formation temperature\\
+%     T_s & mean surface temperature\\
+%     D & depth
+% \end{conditions}
+
+\textbf{Arrhenius' equation}
+\begin{equation*}
+    k = A\exp\left(-\frac{E_\mathrm{a}}{R T}\right)\quad \mathrm{or}\quad \ln(k) = \ln(A) - \frac{E_\mathrm{a}}{R T}\tag{2.2}
+\end{equation*}
+% where:
+% \begin{conditions}
+%     k & rate constant \\
+%     A & pre-exponential factor (depends on environment \& mineral types) \\
+%     E_\mathrm{a} & activation energy of the reaction $[\SI{}{\joule}]$ \\
+%     R & gas constant $[\SI{}{\joule\per\mole\per\kelvin}]$ \\
+%     T & temperature $[\SI{}{\kelvin}]$
+% \end{conditions}
+
+\textbf{Salinity conversion ratio}
+\begin{equation*}
+    S_1 = \frac{S_2}{\rho_\mathrm{sol}}\cdot 1000
+\end{equation*}
+where:
+\begin{conditions}
+    S_1 & salinity in \SI{}{\ppm}\\
+    S_2 & salinity in \SI{}{\gram\per\mol}\\
+    P_\mathrm{sol} & solution density in $\SI{}{\gram\per\liter}$
+\end{conditions}
+
+\textbf{Arp's empirical relation}
+\begin{equation*}\tag{2.4}
+    \begin{aligned}
+        \text{Fahrenheit:} &                                                                                                   \\
+        R_{\mathrm{w}T_2}  & = R_{\mathrm{w}T_1}\left(\frac{T_1 + \SI{6.77}{\fahrenheit}}{T_2 + \SI{6.77}{\fahrenheit}}\right) \\
+        \text{Celsius:}    &                                                                                                   \\
+        R_{\mathrm{w}T_2}  & = R_{\mathrm{w}T_1}\left(\frac{T_1 + \SI{21.5}{\celsius}}{T_2 + \SI{21.5}{\celsius}}\right)
+    \end{aligned}
+\end{equation*}
+% where:
+% \begin{conditions}
+%     R_{\mathrm{w} T_{1,2}} & respective water resistivities\\
+%     T_{1,2} & respective temperatures at specific depths
+% \end{conditions}
+
+\textbf{Arp's empirical relation for fresh water, $\ T_1=\SI{24}{\celsius}$}
+\begin{equation*}\tag{2.5}
+    \begin{aligned}
+        \text{Fahrenheit:} &                                                                                             \\
+        R_{\mathrm{w}T_2}  & = R_{\mathrm{w}75}\left(\frac{\SI{81.77}{\fahrenheit}}{T_2 + \SI{6.77}{\fahrenheit}}\right) \\
+        \text{Celsius:}    &                                                                                             \\
+        R_{\mathrm{w}T_2}  & = R_{\mathrm{w}24}\left(\frac{\SI{45}{\celsius}}{T_2 + \SI{21.5}{\celsius}}\right)
+    \end{aligned}
+\end{equation*}
+% where:
+% \begin{conditions}
+%     R_{\mathrm{w} T_{1,2}} & respective water resistivities\\
+%     T_{1,2} & respective temperatures at specific depths
+% \end{conditions}
+
+\textbf{\ch{NaCl} concentration equivalents}
+\begin{equation*}
+    C_\mathrm{sum} = \sum_{a=1}^{n} M_a C_{ai}\tag{2.6}
+\end{equation*}
+% where:
+% \begin{conditions}
+%     C_\mathrm{sum} & \ch{NaCl} concentration equivalents\\
+%     M_a & weighting multiplier\\
+%     C_{ai} & different ions
+% \end{conditions}
+
+\textbf{Water resistivity from known ion concentration}
+\begin{equation*}
+    R_{\mathrm{w}75} = \left(\SI{2.74e-4}{}C_\mathrm{sum}\right)^{-1} + 0.0123\tag{2.7}
+\end{equation*}
+% where:
+% \begin{conditions}
+%     R_{\mathrm{w}{75}} & water resistivity at \SI{75}{\fahrenheit}\\
+%     C_\mathrm{sum} & \ch{NaCl} concentration equivalents
+% \end{conditions}
+
+\subsubsection{2.4.2 In-situ pressures}
+\textbf{Total overburden pressure}
+\begin{equation*}
+    P_0 = P_r + P_f\tag{2.8}
+\end{equation*}
+% where:
+% \begin{conditions}
+%     % P_0 & total overburden pressure\\
+%     P_r & lithostatic (grain) pressure\\
+%     P_f & fluid pressure
+% \end{conditions}
+
+\textbf{Effective stress}
+\begin{equation*}
+    \sigma_p = P_0 - P_f\tag{2.9}
+\end{equation*}
+% where:
+% \begin{conditions}
+%     % \sigma_p & effective stress\\
+%     P_0 & total overburden pressure\\
+%     P_f & fluid pressure
+% \end{conditions}
+
+\subsubsection{2.4.3 Effects of time}
+\begin{equation*}
+    G = \frac{T\cdot t\cdot P}{1000}\tag{2.10}
+\end{equation*}
+% where:
+% \begin{conditions}
+%     G & geochronothermobar \\
+%     P & pressure $[\SI{}{\atm}]$ \\
+%     t & time [million years] \\
+%     T & temperature $[\SI{}{\celsius}]$
+% \end{conditions}
+
+\textbf{Maturity increment}
+\begin{equation*}
+    \Delta M = \Delta T r^n\tag{2.11}
+\end{equation*}
+% where:
+% \begin{conditions}
+%     \Delta M & increment in maturity\\
+%     \Delta T & increment in temperature\\
+%     r^n & temperature factor
+% \end{conditions}
+
+\subsection{2.5 Rock bulk densities and matrix densities}
+\subsubsection{2.5.1 Density definitions}
+\textbf{True density (or matrix density)}
+\begin{equation*}
+    \rho_m = \frac{\mathrm{mass}}{V_\mathrm{total} - V_\mathrm{pore}}\tag{2.12}
+\end{equation*}
+
+\textbf{Apparent specific gravity}
+\begin{equation*}
+    G_\mathrm{sa} = \frac{\text{dry weight in air}}{\text{dry weight in air} - \text{submerged weight}}
+\end{equation*}
+
+\textbf{Bulk density}
+\begin{equation*}
+    \rho_b = \frac{\text{mass}}{\text{volume including all voids}}
+\end{equation*}
+or
+\begin{equation*}
+    \rho_b = \frac{\text{mass}}{\text{unit volume including the fluid}}
+\end{equation*}
+
+\textbf{Bulk specific gravity}
+\begin{equation*}
+    G_{sb} = \frac{\text{dry weight in air}}{\text{saturated weight} - \text{submerged weight}}
+\end{equation*}
+
+\textbf{Grain density (or matrix density)}
+\begin{equation*}
+    \rho_g = \sum_{i=1}^{n}\rho_i\cdot v_i\tag{2.13}
+\end{equation*}
+% where:
+% \begin{conditions}
+%     % \rho_g & grain density\\
+%     n & number of minerals\\
+%     \rho_i & grain density of mineral $i$\\
+%     v_i & volume of mineral $i$
+% \end{conditions}
+
+\subsubsection{2.5.2 Laboratory measurement methods}
+\textbf{Dry bulk density}
+\begin{equation*}
+    \rho_b = \frac{W_g}{V_b}\tag{2.14}
+\end{equation*}
+% where:
+% \begin{conditions}
+%     M_g & mass of grains or matrix\\
+%     V_b & volume of grains and pore space
+% \end{conditions}
+
+\textbf{Natural bulk density}
+\begin{equation*}
+    \rho = \frac{W_g + W_w}{V_b}\tag{2.15}
+\end{equation*}
+% where:
+% \begin{conditions}
+%     M_w & mass of the available pore fluid
+% \end{conditions}
+
+\textbf{Saturated bulk density}
+\begin{equation*}
+    \rho_s = \frac{W_g + \left(V_p\cdot\rho_w\right)}{V_b}\tag{2.16}
+\end{equation*}
+% where:
+% \begin{conditions}
+%     V_p & volume of interconnecting pores\\
+%     \rho_w & fluid density
+% \end{conditions}
+
+\textbf{Bulk density from the buoyancy method}
+\begin{equation*}
+    \rho_b = \frac{W_1}{W_2 - W_3}\cdot\rho_w\tag{2.17}
+\end{equation*}
+% where:
+% \begin{conditions}
+%     W_1 & dry weight of sample in air\\
+%     W_2 & saturated weight of sample in air\\
+%     W_3 & weight of sample hanging in a liquid
+% \end{conditions}
+
+\textbf{Grain density from the buoyancy method}
+\begin{equation*}
+    \rho_g = \frac{W_1}{W_1 - W_3}\cdot\rho_w\tag{2.18}
+\end{equation*}
+
+\textbf{Grain volume from Boyle's law}
+\begin{equation*}
+    \left(V_0 - V_\mathrm{ma}\right)\cdot P_1 = \left(V_0 - V_\mathrm{ma} + \d V\right)\cdot P_2\tag{2.19}
+\end{equation*}
+% where:
+% \begin{conditions}
+%     P_1 & gas pressure\\
+%     P_2 & expanded gas pressure\\
+%     V_0 & sample chamber volume\\
+%     V_\mathrm{ma} & core sample grain volume\\
+%     \d V & reference volume
+% \end{conditions}
+
+\section{4. Rock porosity, permeability, and capillary pressure}
+\subsection{4.1 Porosity}
+\subsubsection{4.1.2 Porosity definition}
+\textbf{Total porosity}
+\begin{equation*}
+    \phi_t = \frac{V_b - V_\mathrm{ma}}{V_b}\quad\text{or}\quad\phi_t = \frac{V_p}{V_b}\quad\text{or}\quad\phi_t = \frac{V_p}{V_\mathrm{ma} + V_p}\tag{4.1, 4.2, 4.3}
+\end{equation*}
+% where:
+% \begin{conditions}
+%     V_p & pore volume\\
+%     V_b & bulk volume\\
+%     V_\mathrm{ma} & matrix volume
+% \end{conditions}
+
+\subsubsection{4.1.3 Porosity values and spatial characteristics}
+\textbf{Trask sorting}
+\begin{equation*}
+    S_0 = \sqrt{\frac{S_{25}}{S_{75}}}\tag{4.4}
+\end{equation*}
+% where:
+% \begin{conditions}
+%     S_{25} & grain size at \SI{25}{\percent} cumulative weight percentage\\
+%     S_{75} & grain size at \SI{75}{\percent} cumulative weight percentage
+% \end{conditions}
+
+\subsubsection{4.1.5 Laboratory analysis of porosity (direct measurement)}
+\textbf{Pore volume}
+\begin{equation*}
+    V_\mathrm{pore} = \frac{W_2 - W_1}{\rho_\mathrm{fluid}}\tag{4.5}
+\end{equation*}
+% where:
+% \begin{conditions}
+%     M_1 & dry core sample mass\\
+%     M_2 & submersed core sample mass\\
+%     \rho_\mathrm{fluid} & wetting liquid density
+% \end{conditions}
+
+\textbf{Effective porosity}
+\begin{equation*}
+    \phi_\mathrm{eff} = \frac{V_b - V_\mathrm{grain}}{V_b}\tag{4.6}
+\end{equation*}
+
+\subsection{4.2 Permeability}
+\subsubsection{4.2.2 Flow in tubes (Poiseuille)}
+\textbf{Poiseuille's law for flow through a cylindrical tube}
+\begin{equation*}
+    Q = \frac{\pi\cdot r^4\cdot\Delta p}{8\cdot\mu\cdot L}\tag{4.7}
+\end{equation*}
+% where:
+% \begin{conditions}
+%     Q & volumetric velocity ${[\SI{}{\cubic\centi\meter\per\second}]}$\\
+%     r & tube radius ${[\SI{}{\centi\meter}]}$\\
+%     \Delta p & pressure difference ${[\SI{}{\dyne\per\square\centi\meter}]}$\\
+%     \mu & dynamic viscosity ${[\SI{}{\poise}]}$ or $\mathrm{{[\SI{}{\gram\per\second\per\centi\meter}]}}$\\
+%     L & tube length ${[\SI{}{\centi\meter}]}$
+% \end{conditions}
+
+\subsubsection{4.2.3 Permeability measured on core samples}
+\textbf{Darcy's law}
+\begin{equation*}
+    Q = \frac{-k(h_2 - h_1)}{l}\tag{4.8}
+\end{equation*}
+% where:
+% \begin{conditions}
+%     Q & volumetric fluid velocity $\mathrm{[L^3\ t^{-1}]}$\\
+%     l & thickness of the sand $\mathrm{[L]}$\\
+%     h_2,\ h_1 & elevation above a reference level of water in manometers $\mathrm{[L]}$\\
+%     k & a proportionality factor $\mathrm{[L^3\ t^{-1}]}$
+% \end{conditions}
+
+\textbf{Darcy's law generalization}
+\begin{equation*}
+    Q = \frac{k\cdot A\cdot\Delta p}{\eta\cdot L}\tag{4.9}
+\end{equation*}
+% where:
+% \begin{conditions}
+%     Q & volumetric fluid velocity $[\SI{}{\cubic\centi\meter\per\second}]$\\
+%     A & surface area perpendicular to flow direction $[\SI{}{\square\centi\meter}]$\\
+%     \Delta p & pressure difference $[\SI{}{\atm}]$\\
+%     \eta & dynamic viscosity of the fluid $[\SI{}{\centi\poise}]$ or ${{[\SI{}{\kilogram\per\second\per\centi\meter}]}}$\\
+%     L & length $[\SI{}{\centi\meter}]$\\
+%     k & one-phase permeability $[\SI{}{\darcy}]$ ($\SI{1}{\darcy} = \SI{0.986e-8}{\square\centi\meter}$)
+% \end{conditions}
+
+\subsubsection{4.2.4 Correction for a flowing medium in laboratory measurements}
+\textbf{Darcy's law for gases}
+\begin{equation*}
+    Q = \frac{k\cdot A\cdot \Delta p\cdot\overline{p}}{\eta\cdot L\cdot p_\mathrm{atm}}\quad \mathrm{at}\ T=\SI{20}{\celsius},\ p_\mathrm{atm}=\SI{1}{\atm}\tag{4.10}
+\end{equation*}
+% where:
+% \begin{conditions}
+%     \overline{p} & average pressure over the sample $[\SI{}{\atm}]$\\
+%     p_\mathrm{atm} & the pressure outside the system $[\SI{}{\atm}]$
+% \end{conditions}
+
+\subsubsection{4.2.5 Correction for gas slippage}
+\textbf{Apparent permeability for a gas}
+\begin{equation*}
+    k_a = k\left(1 + \frac{b}{\overline{p}}\right)\tag{4.11}
+\end{equation*}
+% where:
+% \begin{conditions}
+%     k_a & apparent or observed permeability with gas\\
+%     k & liquid permeability\\
+%     b & Klinkenberg factor\\
+%     \overline{p} & mean test pressure of the gas in the pores
+% \end{conditions}
+
+\subsubsection{4.2.6 Correction for turbulence}
+\textbf{Forchheimer's adaption of Darcy's law}
+\begin{equation*}
+    \frac{\d p}{\d L} = \eta\cdot\frac{v}{k} + \beta\cdot\rho\cdot v^2\tag{4.12}
+\end{equation*}
+% where:
+% \begin{conditions}
+%     \beta & turbulence factor $[\SI{}{-}]$\\
+%     \rho & gas density $[\SI{}{\kilogram\per\cubic\meter}]$\\
+%     v & gas velocity $[\SI{}{\meter\per\square\second}]$\\
+%     \frac{\d p}{\d L} & pressure gradient $[\SI{}{\pascal\per\meter}]$\\
+%     \nu & fluid viscosity $[\SI{}{\kilogram\per\meter\per\second}]$\\
+%     k & one-phase permeability $[\SI{}{\square\meter}]$
+% \end{conditions}
+
+\subsubsection{4.2.8 Relation between pore space and permeability}
+\textbf{Kozeny equation for parallel capillary tubes}
+\begin{equation*}
+    k = \frac{n\cdot\pi\cdot r^4}{8 A_c}\tag{4.13}
+\end{equation*}
+% where:
+% \begin{conditions}
+%     n & number of parallel capillary tubes\\
+%     r & capillary tube radius\\
+%     A_c & capillary tube surface area\\
+% \end{conditions}
+
+\textbf{Porosity as the ratio of pore volume and bulk volume}
+\begin{equation*}
+    \phi = \frac{V_p}{V_b} = \frac{n\cdot\pi r^2}{A_c}\tag{4.14}
+\end{equation*}
+
+\textbf{Kozeny equation with porosity}
+\begin{equation*}
+    k = \frac{\phi\cdot r^2}{8}\tag{4.15}
+\end{equation*}
+
+\textbf{Internal surface area per unit pore volume}
+\begin{equation*}
+    S_{V_p} = \frac{2}{r}
+\end{equation*}
+
+\textbf{Total area in the pore space per unit of grain volume}
+\begin{equation*}
+    S_{V_\mathrm{gr}} = S_{V_p}\cdot\frac{\phi}{1 - \phi}\tag{4.16}
+\end{equation*}
+
+\textbf{Combining equations 4.13 and 4.16 and substituting $S_{V_p}$}
+\begin{equation*}
+    k = \left(\frac{1}{2 S_{V_\mathrm{gr}}^2}\right)\cdot\frac{\phi^3}{(1-\phi)^2}\tag{4.17}
+\end{equation*}
+
+\textbf{Tortuosity}
+\begin{equation*}
+    \tau = \left(\frac{L_a}{L}\right)^2\tag{4.18}
+\end{equation*}
+% where:
+% \begin{conditions}
+%     L_a & actual flow path\\
+%     L & minimum length along the flow path
+% \end{conditions}
+
+\textbf{Insert tortuosity into equation 4.17}
+\begin{equation*}
+    k = \left(\frac{1}{2\tau\cdot S_{V_\mathrm{gr}}^2}\right)\cdot \frac{\phi^3}{(1-\phi)^2}\tag{4.19}
+\end{equation*}
+
+\textbf{General Kozeny relation for $2\tau=5$}
+\begin{equation*}
+    k = \left(\frac{1}{5 S_{V_{gr}}^2}\right)\cdot\frac{\phi^3}{(1 - \phi)^2}\tag{4.20}
+\end{equation*}
+
+\subsubsection{4.2.9 Empirical relationships}
+\textbf{Van Baaren's empirical relationship}
+\begin{equation*}
+    k = 10 D_\mathrm{dom}^2\cdot C^{-3.64}\cdot\phi^{m + 3.64}\tag{4.21}
+\end{equation*}
+% where:
+% \begin{conditions}
+%     k & one-phase permeability\\
+%     D_\mathrm{dom} & dominant grain size from cutting inspection with a microscope\\
+%     C & a constant derived from observed sorting (Table 4.6)\\
+%     \phi & porosity, derived from well log evaluation\\
+%     M & cementation factor (Table 4.5)
+% \end{conditions}
+
+\subsubsection{4.2.10 Permeability from logs}
+\textbf{Correlation of core permeability with core porosities (examples)}
+\begin{equation*}
+    k = 10^{(C_1 + C_2\cdot\log\phi)}\tag{4.22}
+\end{equation*}
+and
+\begin{equation*}
+    k = 10^{(C_1 + C_2\cdot\phi)}\tag{4.23}
+\end{equation*}
+% where:
+% \begin{conditions}
+%     C_1,\ C_2 & constants determined by regression analysis
+% \end{conditions}
+
+\textbf{Wyllie and Rose equation}
+\begin{equation*}
+    k = \left(100\cdot\phi^2\cdot\frac{1 - S_\mathrm{wirr}}{S_\mathrm{wirr}}\right)^2\tag{4.24}
+\end{equation*}
+% where:
+% \begin{conditions}
+%     S_\mathrm{wirr} & irreducible water saturation
+% \end{conditions}
+
+\subsection{4.3 Capillarity}
+\subsubsection{4.3.2 Surface tension}
+\textbf{Surface energy force balance relations}
+\begin{equation*}
+    F = 2 \gamma l\tag{4.25}
+\end{equation*}
+and
+\begin{equation*}
+    \gamma = \frac{F}{2 l}\tag{4.26}
+\end{equation*}
+% where:
+% \begin{conditions}
+%     \gamma & surface tension $[\SI{}{\newton\per\meter}]$\\
+%     l & length of the rectangle wire $[\SI{}{\meter}]$\\
+%     F & force out on the wire $[\SI{}{\newton}]$
+% \end{conditions}
+
+\textbf{Soap bubble surface tension}
+\begin{equation*}
+    2\pi r\gamma = \pi r^2\Delta p\tag{4.27}
+\end{equation*}
+
+\subsubsection{4.3.4 Capillary pressures in a tube}
+\textbf{Capillary pressure in terms of the radius of the tube}
+\begin{equation*}
+    \Delta p = p_1 - p_2 = \frac{2\cdot\gamma\cdot\cos(\theta)}{r}\tag{4.28}
+\end{equation*}
+% where:
+% \begin{conditions}
+%     \theta & contact angle of water--air combination
+% \end{conditions}
+
+\textbf{Capillary pressure for air and water system}
+\begin{equation*}
+    \Delta p = p_c = (\rho_\mathrm{water} - \rho_\mathrm{air})\cdot g\cdot h\tag{4.29}
+\end{equation*}
+% where:
+% \begin{conditions}
+%     p_c & capillary pressure\\
+%     \rho_\mathrm{water},\ \rho_\mathrm{air} & water and air densities\\
+%     g & gravitational acceleration\\
+%     h & capillary rise
+% \end{conditions}
+
+\textbf{Capillary rise}
+\begin{equation*}
+    h = \frac{p_c}{(\rho_\mathrm{water} - \rho_\mathrm{air})\cdot g}\tag{4.30}
+\end{equation*}
+
+\textbf{Capillary rise for air and water system}
+\begin{equation*}
+    h = \frac{2\cdot\gamma\cdot\cos(\theta)}{r\cdot g\cdot(\rho_\mathrm{water}-\rho_\mathrm{air})}\tag{4.31}
+\end{equation*}
+
+\textbf{Capillary rise for air and oil system}
+\begin{equation*}
+    h = \frac{2\cdot\gamma\cdot\cos(\theta_{\mathrm{o/w}})}{r\cdot g\cdot(\rho_\mathrm{water}-\rho_\mathrm{oil})}\tag{4.32}
+\end{equation*}
+% where:
+% \begin{conditions}
+%     \theta_\mathrm{o/w} & contact angle of water--oil system
+% \end{conditions}
+
+\subsubsection{4.3.7 Conversion from laboratory to reservoir conditions}
+\textbf{Corrections for differences in contact angles and interfacial tensions}
+% \begin{equation*}
+%     p_C(\ch{Hg} / \mathrm{air}) = \frac{2\cdot\gamma\cdot\cos(\theta)}{r} = \frac{2\cdot 480\cdot0.776}{r}\tag{4.33}
+% \end{equation*}
+% \begin{equation*}
+%     p_C(\mathrm{oil} / \mathrm{air}) = \frac{2\cdot\gamma\cdot\cos(\theta)}{r} = \frac{2\cdot 35\cdot1}{r}\tag{4.34}
+% \end{equation*}
+% \begin{equation*}
+%     \frac{p_C(\ch{Hg} / \mathrm{air}\ \text{at surface})}{p_C(\mathrm{oil} / \mathrm{air}\ \text{in reservoir})} = \frac{480\cdot 0.776}{35} = 10.5\approx10\tag{4.35}
+% \end{equation*}
+% \begin{equation*}
+%     \frac{p_C(\ch{Hg} / \mathrm{air}\ \text{at surface})}{p_C(\mathrm{gas} / \mathrm{air}\ \text{in reservoir})} = \frac{480\cdot 0.776}{72} = 5.1\approx5\tag{4.36}
+% \end{equation*}
+\begin{align}
+    p_C(\ch{Hg} / \mathrm{air})                                                                                  & = \frac{2\cdot\gamma\cdot\cos(\theta)}{r} = \frac{2\cdot 480\cdot0.776}{r}\tag{4.33} \\
+    p_C(\mathrm{oil} / \mathrm{air})                                                                             & = \frac{2\cdot\gamma\cdot\cos(\theta)}{r} = \frac{2\cdot 35\cdot1}{r}\tag{4.34}      \\
+    \frac{p_C(\ch{Hg} / \mathrm{air}\ \text{at surface})}{p_C(\mathrm{oil} / \mathrm{air}\ \text{in reservoir})} & = \frac{480\cdot 0.776}{35} = 10.5\approx10\tag{4.35}                                \\
+    \frac{p_C(\ch{Hg} / \mathrm{air}\ \text{at surface})}{p_C(\mathrm{gas} / \mathrm{air}\ \text{in reservoir})} & = \frac{480\cdot 0.776}{72} = 5.1\approx5\tag{4.36}
+\end{align}
+
+\textbf{From lab capillary pressure to equivalent height above FWL}
+\begin{equation*}
+    h = \frac{\gamma_\mathrm{res}\cdot\cos(\theta)_\mathrm{res}\cdot p_{C(\max \mathrm{lab})}\cdot C}{\gamma_\mathrm{lab}\cdot\cos(\theta)_\mathrm{lab}\cdot g\cdot\Delta\rho}\tag{4.37}
+\end{equation*}
+% with:
+% \begin{conditions}
+%     \gamma_\mathrm{res} & inter-facial tension of the reservoir fluids/solid $[\SI{}{\milli\newton\per\meter}]$\\
+%     \theta_\mathrm{res} & contact angle fluid/solid reservoir $[\SI{}{\degree}]$\\
+%     \gamma_\mathrm{lab} & IFT of the fluids/solid of the laboratory in $[\SI{}{\milli\newton\per\meter}]$\\
+%     \theta_\mathrm{lab} & contact angle fluids/solid laboratory $[\SI{}{\degree}]$\\
+%     p_{C(\max \mathrm{lab})} & maximum capillarity pressure measured in the lab $[\SI{}{\bar}]$\\
+%     g & gravitational acceleration $[\SI{}{\meter\per\square\second}]$\\
+%     \Delta\rho & difference in reservoir fluid densities $[\SI{}{\kilogram\per\cubic\meter}]$\\
+%     C & constant: \SI{100000}{} when using the above units
+% \end{conditions}
+
+\subsection{4.5 Capillarity pressures, saturation height functions}
+\textbf{Leverett's $j$-function}
+\begin{equation*}
+    J = \frac{p_c\sqrt{\left( \frac{k}{\phi} \right)}}{\sigma\cdot\cos\theta}\tag{4.38}
+\end{equation*}
+
+\textbf{Capillary pressure transposed from mercury data}
+\begin{equation*}
+    \frac{p_{\mathrm{cw-o}}}{\sigma_\mathrm{w-o}\cdot\cos\theta^\circ} = \frac{p_{\mathrm{cw-a}}}{\sigma_\mathrm{w-a}\cdot\cos\theta^\circ} = \left(\frac{p_{\mathrm{cHg}}}{\sigma_\mathrm{Hg}\cdot\cos140^\circ}\right)\cdot\sqrt{\frac{k}{\phi}}\tag{4.39}
+\end{equation*}
+
+\textbf{Relationship between contact angle and saturation of water--oil systems}
+\begin{equation*}
+    \cos\theta_\mathrm{a-w} = 1.0 = \left( \frac{p_\mathrm{c-aw}}{\sigma_\mathrm{aw}} \right)\cdot\left( \frac{r}{2} \right) = f(S_w)\tag{4.40}
+\end{equation*}
+
+\textbf{Oil-displacing water capillary pressure curve}
+\begin{equation*}
+    \cos\theta_\mathrm{o-w} = \left( \frac{p_\mathrm{c-ow}}{\sigma_\mathrm{ow}} \right)\cdot\left( \frac{r}{2} \right) = f(S_w)\tag{4.41}
+\end{equation*}
+
+\textbf{Water--oil system contact angle as function of wetting phase saturation}
+\begin{equation*}
+    \cos\theta_\mathrm{o-w} = \left( \frac{p_\mathrm{c-ow}}{\sigma_\mathrm{ow}} \right)\cdot\left( \frac{p_\mathrm{c-aw}}{\sigma_\mathrm{aw}} \right) = f(S_w)\tag{4.42}
+\end{equation*}
+
+\section{5. Rock resistivity, conductivity, and natural electric potential}
+\subsection{Rock resistivity in general}
+\textbf{Resistance}
+\begin{equation*}
+    r = \frac{E}{I}\tag{5.1}
+\end{equation*}
+
+\textbf{Specific resistance or resistivity}
+\begin{equation*}
+    R = R_0 = \frac{E\cdot A}{I\cdot L}\tag{5.2}
+\end{equation*}
+
+\textbf{Conductivity}
+\begin{equation*}
+    C = \frac{1}{R}\tag{5.3}
+\end{equation*}
+
+\subsection{5.1 Resistivity of a multi-component system}
+\subsubsection{5.1.2 The relation between F\_R and rock porosity}
+\textbf{Cross-sectional area of $n$ capillary tubes}
+\begin{equation*}
+    A_n = \phi A\tag{5.4}
+\end{equation*}
+
+\textbf{Resistivity of brine in capillary pore space}
+\begin{equation*}
+    R_\mathrm{w\ cap} = \frac{E\cdot A_n}{I_\mathrm{w\ cap}\cdot L}\tag{5.5}
+\end{equation*}
+
+\textbf{Formation resistivity factor for capillary tubes system}
+\begin{equation*}
+    F = F_R = \frac{R_0}{R_\mathrm{w\ cap}} = \frac{A}{A_n}\cdot\frac{I_\mathrm{w\ cap}}{I_0}\tag{5.6}
+\end{equation*}
+
+\textbf{Dependency between formation resistivity factor and porosity}
+\begin{equation*}
+    F = F_R = \frac{1}{\phi}\tag{5.7}
+\end{equation*}
+
+\textbf{Resistivity for porous system consisting of grains}
+\begin{equation*}
+    R_\mathrm{w\ cap} = \frac{E\cdot\phi\cdot A_n}{I_\mathrm{w\ cap}\cdot L}\tag{5.8}
+\end{equation*}
+
+\textbf{Formation resistivity factor for porous system consisting of grains}
+\begin{equation*}
+    F_R = \frac{1}{\phi}\cdot\frac{L_a}{L} = \frac{\sqrt{\tau}}{\phi}\tag{5.9}
+\end{equation*}
+
+\subsubsection{5.1.3 Relation between F\_R and matrix cementation/ compaction}
+\textbf{First Archie equation}
+\begin{equation*}
+    F = F_R = \frac{1}{\phi^m}=\frac{R_0}{R_w}=\frac{C_w}{C_0}\tag{5.10}
+\end{equation*}
+
+\textbf{Straight-line relationship from first Archie equation}
+\begin{equation*}
+    \log F = -m\log\phi\tag{5.11}
+\end{equation*}
+
+\textbf{Humble Archie}
+\begin{equation*}
+    F = F_R = \frac{a}{\phi^m}\tag{5.12}
+\end{equation*}
+
+\textbf{In-situ $m$-values}
+\begin{equation*}
+    m = \frac{-\log F}{\log\phi}\tag{5.13}
+\end{equation*}
+
+\subsubsection{5.1.4 The relation between F\_R and the water content S\_W}
+\textbf{Water saturation related to the porosity and resistivity index}
+\begin{equation*}
+    S_w = \left( \frac{R_0}{R_t} \right)^\frac{1}{n} = \left( \frac{F_R\cdot R_w}{R_t} \right)^\frac{1}{n}\tag{5.14}
+\end{equation*}
+
+\textbf{Resistivity index (amount of hydrocarbons in the pores)}
+\begin{equation*}
+    I_R = \frac{R_t}{R_0} = \frac{C_0}{C_t}\tag{5.15}
+\end{equation*}
+
+\textbf{Water saturation for less homogeneous textures}
+\begin{equation*}
+    S_w = \left( \frac{a\cdot R_w}{\phi^m\cdot R_t} \right)^\frac{1}{n}\tag{5.16}
+\end{equation*}
+
+\textbf{Second Archie equation}
+\begin{equation*}
+    I_R = \frac{R_t}{R_0} = S_w^{-n}\tag{5.17}
+\end{equation*}
+
+\subsubsection{5.1.5 Water saturation calculations using Archie; laboratory and wild life}
+\textbf{General equation combining 5.10 and 5.16}
+\begin{equation*}
+    C_t = \phi^m\cdot S_w^n\cdot C_w\quad\mathrm{or}\quad R_t=\phi^{-m}\cdot S_w^{-n}\cdot R_w\tag{5.18}
+\end{equation*}
+
+\subsection{5.2 Resistivity logging tools}
+\subsubsection{5.2.2 Electrical surveys (ES)}
+\textbf{Potential difference for a sphere}
+\begin{equation*}
+    E_m - E_n = \sum_{AM}^{AN}\frac{I\cdot R}{4\cdot\pi\cdot L^2}\d L = \frac{I\cdot R}{4\cdot\pi\cdot AM}\tag{5.19}
+\end{equation*}
+
+\textbf{Potential difference for a sphere, rearranged}
+\begin{equation*}
+    R = \frac{K_n\cdot\Delta E}{I}\tag{5.20}
+\end{equation*}
+
+\subsubsection{5.2.5 Micro-resistivity devices}
+\textbf{Flushed zone resistivity}
+\begin{equation*}
+    R_{x0} = \frac{E_{M0} - E_{M1}}{I_0}\tag{5.21}
+\end{equation*}
+
+\subsection{5.4 The electrochemical component}
+\subsubsection{5.4.2 Membrane potential}
+\begin{equation*}
+    E = k\log\frac{C_w}{C_{mf}}\tag{5.22}
+\end{equation*}
+\begin{equation*}
+    E = E_j + E_m = (-71)\log\frac{R_{mf}}{R_{wf}}\tag{5.23}
+\end{equation*}
+
+\subsection{5.6 The combination of SP components}
+\begin{equation*}
+    E_\mathrm{total} = I\cdot R_m + I\cdot R_{mc} + I\cdot R_{x0} + I\cdot R_t + I\cdot R_{sh}\tag{5.24}
+\end{equation*}
+
+\begin{equation*}
+    E_\mathrm{total} = E_m + E_j + E_{kmc} + E_{ksh}\tag{5.25}
+\end{equation*}
+
+\subsection{5.7 Shale volume calculation}
+\begin{equation*}
+    V_{sh} = \frac{PSP - SSP}{SSP}
+\end{equation*}
+
+\subsection{5.10 A water saturation equation: practice}
+\subsubsection{5.10.2 Water bearing reservoirs}
+\textbf{Conductivity of the shaly water-bearing sand}
+\begin{equation*}
+    C_0 = \frac{1}{F^\ast}\left( C_w + C_e \right)\tag{5.27}
+\end{equation*}
+
+\textbf{Conductivity of the clay fraction}
+\begin{equation*}
+    C_e = B\cdot Q_v\tag{5.28}
+\end{equation*}
+
+\textbf{Empirical relation from \SIrange{120}{390}{\fahrenheit}}
+\begin{equation*}
+    B\cdot R_w = 13.5\cdot \mathit{Sal}^{-0.70}\tag{5.29}
+\end{equation*}
+
+\textbf{Empirical relation around \SI{80}{\fahrenheit}}
+\begin{equation*}
+    B\cdot R_w = 6\cdot \mathit{Sal}^{-0.64}\tag{5.30}
+\end{equation*}
+
+\subsubsection{5.10.3 Hydrocarbon bearing reservoirs}
+\begin{equation*}
+    Q_v' = \frac{Q_v}{S_w}\tag{5.31}
+\end{equation*}
+
+\textbf{Corrected log reading of conductivity}
+\begin{equation*}
+    C_t = \phi_t^{+m^\ast}\cdot S_{wt}^{+n^\ast}\cdot C_w\left( 1 + \frac{R_w\cdot B\cdot Q_v}{S_{wt}} \right)\tag{5.32}
+\end{equation*}
+
+\textbf{Juhasz normalized $Q_v$ method}
+\begin{equation*}
+    C_t = \phi_t^{+m^\ast}\cdot S_{wt}^{+n^\ast}\cdot C_w\left( 1 + \frac{Q_{vn}}{S_{wt}}\left[ \frac{C_{cw}}{C_w} - 1 \right] \right)\tag{5.33}
+\end{equation*}
+
+\section{6. Rock nuclear behaviour \& applications}
+\subsection{6.2 Natural radioactivity}
+\subsubsection{6.2.5 The calculation of shale volumes}
+\begin{equation*}
+    V_\mathrm{sh} = \frac{\mathit{GR} - \mathit{GR}_\mathrm{min}}{\mathit{GR}_\mathrm{sh} - \mathit{GR}_\mathrm{min}}\tag{6.1}
+\end{equation*}
+
+\subsection{6.3 The gamma-gamma or density application}
+\subsubsection{6.3.2 Interaction of gamma-rays and atoms}
+\begin{equation*}
+    I = I_0\cdot\exp(-\mu\cdot x)\tag{6.2}
+\end{equation*}
+or
+\begin{equation*}
+    \ln{\frac{I}{I_0}} = -\mu\cdot x\tag{6.3}
+\end{equation*}
+
+\subsubsection{6.3.3 Density of the sedimentary rock}
+\textbf{Electron density relation to bulk density}
+\begin{equation*}
+    \rho_e = \frac{N\cdot Z\cdot \rho_b}{A}\tag{6.4}
+\end{equation*}
+
+\textbf{Apparent bulk density relation to electron density}
+\begin{equation*}
+    \rho_a = 1.07\cdot\rho_e - 0.188\tag{6.5}
+\end{equation*}
+
+\subsubsection{6.3.4 Photo-electric effect of the reservoir}
+\textbf{Photo-electric absorption cross-section}
+\begin{equation*}
+    \tau = K\cdot Z^{4.6}\tag{6.6}
+\end{equation*}
+
+\textbf{Photo-electric effect}
+\begin{equation*}
+    P_e = (Z / 10)^{3.6}\tag{6.7}
+\end{equation*}
+
+\textbf{Effective photo-electric absorption cross-section per unit volume}
+\begin{equation*}
+    U = \phi\cdot U_{fl} + (1-\phi)\cdot U_{ma}\tag{6.8}
+\end{equation*}
+
+\subsection{6.4 Neutron logs}
+\subsubsection{6.4.2 Theoretical background}
+\textbf{Hydrogen Index (HI)}
+\begin{equation*}
+    \mathit{HI} = \frac{\mathrm{number\ of\ H\ atoms}}{\mathrm{volume}\cdot \mathrm{number\ of\ H\ atoms\ in\ 1\ cc\ \ch{H2O}}}\tag{6.9}
+\end{equation*}
+
+\textbf{Porosity from Neutron log relation to true porosity}
+\begin{equation*}
+    \phi_n = \phi\cdot\left(\mathit{HI}_{mf}\cdot S_{x0} + \mathit{HI}_{hc}\cdot(1-S_{x0})\right)\tag{6.10}
+\end{equation*}
+
+\textbf{Example: \ch{CH4} with in-situ density \SI{0.1}{\gram\per\cubic\centi\meter} and $S_{xo}=0.7$}
+\begin{equation*}
+    \phi_n = \phi\cdot\left(1\cdot0.7 + 0.225\cdot0.3\right) = 0.77\cdot\phi\tag{6.11}
+\end{equation*}
+
+\subsubsection{6.4.3 Technical aspects and variety in neutron tools}
+\textbf{Radium decays to Radon and Helium}
+\begin{equation*}
+    \ce{_{88}Ra^{226} -> _{86}Rn^{222} + _{2}He^{4}}\tag{6.12}
+\end{equation*}
+
+\textbf{$\alpha$-particles from \ch{He} bombard the Beryllium target}
+\begin{equation*}
+    \ce{_{4}Be^{9} + _{2}He^{4} -> _{6}C^{12} + _0n^1} + \mathrm{gamma\ rays}\tag{6.13}
+\end{equation*}
+
+\textbf{The capturing nucleus becomes excited and emits $\gamma$-rays}
+\begin{equation*}
+    \ce{_{1}H^{1} + _0n^1 -> _{1}H^{2}} + \mathrm{gamma\ rays}\tag{6.14}
+\end{equation*}
+
+\section{7. Rock acoustical and related mechanical behaviour}
+\subsection{7.1 General introduction}
+\textbf{Acoustic transit time}
+\begin{equation*}
+    \Delta t = \frac{\SI{1e6}{}}{v}\tag{7.1}
+\end{equation*}
+
+\subsection{7.2 Basic concept}
+\subsubsection{7.2.1 Stiffness of rock}
+\textbf{Longitudinal and transverse trains}
+\begin{equation*}
+    \varepsilon_l = \frac{\Delta L}{L}\quad\mathrm{and}\quad\varepsilon_t=\frac{\Delta D}{D}\tag{7.2, 7.3}
+\end{equation*}
+
+\textbf{Shear strain}
+\begin{equation*}
+    \varepsilon_s = \frac{\Delta L}{L} = \tan\theta\tag{7.4}
+\end{equation*}
+
+\textbf{Young's modulus}
+\begin{equation*}
+    E = \frac{F\cdot L}{A\cdot\Delta L}\tag{7.5}
+\end{equation*}
+
+\textbf{Poisson's ratio}
+\begin{equation*}
+    \mu = \frac{\varepsilon_t}{\varepsilon_l}\tag{7.6}
+\end{equation*}
+
+\textbf{Poisson's ratio in the case of a cylinder}
+\begin{equation*}
+    \mu = \left( \frac{\Delta d}{d} \right) / \left( \frac{\Delta L}{L} \right)\tag{7.7}
+\end{equation*}
+
+\textbf{Shear modulus}
+\begin{equation*}
+    G = \frac{F}{A\cdot\theta}\tag{7.8}
+\end{equation*}
+
+\textbf{Bulk modulus}
+\begin{equation*}
+    K = \frac{p\cdot V}{\Delta V}\tag{7.9}
+\end{equation*}
+
+\textbf{Relations between elastic constants $E$, $\mu$, $G$, and $K$}
+\begin{equation*}
+    G = \frac{E}{\left[ 2(1+\mu) \right]}\tag{7.10}
+\end{equation*}
+and
+\begin{equation*}
+    K = \frac{E}{\left[ 3(1 - 2\mu) \right]}\tag{7.11}
+\end{equation*}
+
+\textbf{Wave propagation in elastic bodies}
+\begin{equation*}
+    \sigma = A_0\cos2\pi\left[ f_t - (x/\lambda) \right]\tag{7.12}
+\end{equation*}
+and
+\begin{equation*}
+    v = \lambda\cdot f\quad\mathrm{and}\quad f=1 / t \tag{7.13, 7.14}
+\end{equation*}
+
+\textbf{Absorption and wave amplitude}
+\begin{equation*}
+    A = A_0\cdot\exp(-\alpha x)\tag{7.15}
+\end{equation*}
+
+\textbf{Wave propagation and attenuation effects}
+\begin{equation*}
+    \sigma = A_0\cdot\exp(-\alpha x)\cdot\cos2\pi\left[ f_t - (x/\lambda) \right]\tag{7.16}
+\end{equation*}
+
+\textbf{Velocity of compression propagation}
+\begin{equation*}
+    v_p = \left[ (K + 4/3) G / p \right]^{1/2} = \left\{ \frac{(E/\rho) (1-\mu)}{(1-2\mu)(1+\mu)} \right\}^{1/2}\tag{7.17, 7.18}
+\end{equation*}
+
+\textbf{Velocity of shear propagation}
+\begin{equation*}
+    v_s = \left( G/\rho \right)^{1/2} = \left[ \frac{E/\rho}{2(1+\mu)} \right]^{1/2}\tag{7.19, 7.20}
+\end{equation*}
+
+\textbf{Comparison between compression- and shear-wave velocities}
+\begin{equation*}
+    \frac{v_p}{v_s} = \left[ (4/3) + (K/G) \right]^{1/2} = \left\{ \frac{2(1-\mu)}{1 - 2\mu} \right\}^{1/2}\tag{7.21, 7.22}
+\end{equation*}
+
+\begin{equation*}
+    v_p > \sqrt{2v_s}\tag{7.23}
+\end{equation*}
+or
+\begin{equation*}
+    \Delta t_s > \sqrt{2\Delta t_p}\tag{7.24}
+\end{equation*}
+
+\textbf{Snell's law}
+\begin{equation*}
+    \frac{\sin\alpha_1}{v_1} = \frac{\sin\alpha_{21}}{v_2} = \frac{\sin\alpha_3}{v_3}\tag{7.25}
+\end{equation*}
+Angle $\alpha_2$ is expressed as
+\begin{equation*}
+    \sin\alpha_2 = \left( \frac{v_1}{v_2} \right)\sin\alpha_1\tag{7.26}
+\end{equation*}
+when
+\begin{equation*}
+    \sin\alpha_1 = \left( \frac{v_1}{v_2} \right) = \sin\alpha_C\tag{7.27}
+\end{equation*}
+
+\textbf{Compressional critical angle}
+\begin{equation*}
+    \sin\alpha_{pc} = \left( \frac{v_{p1}}{v_{2p}} \right)\tag{7.28}
+\end{equation*}
+
+\textbf{Shear critical angle}
+\begin{equation*}
+    \sin\alpha_{sc} = \left( \frac{v_{p1}}{v_{s2}} \right)\tag{7.29}
+\end{equation*}
+
+\textbf{Relation between critical angles}
+\begin{equation*}
+    \frac{\sin\alpha_{sc}}{\sin\alpha_{pc}} = \left( \frac{v_{p2}}{v_{s2}} \right)\tag{7.30}
+\end{equation*}
+
+\textbf{Summed travel time}
+\begin{equation*}
+    \frac{1}{v_b} = \frac{\phi}{v_f} = \frac{1-\phi}{v_\mathrm{ma}}\tag{7.31}
+\end{equation*}
+or
+\begin{equation*}
+    \Delta t = \Delta t_f \phi + \Delta t_\mathrm{ma}(1-\phi)\tag{7.32}
+\end{equation*}
+
+\textbf{Porosity as a function of transit times}
+\begin{equation*}
+    \phi = \frac{(\Delta t - \Delta t_\mathrm{ma})}{(\Delta t_f - \Delta t_\mathrm{ma})}\tag{7.33}
+\end{equation*}
+
+\subsection{7.3 The practical method of approach}
+\subsubsection{7.3.2 Limitations of acoustic logging}
+\textbf{Critical shear velocity}
+\begin{equation*}
+    \frac{\sin(\phi_\mathrm{formation})}{\sin(\phi_\mathrm{mud})} = \frac{V_\mathrm{mud}}{V_\mathrm{formation}}\tag{7.34}
+\end{equation*}
+
+\section{9. Evaluation of minerals, fluids, and in-situ environments}
+\subsection{9.2 Evaluations for oil and gas}
+\subsubsection{9.2.6 Porosity determination}
+\textbf{Bulk density as linear relation between matrix and fluid points}
+\begin{equation*}
+    \rho_b = (1-\phi)\cdot\rho_\mathrm{ma} + \phi\cdot\rho_\mathrm{fl}\tag{9A.1}
+\end{equation*}
+can be rearranged to
+\begin{equation*}
+    \phi = \frac{\rho_\mathrm{ma} \rho_b}{\rho_\mathrm{ma} - \rho_\mathrm{fl}}\tag{9A.2}
+\end{equation*}
+
+\textbf{Fluid density when pores contain a mixture of mud filtrate and HCs}
+\begin{equation*}
+    \rho_\mathrm{fl} = S_{x0}\cdot\rho_\mathrm{mf} + (1 - S_{x0})\cdot\rho_\mathrm{hc}\tag{9A.3}
+\end{equation*}
+
+\textbf{Transit times according to Wyllie equation}
+\begin{equation*}
+    \Delta T = \phi\cdot\Delta T_\mathrm{fl} + (1 - \phi)\cdot\Delta T_\mathrm{ma}\tag{9A.4}
+\end{equation*}
+or
+\begin{equation*}
+    \phi = \frac{\Delta T - \Delta T_\mathrm{ma}}{\Delta T_\mathrm{fl} - \Delta T_\mathrm{ma}}\tag{9A.5}
+\end{equation*}
+
+\textbf{Porosity from Neutron log relation to true porosity}
+\begin{equation*}
+    \phi_n = \phi\cdot\left( \mathit{HI}_\mathrm{mf}\cdot S_{x0} + \mathit{HI}_\mathrm{hc}\cdot(1 - S_{x0}) \right)
+\end{equation*}
+
+\subsubsection{9.2.7 Gas effects}
+\textbf{Apparent bulk density relation to electron density}
+\begin{equation*}
+    \rho_a = 1.07\cdot\rho_e - 0.188
+\end{equation*}
+
+\subsubsection{9.2.8 Lithology}
+\textbf{Effective porosity for shaly sands}
+\begin{equation*}
+    \phi_e = 1 - V_\mathrm{sa} - V_\mathrm{sh}\tag{9A.6}
+\end{equation*}
+
+\textbf{Equations for neutron-density cross-plots}
+\begin{equation*}
+    \rho_b = (1 - \phi_e - V_\mathrm{sh})\cdot\rho_\mathrm{ma} + \phi_e\rho_\mathrm{mf} + V_\mathrm{sh}\cdot\rho_\mathrm{sh}\tag{9A.7}
+\end{equation*}
+and
+\begin{equation*}
+    \phi_n = \phi_e + V_\mathrm{sh}\cdot\phi_\mathrm{nsh}\tag{9A.8}
+\end{equation*}
+
+\textbf{Multiple mineral log evaluations, neutron and density tool}
+% \begin{equation*}
+%     \rho_b = V_\mathrm{ma1}\cdot\rho_\mathrm{ma1} + V_\mathrm{ma2}\cdot\rho_\mathrm{ma2} + \phi\cdot\rho_\mathrm{fl}\tag{9A.9}
+% \end{equation*}
+% 
+% \begin{equation*}
+%     \phi_n = V_\mathrm{ma1}\cdot\phi_\mathrm{nma1} + V_\mathrm{ma2}\cdot\phi_\mathrm{nma2} + \phi\cdot c\tag{9A.10}
+% \end{equation*}
+% 
+% \begin{equation*}
+%     1 = V_\mathrm{ma1} + V_\mathrm{ma2} + \phi\tag{9A.11}
+% \end{equation*}
+\begin{align}
+    \rho_b & = V_\mathrm{ma1}\cdot\rho_\mathrm{ma1} + V_\mathrm{ma2}\cdot\rho_\mathrm{ma2} + \phi\cdot\rho_\mathrm{fl}\tag{9A.9} \\
+    \phi_n & = V_\mathrm{ma1}\cdot\phi_\mathrm{nma1} + V_\mathrm{ma2}\cdot\phi_\mathrm{nma2} + \phi\cdot c\tag{9A.10}            \\
+    1      & = V_\mathrm{ma1} + V_\mathrm{ma2} + \phi\tag{9A.11}
+\end{align}
+
+\textbf{Multiple mineral log evaluations, Sonic--Pe combination}
+\begin{align}
+    \Delta T                 & = V_\mathrm{ma1}\cdot\Delta T_\mathrm{ma1} + V_\mathrm{ma2}\cdot\Delta T_\mathrm{ma2} + \phi\cdot\Delta T_\mathrm{fl}\tag{9A.12} \\
+    P_\mathrm{eb}\cdot\rho_b & = V_\mathrm{ma1}\cdot U_\mathrm{ma1} + V_\mathrm{ma2}\cdot U_\mathrm{ma2} + \phi\cdot U_\mathrm{fl} \tag{9A.13}
+\end{align}
+
+\subsubsection{9.2.9 Saturation determination from logs}
+\textbf{Conductivity from Archie equations}
+\begin{equation*}
+    C_t = \phi^m\cdot S_w^n\cdot C_w\tag{9A.14}
+\end{equation*}
+
+\textbf{Estimate mud-filtrate conductivity}
+\begin{equation*}
+    E = (-71)\cdot\log\frac{C_w}{C_\mathrm{mf}}\tag{9A.15}
+\end{equation*}
+
+\textbf{For $S_w=1$}
+\begin{equation*}
+    C_w = C_t / \phi^m\tag{9A.16}
+\end{equation*}
+
+\subsubsection{9.2.11 Hydrocarbon reserves volume estimation}
+\begin{equation*}
+    \mathit{HCIIP} = V_b\cdot \frac{N}{G} \cdot\phi\cdot S_\mathrm{hc}\cdot\frac{1}{B_0}\tag{9A.17}
+\end{equation*}
+
+\begin{equation*}
+    \mathrm{recoverable\ reserves} = \mathit{HCIIP}\cdot \mathit{RF}\tag{9A.18}
+\end{equation*}
+
+\subsection{9.3 General introduction on the evaluation of coal and water}
+\subsubsection{9.3.4 Ash content}
+\begin{equation*}
+    \rho_\mathrm{bulk} = \rho_\mathrm{ash}\cdot V_\mathrm{ash} + \rho_\mathrm{carb}\cdot V_\mathrm{carb}\tag{9B.1}
+\end{equation*}
+
+\subsubsection{9.3.5 Moisture content}
+\textbf{If the coal is assumed to consist entirely of carbon, ash, and moisture:}
+% \begin{equation*}
+%     \Delta T = \Delta T_\mathrm{fl}\cdot V_\mathrm{mois} + \Delta T_\mathrm{ash}\cdot V_\mathrm{ash} + \Delta T_\mathrm{carb}\cdot V_\mathrm{carb}\tag{9B.2}
+% \end{equation*}
+% 
+% \begin{equation*}
+%     \rho_b = \rho_\mathrm{fl}\cdot V_\mathrm{mois} + \rho_\mathrm{ash}\cdot V_\mathrm{ash} + \rho_\mathrm{carb}\cdot V_\mathrm{carb}\tag{9B.3}
+% \end{equation*}
+% 
+% \begin{equation*}
+%     l = V_\mathrm{mois} + V_\matshrm{ash} + V_\mathrm{carb}\tag{9B.4}
+% \end{equation*}
+\begin{align}
+    \Delta T & = \Delta T_\mathrm{fl}\cdot V_\mathrm{mois} + \Delta T_\mathrm{ash}\cdot V_\mathrm{ash} + \Delta T_\mathrm{carb}\cdot V_\mathrm{carb}\tag{9B.2} \\
+    \rho_b   & = \rho_\mathrm{fl}\cdot V_\mathrm{mois} + \rho_\mathrm{ash}\cdot V_\mathrm{ash} + \rho_\mathrm{carb}\cdot V_\mathrm{carb}\tag{9B.3}             \\
+    1        & = V_\mathrm{mois} + V_\mathrm{ash} + V_\mathrm{carb}\tag{9B.4}
+\end{align}
+
+\subsubsection{9.3.6 Floats/sinks, calorific value, volatiles, sulphur}
+\textbf{Relation between gas and ash content}
+\begin{equation*}
+    V_\mathrm{gas} = a - b\cdot V_\mathrm{ash}\tag{9B.5}
+\end{equation*}
+
+\subsection{9.4 Evaluation of groundwater}
+\subsubsection{9.4.3 Parameters regarding the condition of water}
+\textbf{Total dissolved solids}
+\begin{equation*}
+    \mathit{TDS} = 7\cdot C_w\tag{9B.6}
+\end{equation*}
+
+\textbf{Conversion to standard conditions}
+\begin{equation*}
+    C_w = C_0 \left( 1 + 0.0226\cdot(T - T_0) \right)\tag{9B.7}
+\end{equation*}
+
+\textbf{Variation in Hardness $H$ between countries}
+% \begin{equation*}
+%     H(^\circ \mathrm{D}) = 0.14\cdot\ce{Ca^{++}} (\SI{}{\milli\gram\per\liter}) + 0.231\cdot\ce{Mg^{++}} (\SI{}{\milli\gram\per\liter}) \tag{9B.8}
+% \end{equation*}
+% 
+% \begin{equation*}
+%     H(^\circ \mathrm{E}) = 100\cdot\ce{CaCO3} (\mathrm{grains / gallon}) \approx 0.80\ H(^\circ \mathrm{D}) \tag{9B.9}
+% \end{equation*}
+% 
+% \begin{equation*}
+%     H(^\circ \mathrm{F}) = 100\cdot\ce{CaCO3} (\SI{}{\milli\gram\per\liter}) \approx 0.56\ H(^\circ \mathrm{D}) \tag{9B.10}
+% \end{equation*}
+\begin{align}
+    H(^\circ \mathrm{D}) & = 0.14\cdot\ce{Ca^{++}} (\SI{}{\milli\gram\per\liter}) + 0.231\cdot\ce{Mg^{++}} (\SI{}{\milli\gram\per\liter}) \tag{9B.8} \\
+    H(^\circ \mathrm{E}) & = 100\cdot\ce{CaCO3} (\mathrm{grains / gallon}) \approx 0.80\ H(^\circ \mathrm{D}) \tag{9B.9}                             \\
+    H(^\circ \mathrm{F}) & = 100\cdot\ce{CaCO3} (\SI{}{\milli\gram\per\liter}) \approx 0.56\ H(^\circ \mathrm{D}) \tag{9B.10}
+\end{align}
+
+\subsubsection{9.4.4 The interpretation of log information}
+\textbf{Difference of SP potentials $E$ between shale and sand}
+\begin{equation*}
+    E = (-71)\cdot\log\frac{R_\mathrm{mf}}{R_\mathrm{w}}\tag{9B.11}
+\end{equation*}
+
+\textbf{Empirical relations for the calculation of $R_w$}
+\begin{align}
+    R_\mathrm{w}               & = R_\mathrm{mf} / 10^{(\mathrm{SP} / -70.7)}\tag{9B.12}     \\
+    R_\mathrm{w}^{\ce{NaCl}}   & = 0.825\cdot\left( R_\mathrm{we}^{1.227} \right)\tag{9B.13} \\
+    R_\mathrm{w}^{\ce{NaHCO3}} & = 1.18\cdot R_\mathrm{w}^{\ce{NaCl}}\tag{9B.14}
+\end{align}
+
+\textbf{Formation factor for $100\%$ water (Humble/Archie)}
+\begin{equation*}
+    F = \frac{R_0}{R_\mathrm{w}} = \frac{a}{\phi^m}\tag{9B.15}
+\end{equation*}
+
+\textbf{Empirical relation for unconsolidated Rhine and dune sands}
+\begin{equation*}
+    F = \frac{1.26}{\phi^{1.2}}\tag{9B.16}
+\end{equation*}
+
+\textbf{Empirical oil-field relation for hard rocks (hilly areas)}
+\begin{equation*}
+    F = \frac{0.62}{\phi^{2.15}}\tag{9B.17}
+\end{equation*}
+
+\textbf{Empirical relation for known grain-sizes}
+\begin{equation*}
+    F = 33 - 15\log(D_\mathrm{dom})\tag{9B.18}
+\end{equation*}
+
+\textbf{Porosity from Wyllie equation}
+\begin{equation*}
+    \phi = \frac{\Delta T - \Delta T_\mathrm{ma}}{\Delta T_\mathrm{fl} - \Delta T_\mathrm{ma}}\tag{9B.19}
+\end{equation*}
